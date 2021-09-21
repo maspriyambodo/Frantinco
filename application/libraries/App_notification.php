@@ -22,7 +22,7 @@ class App_notification {
 
     public function Count_notif() {
         $tot_count = $this->CI->bodo->Count_notif();
-        return $this->pusher->trigger('app_notification-channel', 'app_notification-event', ['tot_notif' => $tot_count]);
+        return $this->pusher->trigger('frantinco-channel', 'frantinco-event', ['tot_notif' => $tot_count]);
     }
 
 }

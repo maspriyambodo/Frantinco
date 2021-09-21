@@ -4,11 +4,11 @@ var pusher = new Pusher('4587e4cb86b14bb98e69', {
 setInterval(function () {
     pusher.connect();
 }, 5000);
-var channel = pusher.subscribe('app_notification-channel');
+var channel = pusher.subscribe('frantinco-channel');
 var audio = {};
 audio["walk"] = new Audio();
 audio["walk"].src = "assets/media/sound/notification_sound.mp3";
-channel.bind('app_notification-event', function (data) {
+channel.bind('frantinco-event', function (data) {
     if ($('#notif_count').length === 0) {
         $('#append_notif').append('<span id="notif_count" class="label label-sm label-danger label-inline text-center" style="margin: -10px 0px 0px 0px;position: absolute;"></span>');
     } else {
