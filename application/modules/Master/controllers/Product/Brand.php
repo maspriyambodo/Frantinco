@@ -48,4 +48,16 @@ class Brand extends CI_Controller {
         return $result;
     }
 
+    public function Check_nama() {
+        $exec = $this->model->Check_nama(Post_get("nama"));
+        if (empty($exec)) {
+            $result = ['status' => false, 'msg' => 'Brand Name available to use'];
+        } elseif ($exec->total == 0) {
+            $result = ['status' => false, 'msg' => 'Brand Name available to use'];
+        } else {
+            $result = ['status' => true, 'msg' => 'Brand Name already exist!'];
+        }
+        return ToJson($result);
+    }
+
 }

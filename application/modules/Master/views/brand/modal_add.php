@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal_addLabel">Add new brand</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="Close_add()">
                     <i aria-hidden="true" class="fas fa-times"></i>
                 </button>
             </div>
@@ -12,7 +12,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="brandtxt">Brand:</label>
-                        <input id="brandtxt" type="text" name="brandtxt" class="form-control" required="" autocomplete="off"/>
+                        <div class="input-group">
+                            <input id="brandtxt" type="text" name="brandtxt" class="form-control" required="" autocomplete="off" onchange="Check_brand_add(this.value)"/>
+                            <div id="check_code" class="input-group-append"></div>
+                        </div>
+                        <input id="code_stat" type="hidden" name="code_stat" value=""/>
+                        <div id="code_msg"></div>
                     </div>
                     <div class="form-group">
                         <label for="desctxt">Description:</label>
@@ -20,8 +25,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="far fa-times-circle"></i> Cancel</button>
-                    <button type="submit" class="btn btn-default"><i class="fas fa-save text-success"></i> Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="Close_add()"><i class="far fa-times-circle"></i> Cancel</button>
+                    <button type="button" class="btn btn-default" onclick="Save_add()"><i class="fas fa-save text-success"></i> Save</button>
                 </div>
             </form>
         </div>

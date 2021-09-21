@@ -305,6 +305,6 @@ $group_menu = $this->M_default->Group_menu();
             var menu = $('.menu-item .menu-item-active').parent('ul').parent().parent();
             menu.addClass('menu-item-active menu-item-open');
         </script>
-        <script src="<?php echo base_url('assets/js/app_notification.js'); ?>"></script>
+        <!--<script src="<?php echo base_url('assets/js/app_notification.js'); ?>"></script>-->
     </body>
 </html>

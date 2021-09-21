@@ -182,16 +182,20 @@ function Check_kategori_add(val) {
     });
 }
 function Save_add() {
-    var a, c;
+    var a, b, c, result;
     a = $('input[name="code_stat"]').val();
+    b = $('textarea[name="desctxt"]').val();
     c = $('input[name="namatxt"]').val();
-    if (a == 0) {
-        toastr.warning('Please use another category name');
-    } else if (!c) {
-        toastr.warning('Please fill category name');
+    if (!c || !a) {
+        result = toastr.warning('Please fill category name');
+    } else if (a == 0) {
+        result = toastr.warning('Please use another category name');
+    } else if (!b) {
+        result = toastr.warning('Please fill description category');
     } else {
-        $('#form_add').submit();
+        result = $('#form_add').submit();
     }
+    return result;
 }
 function Close_add() {
     $('#code_msg').empty();

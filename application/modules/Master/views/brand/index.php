@@ -4,7 +4,7 @@
         if ($privilege['create']) {
             echo '<div class="text-right">'
             . '<div class="form-group">'
-            . '<button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#modal_add" onclick="Add()"><i class="far fa-plus-square"></i> Add new</button>'
+            . '<button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#modal_add"><i class="far fa-plus-square"></i> Add new</button>'
             . '</div>'
             . '</div>';
             require_once 'modal_add.php';
