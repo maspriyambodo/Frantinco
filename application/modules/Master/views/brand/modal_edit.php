@@ -18,7 +18,7 @@
                             <input id="old_name" type="hidden" name="old_name"/>
                             <div id="e_check_code" class="input-group-append"></div>
                         </div>
-                        <input id="e_code_stat" type="hidden" name="code_stat" value=""/>
+                        <input id="e_code_stat" type="hidden" name="e_code_stat" value=""/>
                         <div id="e_code_msg"></div>
                     </div>
                     <div class="form-group">

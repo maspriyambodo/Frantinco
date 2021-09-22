@@ -191,7 +191,7 @@ function Check_brand_edit(val) {
                         $('#e_code_msg').empty();
                     }
                 } else {
-                    $('input[name="code_stat"]').val(1);
+                    $('input[name="e_code_stat"]').val(1);
                     $('#e_check_code').append(
                             '<span class="input-group-text">'
                             + '<i class="far fa-check-circle text-success"></i>'
