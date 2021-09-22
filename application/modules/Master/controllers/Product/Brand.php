@@ -60,4 +60,41 @@ class Brand extends CI_Controller {
         return ToJson($result);
     }
 
+    public function Get_detail() {
+        $id = Dekrip(Post_get('id'));
+        $data = [];
+        $exec = $this->model->Get_detail($id);
+        if (!empty($exec)) {
+            $data['id_brand'] = Enkrip($exec->id);
+            $data['nama_brand'] = $exec->nama;
+            $data['desc_brand'] = $exec->description;
+        } else {
+            $data = null;
+        }
+        return ToJson($data);
+    }
+
+    public function Update() {
+        $id = Dekrip(Post_input('e_id'));
+        if (!empty($id)) {
+            $data = [
+                'nama' => Post_input('e_brand'),
+                'description' => Post_input('e_desc'),
+                'sysupdateuser' => $this->user,
+                'sysupdatedate' => date('Y-m-d H:i:s')
+            ];
+            $exec = $this->model->_update($data, $id);
+            if ($exec <> true) {
+                $this->db->trans_rollback();
+                $result = redirect(base_url('Master/Product/Brand/index/'), $this->session->set_flashdata('err_msg', 'error while updating master category'));
+            } else {
+                $this->db->trans_commit();
+                $result = redirect(base_url('Master/Product/Brand/index/'), $this->session->set_flashdata('succ_msg', 'master category has been updated!'));
+            }
+        } else {
+            $result = redirect(base_url('Master/Product/Brand/index/'), $this->session->set_flashdata('err_msg', 'error while saving master brand'));
+        }
+        return $result;
+    }
+
 }

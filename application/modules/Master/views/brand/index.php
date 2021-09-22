@@ -35,7 +35,7 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button id="editbtn" type="button" class="btn btn-icon btn-xs btn-default" title="<?php echo 'Edit ' . $value->nama; ?>" value="<?php echo $id_brand; ?>" data-toggle="modal" data-target="#modal_edit" onclick="Edit(this.value)"><i class="far fa-edit text-warning"></i></button>
-                                    <button id="delbtn" type="button" class="btn btn-icon btn-xs btn-default" title="<?php echo 'Delete ' . $value->nama; ?>" value="<?php echo $id_brand; ?>" data-toggle="modal" data-target="#modal_delete" onclick="Edit(this.value)"><i class="fas fa-trash-alt text-danger"></i></button>
+                                    <button id="delbtn" type="button" class="btn btn-icon btn-xs btn-default" title="<?php echo 'Delete ' . $value->nama; ?>" value="<?php echo $id_brand; ?>" data-toggle="modal" data-target="#modal_delete" onclick="Delete(this.value)"><i class="fas fa-trash-alt text-danger"></i></button>
                                 </div>
                             </td>
                         </tr>

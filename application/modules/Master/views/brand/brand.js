@@ -114,3 +114,111 @@ function Save_add() {
     }
     return result;
 }
+function Edit(id) {
+    var e_id, e_brand, e_desc;
+    e_id = $('input[name="e_id"]');
+    e_brand = $('input[name="e_brand"]');
+    e_desc = $('textarea[name="e_desc"]');
+    $.ajax({
+        url: "<?php echo base_url('Master/Product/Brand/Get_detail?id='); ?>" + id,
+        type: 'GET',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            if (data) {
+                e_id.val(data.id_brand);
+                e_brand.val(data.nama_brand);
+                e_desc.val(data.desc_brand);
+            } else {
+                e_id.val('');
+                e_brand.val('');
+                e_desc.val('');
+                toastr.error('error while getting data!');
+            }
+        },
+        error: function (jqXHR) {
+            toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+}
+function Close_edit() {
+    var e_id, e_brand, e_desc;
+    e_id = $('input[name="e_id"]');
+    e_brand = $('input[name="e_brand"]');
+    e_desc = $('textarea[name="e_desc"]');
+    e_id.val('');
+    e_brand.val('');
+    e_desc.val('');
+    $('#e_code_msg').empty();
+    $('#e_check_code').empty();
+}
+function Check_brand_edit(val) {
+    $('#e_check_code').empty();
+    $('#e_code_msg').empty();
+    var brandtxt = $('input[name="e_brand"]').val();
+    if (!brandtxt) {
+        $('input[name="code_stat"]').val(0);
+        $('#e_check_code').append(
+                '<span class="input-group-text">'
+                + '<i class="fas fa-times text-danger"></i>'
+                + '</span>'
+                );
+        $('#e_code_msg').append('<small class="text-danger">please fill brand name</small>');
+    } else {
+        $.ajax({
+            url: "<?php echo base_url('Master/Product/Brand/Check_nama?nama='); ?>" + val,
+            type: 'GET',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                var old_name, new_name;
+                old_name = $('input[name="old_name"]').val();
+                new_name = $('input[name="e_brand"]').val(val);
+                if (data.status) {
+                    if (new_name === old_name) {
+                        $('input[name="e_code_stat"]').val(0);
+                        $('#e_check_code').append(
+                                '<span class="input-group-text">'
+                                + '<i class="fas fa-times text-danger"></i>'
+                                + '</span>'
+                                );
+                        $('#e_code_msg').append('<small class="text-danger">' + data.msg + '</small>');
+                    } else {
+                        $('input[name="e_code_stat"]').val(1);
+                        $('#e_check_code').empty();
+                        $('#e_code_msg').empty();
+                    }
+                } else {
+                    $('input[name="code_stat"]').val(1);
+                    $('#e_check_code').append(
+                            '<span class="input-group-text">'
+                            + '<i class="far fa-check-circle text-success"></i>'
+                            + '</span>'
+                            );
+                    $('#e_code_msg').append('<small class="text-success">' + data.msg + '</small>');
+                }
+            },
+            error: function (jqXHR) {
+                toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
+    }
+}
+function Save_edit(){
+    var a, b, c, result;
+    a = $('input[name="e_code_stat"]').val();
+    b = $('textarea[name="e_desc"]').val();
+    c = $('input[name="e_brand"]').val();
+    if (!c || !a) {
+        result = toastr.warning('Please fill brand name');
+    } else if (a == 0) {
+        result = toastr.warning('Please use another brand name');
+    } else if (!b) {
+        result = toastr.warning('Please fill description brand');
+    } else {
+        result = $('#form_edit').submit();
+    }
+    return result;
+}

@@ -28,4 +28,22 @@ class M_brand extends CI_Model {
         return $exec;
     }
 
+    public function Get_detail($id) {
+        $exec = $this->db->select('mt_brand.id,mt_brand.nama,mt_brand.description')
+                ->from('mt_brand')
+                ->where('`mt_brand`.`stat`', 1, false)
+                ->where('`mt_brand`.`id`', $id, false)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function _update($data, $id) {
+        $this->db->trans_begin();
+        $this->db->set($data)
+                ->where('`mt_brand`.`id`', $id, false)
+                ->update('mt_brand');
+        return $this->db->trans_status();
+    }
+
 }
