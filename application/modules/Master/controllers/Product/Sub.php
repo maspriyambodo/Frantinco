@@ -78,4 +78,55 @@ class Sub extends CI_Controller {
         ToJson($output);
     }
 
+    public function Get_category() {
+        $exec = $this->model->Get_category();
+        $category = [];
+        if ($exec) {
+            foreach ($exec as $key => $value) {
+                $category[$key] = (object) [
+                            'id' => Enkrip($value->id),
+                            'text' => $value->text
+                ];
+            }
+        } else {
+            $category[0] = (object) [
+                        'id' => '',
+                        'text' => 'not found'
+            ];
+        }
+        ToJson($category);
+    }
+
+    public function Check_sub() {
+        $exec = $this->model->Check_nama(Post_get("nama"));
+        if (empty($exec)) {
+            $result = ['status' => false, 'msg' => 'Sub-Category Name available to use'];
+        } elseif ($exec->total == 0) {
+            $result = ['status' => false, 'msg' => 'Sub-Category Name available to use'];
+        } else {
+            $result = ['status' => true, 'msg' => 'Sub-Category Name already exist!'];
+        }
+        return ToJson($result);
+    }
+
+    public function Save() {
+        $id_category = Dekrip(Post_input('categorytxt'));
+        $data = [
+            'id_category' => $id_category,
+            'nama' => Post_input('subtxt'),
+            'description' => Post_input('desctxt'),
+            'syscreateuser' => $this->user + false,
+            'syscreatedate' => date('Y-m-d H:i:s')
+        ];
+        $exec = $this->model->Add($data);
+        if ($exec <> true) {
+            $this->db->trans_rollback();
+            $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('err_msg', 'error while saving new master sub-category'));
+        } else {
+            $this->db->trans_commit();
+            $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('succ_msg', 'master sub-category has been added!'));
+        }
+        return $result;
+    }
+
 }

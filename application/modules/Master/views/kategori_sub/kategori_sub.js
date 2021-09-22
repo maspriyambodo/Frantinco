@@ -35,9 +35,9 @@ $(document).ready(function () {
         "scrollCollapse": true,
         "scrollX": true,
         "scrollY": "400px",
-        dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+        dom: `<'row'<'col-sm-6 text-left'l><'col-sm-6 text-right'f>>
                 <'row'<'col-sm-12'tr>>
-                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'p>>`,
         buttons: [
             {extend: 'print', footer: true},
             {extend: 'copyHtml5', footer: true},
@@ -62,4 +62,71 @@ $(document).ready(function () {
             }
         ]
     });
+    $('#categorytxt').select2({
+        ajax: {
+            url: "<?php echo site_url('Master/Product/Sub/Get_category') ?>",
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+            cache: false
+        }
+    });
 });
+function Close_add() {
+    $('#categorytxt').empty();
+    $('#categorytxt').append('<option value="">Search Category</option>');
+    $('#code_msg').empty();
+    $('#check_code').empty();
+    $('input[name="subtxt"]').val('');
+    $('textarea[name="desctxt"]').val('');
+}
+function Save_add() {
+    var a, b, c, result;
+    a = $('input[name="code_stat"]').val();
+    c = $('input[name="subtxt"]').val();
+    if (!c || !a) {
+        result = toastr.warning('Please fill sub-category name');
+    } else if (a == 0) {
+        result = toastr.warning('Please use another sub-category name');
+    } else {
+        result = $('#form_add').submit();
+    }
+    return result;
+}
+function Check_kategori_add(val) {
+    $('#check_code').empty();
+    $('#code_msg').empty();
+    $.ajax({
+        url: "<?php echo base_url('Master/Product/Sub/Check_sub?nama='); ?>" + val,
+        type: 'GET',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            if (data.status) {
+                $('input[name="code_stat"]').val(0);
+                $('#check_code').append(
+                        '<span class="input-group-text">'
+                        + '<i class="fas fa-times text-danger"></i>'
+                        + '</span>'
+                        );
+                $('#code_msg').append('<small class="text-danger">' + data.msg + '</small>');
+            } else {
+                $('input[name="code_stat"]').val(1);
+                $('#check_code').append(
+                        '<span class="input-group-text">'
+                        + '<i class="far fa-check-circle text-success"></i>'
+                        + '</span>'
+                        );
+                $('#code_msg').append('<small class="text-success">' + data.msg + '</small>');
+            }
+        },
+        error: function (jqXHR) {
+            toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+}

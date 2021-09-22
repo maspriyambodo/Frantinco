@@ -60,4 +60,32 @@ class M_sub extends CI_Model {
         return $exec->count_all_results();
     }
 
+    public function Get_category() {
+        if (Post_get('q')) {
+            $exec = $this->db->select('mt_category.id, mt_category.nama AS text')
+                    ->from('mt_category')
+                    ->like('mt_category.nama', Post_get('term'))
+                    ->get()
+                    ->result();
+        } else {
+            $exec = [];
+        }
+        return $exec;
+    }
+
+    public function Check_nama($nama) {
+        $exec = $this->db->select('mt_category_sub.id AS total')
+                ->from('mt_category_sub')
+                ->where('mt_category_sub.nama', $nama)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function Add($data) {
+        $this->db->trans_begin();
+        $this->db->insert('mt_category_sub', $data);
+        return $this->db->trans_status();
+    }
+
 }
