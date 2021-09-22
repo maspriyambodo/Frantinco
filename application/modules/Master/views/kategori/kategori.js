@@ -126,8 +126,8 @@ function Close_edit() {
     a.val('');
     b.val('');
     c.val('');
-    $('#code_msg').empty();
-    $('#check_code').empty();
+    $('#e_code_msg').empty();
+    $('#e_check_code').empty();
 }
 function Delete(id) {
     $.ajax({
@@ -247,14 +247,18 @@ function Check_kategori_edit(val) {
     });
 }
 function Save_edit() {
-    var a, c;
+    var a, b, c, result;
     a = $('input[name="e_code_stat"]').val();
+    b = $('textarea[name="e_desc"]').val();
     c = $('input[name="e_nama"]').val();
-    if (a == 0) {
-        toastr.warning('Please use another category name');
-    } else if (!c) {
-        toastr.warning('Please fill category name');
+    if (!c || !a) {
+        result = toastr.warning('Please fill category name');
+    } else if (a == 0) {
+        result = toastr.warning('Please use another category name');
+    } else if (!b) {
+        result = toastr.warning('Please fill description category');
     } else {
-        $('#form_edit').submit();
+        result = $('#form_edit').submit();
     }
+    return result;
 }
