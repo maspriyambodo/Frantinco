@@ -206,7 +206,7 @@ function Check_brand_edit(val) {
         });
     }
 }
-function Save_edit(){
+function Save_edit() {
     var a, b, c, result;
     a = $('input[name="e_code_stat"]').val();
     b = $('textarea[name="e_desc"]').val();
@@ -221,4 +221,24 @@ function Save_edit(){
         result = $('#form_edit').submit();
     }
     return result;
+}
+function Delete(id) {
+    $.ajax({
+        url: "<?php echo base_url('Master/Product/Brand/Get_detail?id='); ?>" + id,
+        type: 'GET',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            $('input[name="d_id"]').val(data.id_brand);
+            document.getElementById('modal_deleteLabel').innerHTML = 'Delete Brand: ' + data.nama_brand;
+        },
+        error: function (jqXHR) {
+            toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+}
+function Close_delete() {
+    document.getElementById('modal_deleteLabel').innerHTML = '';
+    $('input[name="d_id"]').val('');
 }
