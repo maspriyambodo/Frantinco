@@ -220,9 +220,9 @@ function Save_edit() {
     } else if (!e_category) {
         result = toastr.warning('Please select category name');
     } else if (c == old_name) {
-        $('#form_edit').submit();
+        result = $('#form_edit').submit();
     } else {
-        $('#form_edit').submit();
+        result = $('#form_edit').submit();
     }
     return result;
 }
