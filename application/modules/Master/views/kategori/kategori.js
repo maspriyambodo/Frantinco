@@ -247,16 +247,19 @@ function Check_kategori_edit(val) {
     });
 }
 function Save_edit() {
-    var a, b, c, result;
+    var a, c, old_name, e_brand, result;
+    old_name = $('input[name="old_name"]').val();
     a = $('input[name="e_code_stat"]').val();
-    b = $('textarea[name="e_desc"]').val();
+    e_brand = $('select[name="e_brand"]').val();
     c = $('input[name="e_nama"]').val();
-    if (!c || !a) {
+    if (!c) {
         result = toastr.warning('Please fill category name');
     } else if (a == 0) {
         result = toastr.warning('Please use another category name');
-    } else if (!b) {
-        result = toastr.warning('Please fill description category');
+    } else if (!e_brand) {
+        result = toastr.warning('Please select brand name');
+    } else if (c == old_name) {
+        result = $('#form_edit').submit();
     } else {
         result = $('#form_edit').submit();
     }
