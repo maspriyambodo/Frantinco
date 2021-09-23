@@ -79,4 +79,65 @@ class Management extends CI_Controller {
         ToJson($output);
     }
 
+    public function Get_category() {
+        $exec = $this->model->Get_category();
+        $category = [];
+        if ($exec) {
+            foreach ($exec as $key => $value) {
+                $category[$key] = (object) [
+                            'id' => Enkrip($value->id),
+                            'text' => $value->text
+                ];
+            }
+        } else {
+            $category[0] = (object) [
+                        'id' => '',
+                        'text' => 'not found'
+            ];
+        }
+        ToJson($category);
+    }
+
+    public function Check_product() {
+        $nama = str_replace(' ', '', Post_get("nama"));
+        $exec = $this->model->Check_nama($nama);
+        if (empty($exec)) {
+            $result = ['status' => false, 'msg' => 'Product Line Name available to use'];
+        } elseif ($exec->total == 0) {
+            $result = ['status' => false, 'msg' => 'Product Line Name available to use'];
+        } else {
+            $result = ['status' => true, 'msg' => 'Product Line Name already exist!'];
+        }
+        return ToJson($result);
+    }
+
+    public function Save() {
+        $id_category_sub = Dekrip(Post_input('subtxt'));
+        $kd_produk = str_replace(' ', '', Post_input("codetxt"));
+        if (!$id_category_sub) {
+            $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('err_msg', 'error while saving new master product'));
+        } else {
+            $data = [
+                '`mt_product`.`id_category_sub`' => $id_category_sub + false,
+                '`mt_product`.`kd_produk`' => $kd_produk,
+                '`mt_product`.`nama`' => Post_input('producttxt'),
+                '`mt_product`.`syscreateuser`' => $this->user,
+                '`mt_product`.`syscreatedate`' => date('Y-m-d H:i:s')
+            ];
+            $result = $this->_save($data);
+        }
+        return $result;
+    }
+
+    private function _save($data) {
+        $exec = $this->model->Add($data);
+        if ($exec <> true) {
+            $this->db->trans_rollback();
+            $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('err_msg', 'error while saving new master product'));
+        } else {
+            $this->db->trans_commit();
+            $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('succ_msg', 'master product has been added!'));
+        }
+    }
+
 }

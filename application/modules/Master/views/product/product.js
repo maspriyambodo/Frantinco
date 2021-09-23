@@ -55,5 +55,78 @@ $(document).ready(function () {
             }
         ]
     });
-    
+    $('#subtxt').select2({
+        ajax: {
+            url: "<?php echo site_url('Master/Product/Management/Get_category') ?>",
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+            cache: false
+        }
+    });
 });
+function Close_add() {
+    $('#subtxt').empty();
+    $('#subtxt').append('<option value="">Search sub-category</option>');
+    $('#code_msg').empty();
+    $('#check_code').empty();
+    $('input[name="producttxt"]').val('');
+    $('input[name="codetxt"]').val('');
+    $('textarea[name="desctxt"]').val('');
+}
+function Check_add(val) {
+    $('#check_code').empty();
+    $('#code_msg').empty();
+    $.ajax({
+        url: "<?php echo base_url('Master/Product/Management/Check_product?nama='); ?>" + val,
+        type: 'GET',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            if (data.status) {
+                $('input[name="code_stat"]').val(0);
+                $('#check_code').append(
+                        '<span class="input-group-text">'
+                        + '<i class="fas fa-times text-danger"></i>'
+                        + '</span>'
+                        );
+                $('#code_msg').append('<small class="text-danger">' + data.msg + '</small>');
+            } else {
+                $('input[name="code_stat"]').val(1);
+                $('#check_code').append(
+                        '<span class="input-group-text">'
+                        + '<i class="far fa-check-circle text-success"></i>'
+                        + '</span>'
+                        );
+                $('#code_msg').append('<small class="text-success">' + data.msg + '</small>');
+            }
+        },
+        error: function (jqXHR) {
+            toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+}
+function Save_add() {
+    var a, b, c,d, result;
+    a = $('input[name="code_stat"]').val();
+    b = $('select[name="subtxt"]').val();
+    c = $('input[name="codetxt"]').val();
+    d = $('input[name="producttxt"]').val();
+    if (!c || !a) {
+        result = toastr.warning('Please fill product line');
+    } else if (!b) {
+        result = toastr.warning('Please choose sub-category');
+    } else if (!d) {
+        result = toastr.warning('Please fill product name');
+    } else if (a == 0) {
+        result = toastr.warning('Please use another product name');
+    } else {
+        result = $('#form_add').submit();
+    }
+    return result;
+}

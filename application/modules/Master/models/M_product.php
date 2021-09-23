@@ -60,4 +60,32 @@ class M_product extends CI_Model {
         return $exec->count_all_results();
     }
 
+    public function Get_category() {
+        if (Post_get('q')) {
+            $exec = $this->db->select('mt_category_sub.id, mt_category_sub.nama AS text')
+                    ->from('mt_category_sub')
+                    ->like('mt_category_sub.nama', Post_get('term'))
+                    ->get()
+                    ->result();
+        } else {
+            $exec = [];
+        }
+        return $exec;
+    }
+
+    public function Check_nama($nama) {
+        $exec = $this->db->select('mt_product.id AS total')
+                ->from('mt_product')
+                ->where('mt_product.kd_produk', $nama)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function Add($data) {
+        $this->db->trans_begin();
+        $this->db->insert('mt_product', $data);
+        return $this->db->trans_status();
+    }
+
 }
