@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_sub extends CI_Model {
 
     var $table = 'mt_category_sub';
-    var $column_order = ['id_sub_kategori', 'sub_category', 'category_name']; //set column field database for datatable orderable
+    var $column_order = ['id_sub_kategori', 'category_name', 'sub_category', null]; //set column field database for datatable orderable
     var $column_search = ['mt_category_sub.nama', 'mt_category.nama']; //set column field database for datatable searchable 
     var $order = ['id_sub_kategori' => 'asc']; // default order
 
