@@ -150,6 +150,7 @@ function Close_edit() {
     e_id.val('');
     e_brand.val('');
     e_desc.val('');
+    $('input[name="old_name"]').val('');
     $('#e_code_msg').empty();
     $('#e_check_code').empty();
 }
@@ -207,16 +208,16 @@ function Check_brand_edit(val) {
     }
 }
 function Save_edit() {
-    var a, b, c, result;
+    var a, old_name, e_brand, result;
+    old_name = $('input[name="old_name"]').val();
     a = $('input[name="e_code_stat"]').val();
-    b = $('textarea[name="e_desc"]').val();
-    c = $('input[name="e_brand"]').val();
-    if (!c || !a) {
+    e_brand = $('input[name="e_brand"]').val();
+    if (!e_brand) {
         result = toastr.warning('Please fill brand name');
     } else if (a == 0) {
         result = toastr.warning('Please use another brand name');
-    } else if (!b) {
-        result = toastr.warning('Please fill description brand');
+    } else if (e_brand == old_name) {
+        result = $('#form_edit').submit();
     } else {
         result = $('#form_edit').submit();
     }
