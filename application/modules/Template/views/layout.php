@@ -6,7 +6,6 @@ $fullname = $this->session->userdata('fullname');
 $tot_notif = $this->bodo->Count_notif();
 $menu_dir = $this->M_default->Menu()->result_array();
 $group_menu = $this->M_default->Group_menu();
-
 ?>
 <html lang="en">
     <head>
@@ -32,6 +31,7 @@ $group_menu = $this->M_default->Group_menu();
         <link href="<?php echo base_url('assets/css/themes/layout/header/menu/dark.css'); ?>" rel="stylesheet" type="text/css" crossorigin="anonymous"/>
         <link href="<?php echo base_url('assets/css/themes/layout/brand/dark.css'); ?>" rel="stylesheet" type="text/css" crossorigin="anonymous"/>
         <link href="<?php echo base_url('assets/css/themes/layout/aside/dark.css'); ?>" rel="stylesheet" type="text/css" crossorigin="anonymous"/>
+        <link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet" type="text/css"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" rel="stylesheet"/>
         <link href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.23/af-2.3.5/b-1.6.5/b-colvis-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/cr-1.5.3/fc-3.3.2/fh-3.1.8/kt-2.6.1/r-2.2.7/rg-1.1.2/rr-1.2.7/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -301,9 +301,9 @@ $group_menu = $this->M_default->Group_menu();
         <ul id="sticky_toolbar"></ul>
 
         <script>
-            var KTAppSettings = {};
-            var menu = $('.menu-item .menu-item-active').parent('ul').parent().parent();
-            menu.addClass('menu-item-active menu-item-open');
+                                        var KTAppSettings = {};
+                                        var menu = $('.menu-item .menu-item-active').parent('ul').parent().parent();
+                                        menu.addClass('menu-item-active menu-item-open');
         </script>
         <!--<script src="<?php echo base_url('assets/js/app_notification.js'); ?>"></script>-->
     </body>
