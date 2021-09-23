@@ -185,4 +185,26 @@ class Management extends CI_Controller {
         return $result;
     }
 
+    public function Delete() {
+        $id = Dekrip(Post_input('d_id'));
+        if (!$id) {
+            $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('err_msg', 'error while deleting master data product'));
+        } else {
+            $data = [
+                'stat' => 0 + false,
+                'sysupdateuser' => $this->user + false,
+                'sysupdatedate' => date('Y-m-d H:i:s')
+            ];
+            $exec = $this->model->Update($data, $id);
+            if ($exec <> true) {
+                $this->db->trans_rollback();
+                $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('err_msg', 'error while deleting master data product'));
+            } else {
+                $this->db->trans_commit();
+                $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('succ_msg', 'master data product has been deleted!'));
+            }
+        }
+        return $result;
+    }
+
 }

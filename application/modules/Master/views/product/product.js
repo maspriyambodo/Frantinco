@@ -229,3 +229,24 @@ function Save_edit() {
     }
     return result;
 }
+function Delete(id) {
+    $('input[name="d_id"]').val(id);
+    $.ajax({
+        url: "<?php echo base_url('Master/Product/Management/Get_detail?id='); ?>" + id,
+        type: 'GET',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            document.getElementById('modal_deleteLabel').innerHTML = 'Delete ' + data.e_codetxt;
+            document.getElementById('delbody').innerHTML = 'deleting <b>' + data.e_codetxt + ' ' + data.e_product + '</b> may cause system crash';
+        }, error: function (jqXHR) {
+            toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+}
+function Close_delete() {
+    $('input[name="d_id"]').val('');
+    document.getElementById('modal_deleteLabel').innerHTML = '';
+    document.getElementById('delbody').innerHTML = '';
+}
