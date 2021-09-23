@@ -42,7 +42,7 @@ class Sub extends CI_Controller {
                 $editbtn = null;
             }
             if ($privilege['delete'] and $value->stat) {
-                $delbtn = '<button id="delbtn" type="button" class="btn btn-icon btn-default btn-xs" title="Delete ' . $value->sub_category . '" value="' . $id . '" onclick="Delete(this.value)"><i class="far fa-trash-alt text-danger"></i></button>';
+                $delbtn = '<button id="delbtn" type="button" class="btn btn-icon btn-default btn-xs" title="Delete ' . $value->sub_category . '" value="' . $id . '" onclick="Delete(this.value)" data-toggle="modal" data-target="#modal_delete"><i class="far fa-trash-alt text-danger"></i></button>';
             } elseif ($privilege['delete'] and!$value->stat) {
                 $delbtn = null;
             } else {
