@@ -37,7 +37,7 @@ class Sub extends CI_Controller {
         foreach ($list as $value) {
             $id = Enkrip($value->id_sub_kategori);
             if ($privilege['update']) {
-                $editbtn = '<button id="editbtn" type="button" class="btn btn-icon btn-default btn-xs" title="Edit ' . $value->sub_category . '" value="' . $id . '" onclick="Edit(this.value)"><i class="far fa-edit text-warning"></i></button>';
+                $editbtn = '<button id="editbtn" type="button" class="btn btn-icon btn-default btn-xs" title="Edit ' . $value->sub_category . '" value="' . $id . '" onclick="Edit(this.value)" data-toggle="modal" data-target="#modal_edit"><i class="far fa-edit text-warning"></i></button>';
             } else {
                 $editbtn = null;
             }
@@ -125,6 +125,72 @@ class Sub extends CI_Controller {
         } else {
             $this->db->trans_commit();
             $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('succ_msg', 'master sub-category has been added!'));
+        }
+        return $result;
+    }
+
+    public function Get_detail() {
+        $id = Dekrip(Post_get('id'));
+        $data = [];
+        $exec = $this->model->Get_detail($id);
+        if (!empty($exec)) {
+            $data['kategori_id'] = $exec->id_category;
+            $data['kategori'] = $exec->category_name;
+            $data['subkategori'] = $exec->nama;
+            $data['desc_kategori'] = $exec->description;
+        } else {
+            $data = null;
+        }
+        return ToJson($data);
+    }
+
+    public function Update() {
+        $id = Dekrip(Post_input('e_id'));
+        if (!$id) {
+            $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('err_msg', 'error while updating master sub-category'));
+        } else {
+            $data = [
+                'nama' => Post_input('e_subtxt'),
+                'description' => Post_input('e_desctxt'),
+                'id_category' => Post_input('e_category'),
+                'sysupdateuser' => $this->user + false,
+                'sysupdatedate' => date('Y-m-d H:i:s')
+            ];
+            $result = $this->_update($data, $id);
+        }
+        return $result;
+    }
+
+    private function _update($data, $id) {
+        $exec = $this->model->Update($data, $id);
+        if ($exec <> true) {
+            $this->db->trans_rollback();
+            $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('err_msg', 'error while updating master sub-category'));
+        } else {
+            $this->db->trans_commit();
+            $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('succ_msg', 'master sub-category has been updated!'));
+        }
+        return $result;
+    }
+
+    public function Delete() {
+        $id = Dekrip(Post_input('d_id'));
+        if (!$id) {
+            $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('err_msg', 'error while deleting master sub-category'));
+        } else {
+            $data = [
+                'stat' => 0 + false,
+                'sysupdateuser' => $this->user + false,
+                'sysupdatedate' => date('Y-m-d H:i:s')
+            ];
+            $exec = $this->model->Update($data, $id);
+            if ($exec <> true) {
+                $this->db->trans_rollback();
+                $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('err_msg', 'error while deleting master sub-category'));
+            } else {
+                $this->db->trans_commit();
+                $result = redirect(base_url('Master/Product/Sub/index/'), $this->session->set_flashdata('succ_msg', 'master sub-category has been deleted!'));
+            }
         }
         return $result;
     }

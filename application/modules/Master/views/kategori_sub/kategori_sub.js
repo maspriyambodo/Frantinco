@@ -62,7 +62,7 @@ $(document).ready(function () {
             }
         ]
     });
-    $('#categorytxt').select2({
+    $('#e_category').select2({
         ajax: {
             url: "<?php echo site_url('Master/Product/Sub/Get_category') ?>",
             dataType: 'json',
@@ -129,4 +129,100 @@ function Check_kategori_add(val) {
             toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
         }
     });
+}
+function Edit(id) {
+    $('input[name="e_id"]').val(id);
+    $.ajax({
+        url: "<?php echo base_url('Master/Product/Sub/Get_detail?id='); ?>" + id,
+        type: 'GET',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            $('input[name="old_name"]').val(data.subkategori);
+            document.getElementById('modal_editLabel').innerHTML = 'Edit ' + data.subkategori;
+            $('input[name="e_subtxt"]').val(data.subkategori);
+            $('textarea[name="e_desctxt"]').val(data.desc_kategori);
+            var sel = document.getElementById("e_category");
+            var opt = document.createElement("option");
+            opt.value = data.kategori_id;
+            opt.text = data.kategori;
+            sel.add(opt, sel.options);
+            $('select option[value="' + data.kategori_id + '"]').attr('selected', true);
+        },
+        error: function (jqXHR) {
+            toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+}
+function Close_edit() {
+    document.getElementById('modal_editLabel').innerHTML = '';
+    $('input[name="old_name"]').val('');
+    $('#e_category').empty();
+    $('#e_category').append('<option value="">Search Category</option>');
+    $('#e_code_msg').empty();
+    $('#check_code').empty();
+    $('input[name="e_subtxt"]').val('');
+    $('textarea[name="e_desctxt"]').val('');
+}
+function Check_kategori_edit(val) {
+    $('#e_check_code').empty();
+    $('#e_code_msg').empty();
+    $.ajax({
+        url: "<?php echo base_url('Master/Product/Sub/Check_sub?nama='); ?>" + val,
+        type: 'GET',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            var old_name, new_name;
+            old_name = $('input[name="old_name"]').val();
+            new_name = $('input[name="e_subtxt"]').val(val);
+            if (data.status) {
+                if (new_name === old_name) {
+                    $('input[name="e_code_stat"]').val(0);
+                    $('#e_check_code').append(
+                            '<span class="input-group-text">'
+                            + '<i class="fas fa-times text-danger"></i>'
+                            + '</span>'
+                            );
+                    $('#e_code_msg').append('<small class="text-danger">' + data.msg + '</small>');
+                } else {
+                    $('input[name="e_code_stat"]').val(1);
+                    $('#e_check_code').empty();
+                    $('#e_code_msg').empty();
+                }
+            } else {
+                $('input[name="e_code_stat"]').val(1);
+                $('#e_check_code').append(
+                        '<span class="input-group-text">'
+                        + '<i class="far fa-check-circle text-success"></i>'
+                        + '</span>'
+                        );
+                $('#e_code_msg').append('<small class="text-success">' + data.msg + '</small>');
+            }
+        },
+        error: function (jqXHR) {
+            toastr.warning('error ' + jqXHR.status + ' ' + jqXHR.statusText);
+        }
+    });
+}
+function Save_edit() {
+    var a, c, old_name, e_category, result;
+    old_name = $('input[name="old_name"]').val();
+    a = $('input[name="e_code_stat"]').val();
+    e_category = $('select[name="e_category"]').val();
+    c = $('input[name="e_subtxt"]').val();
+    if (!c) {
+        result = toastr.warning('Please fill sub-category name');
+    } else if (a == 0) {
+        result = toastr.warning('Please use another sub-category name');
+    } else if (!e_category) {
+        result = toastr.warning('Please select category name');
+    } else if (c == old_name) {
+        $('#form_edit').submit();
+    } else {
+        $('#form_edit').submit();
+    }
+    return result;
 }

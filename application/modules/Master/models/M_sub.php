@@ -88,4 +88,23 @@ class M_sub extends CI_Model {
         return $this->db->trans_status();
     }
 
+    public function Get_detail($id) {
+        $exec = $this->db->select('mt_category_sub.id,mt_category_sub.id_category,mt_category_sub.nama,mt_category_sub.description,mt_category.nama AS category_name')
+                ->from('mt_category_sub')
+                ->join('mt_category', 'mt_category_sub.id_category = mt_category.id', 'LEFT')
+                ->where('`mt_category_sub`.`stat`', 1, false)
+                ->where('`mt_category_sub`.`id`', $id, false)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function Update($data, $id) {
+        $this->db->trans_begin();
+        $this->db->set($data)
+                ->where('`mt_category_sub`.`id`', $id, false)
+                ->update('mt_category_sub');
+        return $this->db->trans_status();
+    }
+
 }
