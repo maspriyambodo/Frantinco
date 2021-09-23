@@ -161,7 +161,7 @@ function Close_edit() {
     $('#e_category').empty();
     $('#e_category').append('<option value="">Search Category</option>');
     $('#e_code_msg').empty();
-    $('#check_code').empty();
+    $('#e_check_code').empty();
     $('input[name="e_subtxt"]').val('');
     $('textarea[name="e_desctxt"]').val('');
 }

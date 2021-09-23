@@ -88,4 +88,23 @@ class M_product extends CI_Model {
         return $this->db->trans_status();
     }
 
+    public function Get_detail($id) {
+        $exec = $this->db->select('mt_product.id,mt_product.id_category_sub,mt_product.kd_produk,mt_product.nama,mt_product.stat,mt_category_sub.nama AS subkategori')
+                ->from('mt_product')
+                ->join('mt_category_sub', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
+                ->where('`mt_product`.`stat`', 1, false)
+                ->where('`mt_product`.`id`', $id, false)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function Update($data, $id) {
+        $this->db->trans_begin();
+        $this->db->set($data)
+                ->where('`mt_product`.`id`', $id, false)
+                ->update('mt_product');
+        return $this->db->trans_status();
+    }
+
 }

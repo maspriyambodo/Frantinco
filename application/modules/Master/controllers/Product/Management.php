@@ -98,6 +98,21 @@ class Management extends CI_Controller {
         ToJson($category);
     }
 
+    public function Get_detail() {
+        $id = Dekrip(Post_get('id'));
+        $data = [];
+        $exec = $this->model->Get_detail($id);
+        if (!empty($exec)) {
+            $data['id_subkategori'] = Enkrip($exec->id_category_sub);
+            $data['e_subtxt'] = $exec->subkategori;
+            $data['e_codetxt'] = $exec->kd_produk;
+            $data['e_product'] = $exec->nama;
+        } else {
+            $data = null;
+        }
+        return ToJson($data);
+    }
+
     public function Check_product() {
         $nama = str_replace(' ', '', Post_get("nama"));
         $exec = $this->model->Check_nama($nama);
@@ -138,6 +153,36 @@ class Management extends CI_Controller {
             $this->db->trans_commit();
             $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('succ_msg', 'master product has been added!'));
         }
+    }
+
+    public function Update() {
+        $id = Dekrip(Post_input('e_id'));
+        $id_category_sub = Dekrip(Post_input('e_subtxt'));
+        if (!$id or!$id_category_sub) {
+            $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('err_msg', 'error while updating master product'));
+        } else {
+            $data = [
+                'mt_product.id_category_sub' => $id_category_sub + false,
+                'mt_product.kd_produk' => Post_input('e_codetxt'),
+                'mt_product.nama' => Post_input('e_product'),
+                'sysupdateuser' => $this->user + false,
+                'sysupdatedate' => date('Y-m-d H:i:s')
+            ];
+            $result = $this->_update($data, $id);
+        }
+        return $result;
+    }
+
+    private function _update($data, $id) {
+        $exec = $this->model->Update($data, $id);
+        if ($exec <> true) {
+            $this->db->trans_rollback();
+            $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('err_msg', 'error while updating master product'));
+        } else {
+            $this->db->trans_commit();
+            $result = redirect(base_url('Master/Product/Management/index/'), $this->session->set_flashdata('succ_msg', 'master data product has been updated!'));
+        }
+        return $result;
     }
 
 }
