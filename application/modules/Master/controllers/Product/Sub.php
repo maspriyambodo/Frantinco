@@ -16,7 +16,7 @@ class Sub extends CI_Controller {
             'item_active' => 'Master/Product/Sub/index/',
             'privilege' => $this->bodo->Check_previlege('Master/Product/Sub/index/'),
             'siteTitle' => 'Master Sub Category | ' . $this->bodo->Sys('app_name'),
-            'pagetitle' => 'Sub Category',
+            'pagetitle' => 'Master Data | Sub Category',
             'breadcrumb' => [
                 0 => [
                     'nama' => 'index',

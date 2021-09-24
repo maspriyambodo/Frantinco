@@ -17,7 +17,7 @@ class Kategori extends CI_Controller {
             'item_active' => 'Master/Product/Kategori/index/',
             'privilege' => $this->bodo->Check_previlege('Master/Product/Kategori/index/'),
             'siteTitle' => 'Master Category | ' . $this->bodo->Sys('app_name'),
-            'pagetitle' => 'Category',
+            'pagetitle' => 'Master Data | Category',
             'breadcrumb' => [
                 0 => [
                     'nama' => 'index',

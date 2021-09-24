@@ -17,7 +17,7 @@ class Brand extends CI_Controller {
             'item_active' => 'Master/Product/Brand/index/',
             'privilege' => $this->bodo->Check_previlege('Master/Product/Brand/index/'),
             'siteTitle' => 'Brand of Product | ' . $this->bodo->Sys('app_name'),
-            'pagetitle' => 'Brand Master',
+            'pagetitle' => 'Master Data | Brand',
             'breadcrumb' => [
                 0 => [
                     'nama' => 'index',

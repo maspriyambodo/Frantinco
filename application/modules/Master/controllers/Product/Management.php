@@ -16,7 +16,7 @@ class Management extends CI_Controller {
             'item_active' => 'Master/Product/Management/index/',
             'privilege' => $this->bodo->Check_previlege('Master/Product/Management/index/'),
             'siteTitle' => 'Master Product | ' . $this->bodo->Sys('app_name'),
-            'pagetitle' => 'Master Product',
+            'pagetitle' => 'Master Data | Product',
             'breadcrumb' => [
                 0 => [
                     'nama' => 'index',
