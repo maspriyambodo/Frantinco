@@ -62,7 +62,7 @@ $(document).ready(function () {
             }
         ]
     });
-    $('#e_category').select2({
+    $('.custom-select').select2({
         ajax: {
             url: "<?php echo site_url('Master/Product/Sub/Get_category') ?>",
             dataType: 'json',
