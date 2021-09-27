@@ -1,6 +1,6 @@
 <div class="card card-custom">
     <div class="card-body">
-<div class="form-group row">
+        <div class="form-group row">
             <label for="tahuntxt" class="col-md-2 col-form-label">Choose Year:</label>
             <div class="col-md-4">
                 <select id="tahuntxt" name="tahuntxt" class="form-control custom-select" onchange="Tahun(this.value)">
@@ -28,7 +28,11 @@
             }
             ?>
         </div>
-        <div class="clearfix" style="margin:10px 0px 20px 0px;border-bottom:1px solid gainsboro;"></div>
+    </div>
+</div>
+<div class="clearfix" style="margin:10px;"></div>
+<div class="card card-custom">
+    <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped" style="width:100%;">
                 <thead class="text-center text-uppercase">

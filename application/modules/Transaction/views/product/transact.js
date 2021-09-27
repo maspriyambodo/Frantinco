@@ -32,6 +32,8 @@ $(document).ready(function () {
     }
 });
 function Tahun(id) {
+    var tahuntxt = $( "#tahuntxt option:selected" ).text();
+    document.getElementById('pagetitle').innerHTML = 'Data | Transaction ' + tahuntxt;
     $('table').DataTable().clear();
     $('table').DataTable().destroy();
     dt_tabel(id);
