@@ -33,11 +33,6 @@ class Dashboard extends CI_Controller {
         return $this->parser->parse('Template/layout', $data);
     }
 
-    public function Year() {
-        $tahun = Dekrip(Post_get('token'));
-        print_r($tahun);
-    }
-
     public function lists() {
         $tahun = Dekrip(Post_get('token'));
         $list = $this->model->lists($tahun);
