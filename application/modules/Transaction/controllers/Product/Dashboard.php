@@ -7,7 +7,6 @@ class Dashboard extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('M_trans', 'model');
-        $this->load->model('Report/M_year', 'm_report');
         $this->user = Dekrip($this->session->userdata('id_user'));
     }
 
