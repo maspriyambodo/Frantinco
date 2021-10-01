@@ -58,14 +58,18 @@ class M_trans extends CI_Model {
         return $exec->count_all_results();
     }
 
-    public function Insert($data) {
-        $i = 0;
-        for ($i; $i < count($data); $i++) {
-            
-        }
+    public function Insert($data) {//lanjutin disini
         $this->db->trans_begin();
         $this->db->insert_batch('tr_product', $data);
         return $this->db->trans_status();
+    }
+
+    public function Dir_year() {
+        $exec = $this->db->select()
+                ->from('report_get_year')
+                ->get()
+                ->result();
+        return $exec;
     }
 
 }

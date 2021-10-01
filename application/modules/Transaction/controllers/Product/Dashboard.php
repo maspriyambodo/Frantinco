@@ -70,7 +70,7 @@ class Dashboard extends CI_Controller {
     }
 
     private function Dir_year() {
-        $exec = $this->m_report->Dir_year();
+        $exec = $this->model->Dir_year();
         if ($exec) {
             foreach ($exec as $key => $value) {
                 $response[$key] = (object) [
@@ -140,7 +140,8 @@ class Dashboard extends CI_Controller {
             $result = redirect(base_url('Transaction/Product/Dashboard/index/'), $this->session->set_flashdata('err_msg', 'error while adding new data transaction'));
         } else {
             $this->db->trans_commit();
-            $result = redirect(base_url('Transaction/Product/Dashboard/index/'), $this->session->set_flashdata('succ_msg', 'new data transaction has been added!'));
+            $totdata = count($data);
+            $result = redirect(base_url('Transaction/Product/Dashboard/index/'), $this->session->set_flashdata('succ_msg', '<b>' . $totdata . '</b> new data transaction has been added!'));
         }
         return $result;
     }
