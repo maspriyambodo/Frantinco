@@ -32,7 +32,7 @@ $(document).ready(function () {
     }
 });
 function Tahun(id) {
-    var tahuntxt = $( "#tahuntxt option:selected" ).text();
+    var tahuntxt = $("#tahuntxt option:selected").text();
     document.getElementById('pagetitle').innerHTML = 'Data | Transaction ' + tahuntxt;
     $('table').DataTable().clear();
     $('table').DataTable().destroy();
@@ -40,6 +40,21 @@ function Tahun(id) {
 }
 function Close_add() {
     $('input[name="doctxt"]').val('');
+}
+function Save_add() {
+    var a = $('input[name="doctxt"]').val();
+    if (a) {
+        $('#doctxt').attr('style','pointer-events: none !important;');
+        $('#closebtn1').attr('disabled', '');
+        $('#closebtn2').remove();
+        $('#savebtn').attr('disabled', '');
+        $('#savebtn').empty();
+        $('#savebtn').append('<i class="far fa-clock"></i> Please wait');
+        $('#form_add').submit();
+    } else {
+        toastr.error('please select file!');
+    }
+
 }
 function dt_tabel(year) {
     $('table').dataTable({

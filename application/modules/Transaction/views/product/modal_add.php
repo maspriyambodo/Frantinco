@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal_addLabel">Upload Report</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="Close_add()">
+                <button id="closebtn1" type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="Close_add()">
                     <i aria-hidden="true" class="fas fa-times"></i>
                 </button>
             </div>
@@ -16,8 +16,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="Close_add()"><i class="far fa-times-circle text-danger"></i> Cancel</button>
-                    <button type="submit" class="btn btn-default"><i class="fas fa-save text-success"></i> Save</button>
+                    <button id="closebtn2" type="button" class="btn btn-default" data-dismiss="modal" onclick="Close_add()"><i class="far fa-times-circle text-danger"></i> Cancel</button>
+                    <button id="savebtn" type="button" class="btn btn-default" onclick="Save_add()"><i class="fas fa-save text-success"></i> Save</button>
                 </div>
             </form>
         </div>

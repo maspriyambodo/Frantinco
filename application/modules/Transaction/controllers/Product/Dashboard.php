@@ -2,8 +2,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
-
 class Dashboard extends CI_Controller {
 
     public function __construct() {
@@ -91,37 +89,60 @@ class Dashboard extends CI_Controller {
 
     public function Upload() {
         $file = $_FILES['doctxt'];
-        /*
-         * Array
-          (
-          [name] => Daftar Aplikasi Bimas Islam.xlsx
-          [type] => application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-          [tmp_name] => /tmp/phpbcxiR5
-          [error] => 0
-          [size] => 11013
-          )
-         */
-        $reader = new Xlsx();
+        $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($file['tmp_name']);
+        $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load($file['tmp_name']);
         $sheetData = $spreadsheet->getActiveSheet()->toArray();
-        for ($i = 1; $i < count($sheetData); $i++) {
-            $field = $sheetData[$i]['0']; //field kode
-            $field1 = $sheetData[$i]['1']; //field qty
-            $field2 = $sheetData[$i]['2']; //field tanggal
-            $arr_date = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($field2);
-            $tr_date = date('Y-m-d', $arr_date['date']);
-            $data[] = [
-                'kode' => str_replace(' ', '', $field),
-                'qty' => $field1,
-                'tr_date' => $tr_date,
-                'syscreateuser' => $this->user,
-                'syscreatedate' => date('Y-m-d H:i:s')
-            ];
+        if ($inputFileType !== 'Xlsx' and $inputFileType !== 'Xls') {
+            $result = redirect(base_url('Transaction/Product/Dashboard/index/'), $this->session->set_flashdata('err_msg', 'please select excel document!'));
+        } elseif ($sheetData[0][0] !== 'kode' and $sheetData[0][1] !== 'qty') {
+            $result = redirect(base_url('Transaction/Product/Dashboard/index/'), $this->session->set_flashdata('err_msg', 'error format excel data!'));
+        } elseif (!$sheetData) {
+            $result = redirect(base_url('Transaction/Product/Dashboard/index/'), $this->session->set_flashdata('err_msg', 'error format excel data!'));
+        } else {
+            for ($i = 1; $i < count($sheetData); $i++) {
+                $field = $sheetData[$i][0]; //field kode
+                $field1 = $sheetData[$i][1]; //field qty
+                $field2 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($sheetData[$i][2]); //field tanggal
+                $tr_date = $field2->format('Y-m-d');
+                $data[] = [
+                    'kode' => str_replace(' ', '', $field),
+                    'qty' => $field1,
+                    'tr_date' => $tr_date,
+                    'syscreateuser' => $this->user,
+                    'syscreatedate' => date('Y-m-d H:i:s')
+                ];
+            }
+            $result = $this->_uploads($data);
         }
-        print_array($data);
-        die;
-        $this->model->Insert($data);
+        return $result;
+    }
+
+    /* private function _uploads
+     * Array
+      (
+      [0] => Array
+      (
+      [kode] => Fs1827bh
+      [qty] => 891
+      [tr_date] => 2021-09-28
+      [syscreateuser] => 1
+      [syscreatedate] => 2021-09-28 16:49:20
+      )
+      )
+     */
+
+    private function _uploads($data) {
+        $exec = $this->model->Insert($data);
+        if ($exec <> true) {
+            $this->db->trans_rollback();
+            $result = redirect(base_url('Transaction/Product/Dashboard/index/'), $this->session->set_flashdata('err_msg', 'error while adding new data transaction'));
+        } else {
+            $this->db->trans_commit();
+            $result = redirect(base_url('Transaction/Product/Dashboard/index/'), $this->session->set_flashdata('succ_msg', 'new data transaction has been added!'));
+        }
+        return $result;
     }
 
 }
