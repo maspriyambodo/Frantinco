@@ -18,7 +18,7 @@
         </div>
     </div>
 </div>
-<div class="clearfix" style="margin:10px;"></div>
+<div class="clearfix" style="margin:50px 0px;"></div>
 <div class="card card-custom" data-card="true">
     <div class="card-header">
         <div class="card-title">

@@ -113,10 +113,6 @@ function dt_tabel(year) {
         },
         columns: [
             {
-                data: 'id',
-                title: 'NO'
-            },
-            {
                 data: 'nama',
                 title: 'BRAND'
             },
