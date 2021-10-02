@@ -114,7 +114,9 @@ function dt_tabel(year) {
         columns: [
             {
                 data: 'id',
-                title: 'NO'
+                title: 'NO',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'nama',
@@ -122,51 +124,75 @@ function dt_tabel(year) {
             },
             {
                 data: 'JANUARI',
-                title: 'JAN'
+                title: 'JAN',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'FEBRUARI',
-                title: 'FEB'
+                title: 'FEB',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'MARET',
-                title: 'MAR'
+                title: 'MAR',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'APRIL',
-                title: 'APR'
+                title: 'APR',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'MEI',
-                title: 'MEI'
+                title: 'MEI',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'JUNI',
-                title: 'JUN'
+                title: 'JUN',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'JULI',
-                title: 'JUL'
+                title: 'JUL',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'AGUSTUS',
-                title: 'AUG'
+                title: 'AUG',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'SEPTEMBER',
-                title: 'SEP'
+                title: 'SEP',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'OKTOBER',
-                title: 'OCT'
+                title: 'OCT',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'NOVEMBER',
-                title: 'NOV'
+                title: 'NOV',
+                className: "text-center",
+                "searchable": false
             },
             {
                 data: 'DESEMBER',
-                title: 'DEC'
+                title: 'DEC',
+                className: "text-center",
+                "searchable": false
             }
         ]
     });
