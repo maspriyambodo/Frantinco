@@ -3,6 +3,15 @@ DELIMITER $$
 --
 -- Procedures
 --
+DROP PROCEDURE IF EXISTS `brand_per_month`$$
+CREATE DEFINER=`root`@`%` PROCEDURE `brand_per_month` (IN `tahun` BIGINT, IN `brand_id` INT)  BEGIN
+	SELECT 
+		*
+	FROM brand_per_month
+	WHERE brand_per_month.id = brand_id
+	AND YEAR(brand_per_month.tr_date) = tahun;
+END$$
+
 DROP PROCEDURE IF EXISTS `group_menu`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `group_menu` ()  BEGIN
 SELECT link FROM group_menu;
@@ -243,6 +252,7 @@ FROM sys_menu_select
 WHERE sys_menu_select.stat_menu = 1
 AND sys_menu_select.role_id = user_role
 AND sys_menu_select.id_group_menu = menu_grup
+GROUP BY sys_menu_select.order_no
 ORDER BY sys_menu_select.order_no, sys_menu_select.id_group_menu ASC;
 
 END$$
@@ -481,15 +491,23 @@ sys_permissions.role_id = id_role AND sys_permissions.id_menu = menu_id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sys_permission_select`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sys_permission_select` (IN `permisi_id` INT)  BEGIN
-SELECT `sys_menu_select`.`id_menu`,
-`sys_menu_select`.`nama_menu`,
-`sys_menu_select`.`grup_nama`,
-`sys_menu_select`.`view`, `sys_menu_select`.`create`,
-`sys_menu_select`.`read`, `sys_menu_select`.`update`, `sys_menu_select`.`delete`
-FROM sys_menu_select 
-WHERE `sys_menu_select`.`role_id` = permisi_id
-GROUP BY sys_menu_select.id_menu;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sys_permission_select` (IN `permisi_id` INT)  BEGIN 
+SELECT 
+  `sys_menu_select`.`id_menu`, 
+  `sys_menu_select`.`nama_menu`,
+	`sys_menu_select`.`group_menu`,
+  `sys_menu_select`.`grup_nama`, 
+  `sys_menu_select`.`view`, 
+  `sys_menu_select`.`create`, 
+  `sys_menu_select`.`read`, 
+  `sys_menu_select`.`update`, 
+  `sys_menu_select`.`delete` 
+FROM 
+  sys_menu_select 
+WHERE 
+  `sys_menu_select`.`role_id` = permisi_id 
+GROUP BY 
+  sys_menu_select.id_menu;
 END$$
 
 DROP PROCEDURE IF EXISTS `sys_roles_insert`$$

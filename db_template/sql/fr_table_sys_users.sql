@@ -29,4 +29,5 @@ CREATE TABLE `sys_users` (
 --
 
 INSERT INTO `sys_users` (`id`, `uname`, `pwd`, `role_id`, `pict`, `stat`, `last_login`, `ip_address`, `login_attempt`, `syscreateuser`, `syscreatedate`, `sysupdateuser`, `sysupdatedate`, `sysdeleteuser`, `sysdeletedate`) VALUES
-(1, 'bod', '$2y$10$n0NAevlNKOHXCTcwocF/C.sjYmVbzg3E.01q6cUiKbSP6EJ6pP/ie', 1, 'users12_055933.jpg', 1, '2021-09-16 10:30:06', '127.0.0.1', 0, 1, '2021-03-07 23:06:13', 1, '2021-09-12 05:59:33', 0, '2021-07-08 00:09:25');
+(1, 'bod', '$2y$10$n0NAevlNKOHXCTcwocF/C.sjYmVbzg3E.01q6cUiKbSP6EJ6pP/ie', 1, 'users22_230749.jpg', 1, '2021-10-01 23:14:46', '127.0.0.1', 0, 1, '2021-03-07 23:06:13', 1, '2021-09-22 23:07:49', 0, '2021-07-08 00:09:25'),
+(2, 'Direktur 1', '$2y$10$tCIn4XedE68ZD3s5aJWIDeYn8CiIL.ZFdlGFNTdAfonIgf0l.B46m', 2, 'blank.png', 1, '2021-09-21 20:07:38', '::1', 0, 1, '2021-09-21 20:06:09', NULL, NULL, NULL, NULL);
