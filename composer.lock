@@ -873,12 +873,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-curl-class/php-curl-class.git",
-                "reference": "1c6d2974783bd0e40d47c742b0d1edf3105c2ba8"
+                "reference": "3bc40c01382e74e41a0aeddc0077754db1de4fb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/1c6d2974783bd0e40d47c742b0d1edf3105c2ba8",
-                "reference": "1c6d2974783bd0e40d47c742b0d1edf3105c2ba8",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/3bc40c01382e74e41a0aeddc0077754db1de4fb4",
+                "reference": "3bc40c01382e74e41a0aeddc0077754db1de4fb4",
                 "shasum": ""
             },
             "require": {
@@ -887,6 +887,7 @@
             },
             "require-dev": {
                 "ext-gd": "*",
+                "phpcompatibility/php-compatibility": "*",
                 "phpunit/phpunit": "*",
                 "squizlabs/php_codesniffer": "*"
             },
@@ -937,7 +938,7 @@
                 "issues": "https://github.com/php-curl-class/php-curl-class/issues",
                 "source": "https://github.com/php-curl-class/php-curl-class/tree/master"
             },
-            "time": "2021-09-15T11:22:41+00:00"
+            "time": "2021-09-24T01:28:18+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
