@@ -38,9 +38,12 @@ class Dashboard extends CI_Controller {
             $brand_1 = $this->model->Brand_1($tahun)->result();
             $brand_2 = $this->model->Brand_2($tahun)->result();
             if ($brand_1 and $brand_2) {
+                $norut = 0;
                 foreach (array_merge($brand_1, $brand_2) as $value) {
+                    $id_brand = Enkrip($value->id);
+                    $norut++;
                     $data[] = [
-                        'id' => Enkrip($value->id),
+                        'id' => $norut,
                         'nama' => $value->nama,
                         'tr_date' => $value->tr_date,
                         'JANUARI' => ($value->JANUARI == null) ? 0 : '<a href="#">' . number_format($value->JANUARI) . '</a>',

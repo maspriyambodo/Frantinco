@@ -14,7 +14,7 @@ function Tahun(id) {
     dt_tabel(id);
 }
 function Chart_1(year) {
-    
+
     am4core.ready(function () {
         am4core.useTheme(am4themes_animated);
         am4core.addLicense("ch-custom-attribution");
@@ -112,6 +112,10 @@ function dt_tabel(year) {
             dataSrc: ''
         },
         columns: [
+            {
+                data: 'id',
+                title: 'NO'
+            },
             {
                 data: 'nama',
                 title: 'BRAND'
