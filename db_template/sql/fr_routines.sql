@@ -4,7 +4,7 @@ DELIMITER $$
 -- Procedures
 --
 DROP PROCEDURE IF EXISTS `brand_per_month`$$
-CREATE DEFINER=`root`@`%` PROCEDURE `brand_per_month` (IN `tahun` BIGINT, IN `brand_id` INT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `brand_per_month` (IN `tahun` BIGINT, IN `brand_id` INT)  BEGIN
 	SELECT 
 		*
 	FROM brand_per_month
@@ -346,7 +346,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sys_menu_group_select` ()  BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS `sys_menu_insert`$$
-CREATE DEFINER=`admin`@`%` PROCEDURE `sys_menu_insert` (IN `parent` INT, IN `nama_menu` VARCHAR(50), IN `link_menu` VARCHAR(255), IN `no_order` INT, IN `gr_menu` INT, IN `ico_menu` VARCHAR(50), IN `desc_txt` VARCHAR(255), IN `user_login` INT)  BEGIN
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `sys_menu_insert` (IN `parent` INT, IN `nama_menu` VARCHAR(50), IN `link_menu` VARCHAR(255), IN `no_order` INT, IN `gr_menu` INT, IN `ico_menu` VARCHAR(50), IN `desc_txt` VARCHAR(255), IN `user_login` INT)  BEGIN
 	DECLARE
 		new_id_menu INT DEFAULT 0;
 	DECLARE
