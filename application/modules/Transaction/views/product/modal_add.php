@@ -14,6 +14,11 @@
                         <label for="doctxt">Upload File:</label>
                         <input id="doctxt" type="file" name="doctxt" class="form-control" accept=".xlsx, .xls" required=""/>
                     </div>
+                    <div class="text-right">
+                        <div class="form-group">
+                            <a href="<?php echo base_url('Transaction/Product/Dashboard/Download?token=' . Enkrip('benar')); ?>" target="new">Download format file</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button id="closebtn2" type="button" class="btn btn-default" data-dismiss="modal" onclick="Close_add()"><i class="far fa-times-circle text-danger"></i> Cancel</button>

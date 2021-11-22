@@ -144,5 +144,15 @@ class Dashboard extends CI_Controller {
         }
         return $result;
     }
+    
+    public function Download() {
+        $token = Dekrip(Post_get('token'));
+        if ($token == 'benar') {
+            header('Content-Disposition: attachment; filename=' . md5(date('Y-m-d H:i:s')) . '.xlsx');
+            readfile(FCPATH . 'assets/media/tr_product.xlsx');
+        } else {
+            echo "your token not match!";
+        }
+    }
 
 }
