@@ -53,7 +53,7 @@ class Dashboard extends CI_Controller {
                     'SEPTEMBER' => ($value->SEPTEMBER == null) ? 0 : '<a href="#">' . number_format($value->SEPTEMBER) . '</a>',
                     'OKTOBER' => ($value->OKTOBER == null) ? 0 : '<a href="#">' . number_format($value->OKTOBER) . '</a>',
                     'NOVEMBER' => ($value->NOVEMBER == null) ? 0 : '<a href="#">' . number_format($value->NOVEMBER) . '</a>',
-                    'DESEMBER' => ($value->DESEMBER == null) ? 0 : '<a href="#">' . number_format($value->DESEMBER) . '</a>',
+                    'DESEMBER' => ($value->DESEMBER == null) ? 0 : '<a href="#">' . number_format($value->DESEMBER) . '</a>'
                 ];
             }
         }

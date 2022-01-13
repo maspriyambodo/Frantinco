@@ -192,16 +192,6 @@ function dt_tabel(year) {
                 title: 'DEC',
                 className: "text-center",
                 "searchable": false
-            },
-            {
-                data: null,
-                title: 'TOTAL',
-                className: "text-center total",
-                "searchable": false,
-                render: function (data) {
-                    var num = numeral(data.total).format('0,0');
-                    return num;
-                }
             }
         ]
     });
