@@ -17,7 +17,7 @@ class Dashboard extends CI_Controller {
             'item_active' => 'Report/Brand/Dashboard/index/',
             'privilege' => $this->bodo->Check_previlege('Report/Brand/Dashboard/index/'),
             'siteTitle' => 'Brand Report | ' . $this->bodo->Sys('app_name'),
-            'pagetitle' => 'Brand Report ' . date('Y'),
+            'pagetitle' => 'Brand Report ' . $this->Dir_year()[0]->text,
             'breadcrumb' => [
                 0 => [
                     'nama' => 'index',
@@ -35,33 +35,26 @@ class Dashboard extends CI_Controller {
         if (empty($tahun)) {
             $data = [];
         } else {
-            $brand_1 = $this->model->Brand_1($tahun)->result();
-            $brand_2 = $this->model->Brand_2($tahun)->result();
-            if ($brand_1 and $brand_2) {
-                $norut = 0;
-                foreach (array_merge($brand_1, $brand_2) as $value) {
-                    $id_brand = Enkrip($value->id);
-                    $norut++;
-                    $data[] = [
-                        'id' => $norut,
-                        'nama' => $value->nama,
-                        'tr_date' => $value->tr_date,
-                        'JANUARI' => ($value->JANUARI == null) ? 0 : '<a href="#">' . number_format($value->JANUARI) . '</a>',
-                        'FEBRUARI' => ($value->FEBRUARI == null) ? 0 : '<a href="#">' . number_format($value->FEBRUARI) . '</a>',
-                        'MARET' => ($value->MARET == null) ? 0 : '<a href="#">' . number_format($value->MARET) . '</a>',
-                        'APRIL' => ($value->APRIL == null) ? 0 : '<a href="#">' . number_format($value->APRIL) . '</a>',
-                        'MEI' => ($value->MEI == null) ? 0 : '<a href="#">' . number_format($value->MEI) . '</a>',
-                        'JUNI' => ($value->JUNI == null) ? 0 : '<a href="#">' . number_format($value->JUNI) . '</a>',
-                        'JULI' => ($value->JULI == null) ? 0 : '<a href="#">' . number_format($value->JULI) . '</a>',
-                        'AGUSTUS' => ($value->AGUSTUS == null) ? 0 : '<a href="#">' . number_format($value->AGUSTUS) . '</a>',
-                        'SEPTEMBER' => ($value->SEPTEMBER == null) ? 0 : '<a href="#">' . number_format($value->SEPTEMBER) . '</a>',
-                        'OKTOBER' => ($value->OKTOBER == null) ? 0 : '<a href="#">' . number_format($value->OKTOBER) . '</a>',
-                        'NOVEMBER' => ($value->NOVEMBER == null) ? 0 : '<a href="#">' . number_format($value->NOVEMBER) . '</a>',
-                        'DESEMBER' => ($value->DESEMBER == null) ? 0 : '<a href="#">' . number_format($value->DESEMBER) . '</a>',
-                    ];
-                }
-            } else {
-                $data = [];
+            $norut = 0;
+            foreach ($this->model->dt_table($tahun) as $value) {
+                $norut++;
+                $data[] = [
+                    'id' => $norut,
+                    'nama' => $value->nama,
+                    'tr_date' => $value->tr_date,
+                    'JANUARI' => ($value->JANUARI == null) ? 0 : '<a href="#">' . number_format($value->JANUARI) . '</a>',
+                    'FEBRUARI' => ($value->FEBRUARI == null) ? 0 : '<a href="#">' . number_format($value->FEBRUARI) . '</a>',
+                    'MARET' => ($value->MARET == null) ? 0 : '<a href="#">' . number_format($value->MARET) . '</a>',
+                    'APRIL' => ($value->APRIL == null) ? 0 : '<a href="#">' . number_format($value->APRIL) . '</a>',
+                    'MEI' => ($value->MEI == null) ? 0 : '<a href="#">' . number_format($value->MEI) . '</a>',
+                    'JUNI' => ($value->JUNI == null) ? 0 : '<a href="#">' . number_format($value->JUNI) . '</a>',
+                    'JULI' => ($value->JULI == null) ? 0 : '<a href="#">' . number_format($value->JULI) . '</a>',
+                    'AGUSTUS' => ($value->AGUSTUS == null) ? 0 : '<a href="#">' . number_format($value->AGUSTUS) . '</a>',
+                    'SEPTEMBER' => ($value->SEPTEMBER == null) ? 0 : '<a href="#">' . number_format($value->SEPTEMBER) . '</a>',
+                    'OKTOBER' => ($value->OKTOBER == null) ? 0 : '<a href="#">' . number_format($value->OKTOBER) . '</a>',
+                    'NOVEMBER' => ($value->NOVEMBER == null) ? 0 : '<a href="#">' . number_format($value->NOVEMBER) . '</a>',
+                    'DESEMBER' => ($value->DESEMBER == null) ? 0 : '<a href="#">' . number_format($value->DESEMBER) . '</a>',
+                ];
             }
         }
         return ToJson($data);

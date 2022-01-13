@@ -24,6 +24,34 @@ class M_brand extends CI_Model {
         return $exec;
     }
 
+    public function dt_table($tahun) {
+        $exec = $this->db->select('mt_brand.id,mt_brand.nama,YEAR(tr_product.tr_date) AS tr_date,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 1 ) THEN `tr_product`.`qty` END ) ) AS `JANUARI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 2 ) THEN `tr_product`.`qty` END ) ) AS `FEBRUARI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 3 ) THEN `tr_product`.`qty` END ) ) AS `MARET`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 4 ) THEN `tr_product`.`qty` END ) ) AS `APRIL`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 5 ) THEN `tr_product`.`qty` END ) ) AS `MEI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 6 ) THEN `tr_product`.`qty` END ) ) AS `JUNI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 7 ) THEN `tr_product`.`qty` END ) ) AS `JULI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 8 ) THEN `tr_product`.`qty` END ) ) AS `AGUSTUS`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 9 ) THEN `tr_product`.`qty` END ) ) AS `SEPTEMBER`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 10 ) THEN `tr_product`.`qty` END ) ) AS `OKTOBER`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 11 ) THEN `tr_product`.`qty` END ) ) AS `NOVEMBER`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 12 ) THEN `tr_product`.`qty` END ) ) AS `DESEMBER` ')
+                ->from('mt_brand')
+                ->join('mt_category', 'mt_category.id_brand = mt_brand.id', 'LEFT')
+                ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id', 'LEFT')
+                ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
+                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk', 'LEFT')
+                ->where('`mt_brand`.`stat`', 1, false)
+                ->where('YEAR(`tr_product`.`tr_date`)', $tahun, false)
+                ->group_by('mt_brand.id')
+                ->order_by('id_brand ASC')
+                ->get()
+                ->result();
+        return $exec;
+    }
+
     public function SHOCKINGPINK() {//untuk laporan penjualan seluruh produk berdasarkan tahun
         $exec = $this->db->select('mt_product.kd_produk,mt_product.nama AS nama_produk,mt_product.id_category_sub, mt_category_sub.nama AS nama_subkategori, mt_category_sub.id_category, mt_category.nama AS nama_kategori, mt_category.id_brand, mt_brand.nama AS nama_brand')
                 ->select('CASE WHEN `tr_product`.`qty` IS NULL THEN 0 ELSE SUM(`tr_product`.`qty`) END AS `quantity`', false)
