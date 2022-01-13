@@ -95,11 +95,11 @@ class Dashboard extends CI_Controller {
             $tot_2 += $brand[1]->JANUARI + $brand[1]->FEBRUARI + $brand[1]->MARET + $brand[1]->APRIL + $brand[1]->MEI + $brand[1]->JUNI + $brand[1]->JULI + $brand[1]->AGUSTUS + $brand[1]->SEPTEMBER + $brand[1]->OKTOBER + $brand[1]->OKTOBER + $brand[1]->NOVEMBER + $brand[1]->DESEMBER;
             $data = [
                 [
-                    'brand' => 'brand_1',
+                    'brand' => $brand_1[0]->nama,
                     'total' => $tot_1
                 ],
                 [
-                    'brand' => 'brand_2',
+                    'brand' => $brand_2[0]->nama,
                     'total' => $tot_2
                 ]
             ];
