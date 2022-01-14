@@ -42,18 +42,18 @@ class Dashboard extends CI_Controller {
                     'id' => $norut,
                     'nama' => $value->nama,
                     'tr_date' => $value->tr_date,
-                    'JANUARI' => ($value->JANUARI == null) ? 0 : '<a href="#">' . number_format($value->JANUARI) . '</a>',
-                    'FEBRUARI' => ($value->FEBRUARI == null) ? 0 : '<a href="#">' . number_format($value->FEBRUARI) . '</a>',
-                    'MARET' => ($value->MARET == null) ? 0 : '<a href="#">' . number_format($value->MARET) . '</a>',
-                    'APRIL' => ($value->APRIL == null) ? 0 : '<a href="#">' . number_format($value->APRIL) . '</a>',
-                    'MEI' => ($value->MEI == null) ? 0 : '<a href="#">' . number_format($value->MEI) . '</a>',
-                    'JUNI' => ($value->JUNI == null) ? 0 : '<a href="#">' . number_format($value->JUNI) . '</a>',
-                    'JULI' => ($value->JULI == null) ? 0 : '<a href="#">' . number_format($value->JULI) . '</a>',
-                    'AGUSTUS' => ($value->AGUSTUS == null) ? 0 : '<a href="#">' . number_format($value->AGUSTUS) . '</a>',
-                    'SEPTEMBER' => ($value->SEPTEMBER == null) ? 0 : '<a href="#">' . number_format($value->SEPTEMBER) . '</a>',
-                    'OKTOBER' => ($value->OKTOBER == null) ? 0 : '<a href="#">' . number_format($value->OKTOBER) . '</a>',
-                    'NOVEMBER' => ($value->NOVEMBER == null) ? 0 : '<a href="#">' . number_format($value->NOVEMBER) . '</a>',
-                    'DESEMBER' => ($value->DESEMBER == null) ? 0 : '<a href="#">' . number_format($value->DESEMBER) . '</a>'
+                    'JANUARI' => ($value->JANUARI == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->JANUARI))) . '">' . number_format($value->JANUARI) . '</a>',
+                    'FEBRUARI' => ($value->FEBRUARI == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->FEBRUARI))) . '">' . number_format($value->FEBRUARI) . '</a>',
+                    'MARET' => ($value->MARET == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->MARET))) . '">' . number_format($value->MARET) . '</a>',
+                    'APRIL' => ($value->APRIL == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->APRIL))) . '">' . number_format($value->APRIL) . '</a>',
+                    'MEI' => ($value->MEI == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->MEI))) . '">' . number_format($value->MEI) . '</a>',
+                    'JUNI' => ($value->JUNI == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->JUNI))) . '">' . number_format($value->JUNI) . '</a>',
+                    'JULI' => ($value->JULI == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->JULI))) . '">' . number_format($value->JULI) . '</a>',
+                    'AGUSTUS' => ($value->AGUSTUS == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->AGUSTUS))) . '">' . number_format($value->AGUSTUS) . '</a>',
+                    'SEPTEMBER' => ($value->SEPTEMBER == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->SEPTEMBER))) . '">' . number_format($value->SEPTEMBER) . '</a>',
+                    'OKTOBER' => ($value->OKTOBER == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->OKTOBER))) . '">' . number_format($value->OKTOBER) . '</a>',
+                    'NOVEMBER' => ($value->NOVEMBER == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->NOVEMBER))) . '">' . number_format($value->NOVEMBER) . '</a>',
+                    'DESEMBER' => ($value->DESEMBER == null) ? 0 : '<a href="' . base_url('Laporan1%23?token=' . str_replace(['+', '/', '='], ['-', '_', '~'], $this->encryption->encrypt('?a=' . $tahun . '&b=09' . '&c=' . $value->id . '&d=' . $value->DESEMBER))) . '">' . number_format($value->DESEMBER) . '</a>'
                 ];
             }
         }
