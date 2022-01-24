@@ -2,6 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Auth';
+$route['Laporan1%(:any)'] = 'Report/Brand/Bulan/index/';
 $route['Change%(:any)'] = 'Systems/Change/';
 $route['Setting%20Profile'] = 'Systems/Profile/';
 $route['Dashboard'] = 'Applications/Dashboard/index/';
