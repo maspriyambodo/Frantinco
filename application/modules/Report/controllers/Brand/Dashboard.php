@@ -91,8 +91,8 @@ class Dashboard extends CI_Controller {
         } else {
             $tot_1 = 0;
             $tot_2 = 0;
-            $tot_1 += $brand[0]->JANUARI + $brand[0]->FEBRUARI + $brand[0]->MARET + $brand[0]->APRIL + $brand[0]->MEI + $brand[0]->JUNI + $brand[0]->JULI + $brand[0]->AGUSTUS + $brand[0]->SEPTEMBER + $brand[0]->OKTOBER + $brand[0]->OKTOBER + $brand[0]->NOVEMBER + $brand[0]->DESEMBER;
-            $tot_2 += $brand[1]->JANUARI + $brand[1]->FEBRUARI + $brand[1]->MARET + $brand[1]->APRIL + $brand[1]->MEI + $brand[1]->JUNI + $brand[1]->JULI + $brand[1]->AGUSTUS + $brand[1]->SEPTEMBER + $brand[1]->OKTOBER + $brand[1]->OKTOBER + $brand[1]->NOVEMBER + $brand[1]->DESEMBER;
+            $tot_1 += $brand[0]->JANUARI + $brand[0]->FEBRUARI + $brand[0]->MARET + $brand[0]->APRIL + $brand[0]->MEI + $brand[0]->JUNI + $brand[0]->JULI + $brand[0]->AGUSTUS + $brand[0]->SEPTEMBER + $brand[0]->OKTOBER + $brand[0]->NOVEMBER + $brand[0]->DESEMBER;
+            $tot_2 += $brand[1]->JANUARI + $brand[1]->FEBRUARI + $brand[1]->MARET + $brand[1]->APRIL + $brand[1]->MEI + $brand[1]->JUNI + $brand[1]->JULI + $brand[1]->AGUSTUS + $brand[1]->SEPTEMBER + $brand[1]->OKTOBER + $brand[1]->NOVEMBER + $brand[1]->DESEMBER;
             $data = [
                 [
                     'brand' => $brand_1[0]->nama,
