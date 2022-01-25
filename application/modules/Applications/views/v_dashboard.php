@@ -120,28 +120,9 @@
             am4core.addLicense("ch-custom-attribution");
             var chart = am4core.create("chartdiv3", am4charts.XYChart);
             chart.scrollbarX = new am4core.Scrollbar();
-
-            chart.data = [
-                {
-                    "country": "USA",
-                    "visits": 3025
-                }, {
-                    "country": "China",
-                    "visits": 1882
-                }, {
-                    "country": "Japan",
-                    "visits": 1809
-                }, {
-                    "country": "Germany",
-                    "visits": 1322
-                }, {
-                    "country": "UK",
-                    "visits": 1122
-                }
-            ];
-
+            chart.dataSource.url = "Applications/Dashboard/chart_categorysub?token=" + tokentxt;
             var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.dataFields.category = "country";
+            categoryAxis.dataFields.category = "nama";
             categoryAxis.renderer.grid.template.location = 0;
             categoryAxis.renderer.minGridDistance = 30;
             categoryAxis.renderer.labels.template.horizontalCenter = "right";
@@ -157,8 +138,8 @@
 
             var series = chart.series.push(new am4charts.ColumnSeries());
             series.sequencedInterpolation = true;
-            series.dataFields.valueY = "visits";
-            series.dataFields.categoryX = "country";
+            series.dataFields.valueY = "qty";
+            series.dataFields.categoryX = "nama";
             series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
             series.columns.template.strokeWidth = 0;
 

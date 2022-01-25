@@ -69,5 +69,15 @@ class Dashboard extends CI_Controller {
         }
         return ToJson($data);
     }
+    
+    public function chart_categorysub() {
+        $token = Dekrip(Post_get('token'));
+        if ($token != $this->user) {
+            $data = [];
+        } else {
+            $data = $this->model->chart_categorysub();
+        }
+        return ToJson($data);
+    }
 
 }
