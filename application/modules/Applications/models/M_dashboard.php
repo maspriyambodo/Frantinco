@@ -34,9 +34,19 @@ class M_dashboard extends CI_Model {
                 ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id')
                 ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id')
                 ->join('tr_product', 'tr_product.kode = mt_product.kd_produk')
-//                ->where('YEAR ( tr_product.tr_date ) =', 'YEAR ( NOW( ) )', false)
                 ->group_by('mt_brand.id')
+                ->having('YEAR ( tr_product.tr_date )', 'YEAR ( NOW( ) )', false)
                 ->order_by('tr_product.qty DESC')
+                ->get()
+                ->result();
+        return $exec;
+    }
+
+    public function chart_category() {
+        $exec = $this->db->select('')
+                ->from()
+                ->join()
+                ->order_by()
                 ->get()
                 ->result();
         return $exec;
