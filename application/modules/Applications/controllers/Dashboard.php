@@ -13,6 +13,7 @@ class Dashboard extends CI_Controller {
     public function index() {
         $data = [
             'csrf' => $this->bodo->Csrf(),
+            'token' => str_replace(['+', '/', '='], ['-', '_', '~'], $this->session->userdata('id_user')),
             'item_active' => 'Applications/Dashboard/index/',
             'privilege' => $this->bodo->Check_previlege('Applications/Dashboard/index/'),
             'siteTitle' => 'Dashboard Application | ' . $this->bodo->Sys('app_name'),
@@ -31,7 +32,7 @@ class Dashboard extends CI_Controller {
 
     public function Search() {
         $data = [
-            'result'=> $this->model->Search(Post_input('searchtxt')),
+            'result' => $this->model->Search(Post_input('searchtxt')),
             'csrf' => $this->bodo->Csrf(),
             'item_active' => 'Applications/Dashboard/index/',
             'privilege' => $this->bodo->Check_previlege('Applications/Dashboard/index/'),
@@ -47,6 +48,16 @@ class Dashboard extends CI_Controller {
         ];
         $data['content'] = $this->parser->parse('v_search', $data, true);
         return $this->parser->parse('Template/layout', $data);
+    }
+
+    public function Chart_brand() {
+        $token = Dekrip(Post_get('token'));
+        if ($token != $this->user) {
+            $data = [];
+        } else {
+            $data = $this->model->chart_brand();
+        }
+        return ToJson($data);
     }
 
 }

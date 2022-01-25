@@ -27,4 +27,19 @@ class M_dashboard extends CI_Model {
         return $exec;
     }
 
+    public function chart_brand() {
+        $exec = $this->db->select('mt_brand.nama,SUM(`tr_product`.`qty`) AS qty')
+                ->from('mt_brand')
+                ->join('mt_category', 'mt_category.id_brand = mt_brand.id')
+                ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id')
+                ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id')
+                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk')
+//                ->where('YEAR ( tr_product.tr_date ) =', 'YEAR ( NOW( ) )', false)
+                ->group_by('mt_brand.id')
+                ->order_by('tr_product.qty DESC')
+                ->get()
+                ->result();
+        return $exec;
+    }
+
 }

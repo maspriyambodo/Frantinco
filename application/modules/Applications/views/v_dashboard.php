@@ -1,4 +1,4 @@
-
+<input id="tokentxt" name="tokentxt" type="hidden" value="<?php echo $token; ?>"/>
 <div class="card card-custom">
     <div class="card-body">
         <div class="row">
@@ -45,30 +45,19 @@
 <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 <script>
     $(document).ready(function () {
-
+        var tokentxt = $('input[name="tokentxt"]').val();
         am4core.ready(function () {
 
             am4core.useTheme(am4themes_animated);
             am4core.addLicense("ch-custom-attribution");
             var chart = am4core.create("chartdiv", am4charts.PieChart3D);
+            chart.dataSource.url = "Applications/Dashboard/Chart_brand?token=" + tokentxt;
             chart.hiddenState.properties.opacity = 0;
-
             chart.legend = new am4charts.Legend();
 
-            chart.data = [
-                {
-                    country: "Lithuania",
-                    litres: 501.9
-                },
-                {
-                    country: "Czech Republic",
-                    litres: 301.9
-                }
-            ];
-
             var series = chart.series.push(new am4charts.PieSeries3D());
-            series.dataFields.value = "litres";
-            series.dataFields.category = "country";
+            series.dataFields.value = "qty";
+            series.dataFields.category = "nama";
 
         });
 
@@ -138,7 +127,7 @@
             chart.cursor = new am4charts.XYCursor();
 
         });
-        
+
         am4core.ready(function () {
 
             am4core.useTheme(am4themes_animated);
@@ -205,7 +194,7 @@
             chart.cursor = new am4charts.XYCursor();
 
         });
-        
+
         am4core.ready(function () {
 
             am4core.useTheme(am4themes_animated);
