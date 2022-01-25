@@ -60,4 +60,14 @@ class Dashboard extends CI_Controller {
         return ToJson($data);
     }
 
+    public function chart_category() {
+        $token = Dekrip(Post_get('token'));
+        if ($token != $this->user) {
+            $data = [];
+        } else {
+            $data = $this->model->chart_category();
+        }
+        return ToJson($data);
+    }
+
 }

@@ -28,14 +28,14 @@ class M_dashboard extends CI_Model {
     }
 
     public function chart_brand() {
-        $exec = $this->db->select('mt_brand.nama,SUM(`tr_product`.`qty`) AS qty')
+        $exec = $this->db->select('mt_brand.nama,SUM(`tr_product`.`qty`) AS qty,tr_product.tr_date')
                 ->from('mt_brand')
-                ->join('mt_category', 'mt_category.id_brand = mt_brand.id')
-                ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id')
-                ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id')
-                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk')
+                ->join('mt_category', 'mt_category.id_brand = mt_brand.id', 'LEFT')
+                ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id', 'LEFT')
+                ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
+                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk', 'LEFT')
                 ->group_by('mt_brand.id')
-                ->having('YEAR ( tr_product.tr_date )', 'YEAR ( NOW( ) )', false)
+                ->having('YEAR ( tr_product.tr_date ) =', 'YEAR ( NOW( ) )', false)
                 ->order_by('tr_product.qty DESC')
                 ->get()
                 ->result();
@@ -43,10 +43,15 @@ class M_dashboard extends CI_Model {
     }
 
     public function chart_category() {
-        $exec = $this->db->select('')
-                ->from()
-                ->join()
-                ->order_by()
+        $exec = $this->db->select('mt_category.nama,Sum( tr_product.qty ) AS qty,tr_product.tr_date')
+                ->from('mt_category')
+                ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id', 'LEFT')
+                ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
+                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk', 'LEFT')
+                ->group_by('mt_category.id')
+                ->having('YEAR ( tr_product.tr_date ) =', 'YEAR ( NOW( ) )', false)
+                ->order_by('tr_product.qty DESC')
+                ->limit(5)
                 ->get()
                 ->result();
         return $exec;
