@@ -43,7 +43,7 @@ class M_dashboard extends CI_Model {
     }
 
     public function chart_category() {
-        $exec = $this->db->select('mt_category.nama,Sum( tr_product.qty ) AS qty,tr_product.tr_date')
+        $exec = $this->db->select('mt_category.nama,Sum( tr_product.qty ) AS qty,tr_product.tr_date,mt_product.kd_produk')
                 ->from('mt_category')
                 ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id', 'LEFT')
                 ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
@@ -58,13 +58,26 @@ class M_dashboard extends CI_Model {
     }
 
     public function chart_categorysub() {
-        $exec = $this->db->select('mt_category_sub.nama,SUM( tr_product.qty ) AS qty,tr_product.tr_date')
+        $exec = $this->db->select('mt_category_sub.nama,SUM( tr_product.qty ) AS qty,tr_product.tr_date,mt_product.kd_produk')
                 ->from('mt_category_sub')
                 ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
                 ->join('tr_product', 'tr_product.kode = mt_product.kd_produk ', 'LEFT')
                 ->group_by('mt_category_sub.id')
                 ->having('YEAR ( tr_product.tr_date ) =', 'YEAR ( NOW( ) )', false)
                 ->order_by('tr_product.qty DESC')
+                ->limit(5)
+                ->get()
+                ->result();
+        return $exec;
+    }
+
+    public function chart_product() {
+        $exec = $this->db->select('mt_product.nama,SUM( tr_product.qty ) AS qty,tr_product.tr_date,mt_product.kd_produk')
+                ->from('mt_product')
+                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk', 'LEFT')
+                ->group_by('mt_product.id')
+                ->having('YEAR ( tr_product.tr_date ) =', 'YEAR(NOW())', false)
+                ->order_by('tr_product.qty DESC ')
                 ->limit(5)
                 ->get()
                 ->result();

@@ -1,45 +1,81 @@
 <input id="tokentxt" name="tokentxt" type="hidden" value="<?php echo $token; ?>"/>
-<div class="card card-custom">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="text-center">
-                        <b>brand</b>
-                    </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-custom" data-card="true" id="kt_card_1">
+            <div class="card-header">
+                <div class="card-title">
+                    Brand
                 </div>
+                <div class="card-toolbar">
+                    <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Minimalkan">
+                        <i class="ki ki-arrow-down icon-nm"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
                 <div class="chartdivs" id="chartdiv"></div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="text-center">
-                        <b>category</b>
-                    </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-custom" data-card="true" id="kt_card_1">
+            <div class="card-header">
+                <div class="card-title">
+                    Category
                 </div>
+                <div class="card-toolbar">
+                    <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Minimalkan">
+                        <i class="ki ki-arrow-down icon-nm"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
                 <div class="chartdivs" id="chartdiv2"></div>
             </div>
         </div>
-        <div class="clearfix my-4 border"></div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="text-center">
-                        <b>sub category</b>
-                    </div>
+    </div>
+</div>
+
+<div class="clearfix my-4"></div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-custom" data-card="true" id="kt_card_1">
+            <div class="card-header">
+                <div class="card-title">
+                    Sub Category
                 </div>
+                <div class="card-toolbar">
+                    <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Minimalkan">
+                        <i class="ki ki-arrow-down icon-nm"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
                 <div class="chartdivs" id="chartdiv3"></div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="text-center">
-                        <b>product</b>
-                    </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-custom" data-card="true" id="kt_card_1">
+            <div class="card-header">
+                <div class="card-title">
+                    Product
                 </div>
+                <div class="card-toolbar">
+                    <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Minimalkan">
+                        <i class="ki ki-arrow-down icon-nm"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
                 <div class="chartdivs" id="chartdiv4"></div>
             </div>
         </div>
     </div>
 </div>
+
 <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
@@ -58,7 +94,6 @@
             var series = chart.series.push(new am4charts.PieSeries3D());
             series.dataFields.value = "qty";
             series.dataFields.category = "nama";
-
         });
 
         am4core.ready(function () {
@@ -70,7 +105,7 @@
             chart.dataSource.url = "Applications/Dashboard/chart_category?token=" + tokentxt;
 
             var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.dataFields.category = "nama";
+            categoryAxis.dataFields.category = "kd_produk";
             categoryAxis.renderer.grid.template.location = 0;
             categoryAxis.renderer.minGridDistance = 30;
             categoryAxis.renderer.labels.template.horizontalCenter = "right";
@@ -81,15 +116,16 @@
 
             var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
             valueAxis.renderer.minWidth = 50;
-            valueAxis.title.text = "Jumlah Masjid";
+            valueAxis.title.text = "SALES CATEGORY";
             valueAxis.title.fontWeight = 800;
 
             var series = chart.series.push(new am4charts.ColumnSeries());
             series.sequencedInterpolation = true;
             series.dataFields.valueY = "qty";
-            series.dataFields.categoryX = "nama";
-            series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+            series.dataFields.categoryX = "kd_produk";
+            series.tooltipText = "TOTAL [bold]{nama}[/]: [bold]{valueY}[/]";
             series.columns.template.strokeWidth = 0;
+            series.columns.template.width = am4core.percent(30);
 
             series.tooltip.pointerOrientation = "vertical";
 
@@ -121,8 +157,9 @@
             var chart = am4core.create("chartdiv3", am4charts.XYChart);
             chart.scrollbarX = new am4core.Scrollbar();
             chart.dataSource.url = "Applications/Dashboard/chart_categorysub?token=" + tokentxt;
+
             var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.dataFields.category = "nama";
+            categoryAxis.dataFields.category = "kd_produk";
             categoryAxis.renderer.grid.template.location = 0;
             categoryAxis.renderer.minGridDistance = 30;
             categoryAxis.renderer.labels.template.horizontalCenter = "right";
@@ -133,15 +170,16 @@
 
             var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
             valueAxis.renderer.minWidth = 50;
-            valueAxis.title.text = "Jumlah Masjid";
+            valueAxis.title.text = "SALES SUB CATEGORY";
             valueAxis.title.fontWeight = 800;
 
             var series = chart.series.push(new am4charts.ColumnSeries());
             series.sequencedInterpolation = true;
             series.dataFields.valueY = "qty";
-            series.dataFields.categoryX = "nama";
-            series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+            series.dataFields.categoryX = "kd_produk";
+            series.tooltipText = "TOTAL [bold]{nama}[/]: [bold]{valueY}[/]";
             series.columns.template.strokeWidth = 0;
+            series.columns.template.width = am4core.percent(30);
 
             series.tooltip.pointerOrientation = "vertical";
 
@@ -157,6 +195,10 @@
             series.columns.template.adapter.add("fill", function (fill, target) {
                 return chart.colors.getIndex(target.dataItem.index);
             });
+
+            var label = categoryAxis.renderer.labels.template;
+            label.wrap = true;
+            label.maxWidth = 120;
 
             chart.cursor = new am4charts.XYCursor();
 
@@ -168,28 +210,10 @@
             am4core.addLicense("ch-custom-attribution");
             var chart = am4core.create("chartdiv4", am4charts.XYChart);
             chart.scrollbarX = new am4core.Scrollbar();
-
-            chart.data = [
-                {
-                    "country": "USA",
-                    "visits": 3025
-                }, {
-                    "country": "China",
-                    "visits": 1882
-                }, {
-                    "country": "Japan",
-                    "visits": 1809
-                }, {
-                    "country": "Germany",
-                    "visits": 1322
-                }, {
-                    "country": "UK",
-                    "visits": 1122
-                }
-            ];
+            chart.dataSource.url = "Applications/Dashboard/chart_product?token=" + tokentxt;
 
             var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.dataFields.category = "country";
+            categoryAxis.dataFields.category = "kd_produk";
             categoryAxis.renderer.grid.template.location = 0;
             categoryAxis.renderer.minGridDistance = 30;
             categoryAxis.renderer.labels.template.horizontalCenter = "right";
@@ -200,15 +224,16 @@
 
             var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
             valueAxis.renderer.minWidth = 50;
-            valueAxis.title.text = "Jumlah Masjid";
+            valueAxis.title.text = "SALES PRODUCT";
             valueAxis.title.fontWeight = 800;
 
             var series = chart.series.push(new am4charts.ColumnSeries());
             series.sequencedInterpolation = true;
-            series.dataFields.valueY = "visits";
-            series.dataFields.categoryX = "country";
-            series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+            series.dataFields.valueY = "qty";
+            series.dataFields.categoryX = "kd_produk";
+            series.tooltipText = "TOTAL [bold]{nama}[/]: [bold]{valueY}[/]";
             series.columns.template.strokeWidth = 0;
+            series.columns.template.width = am4core.percent(30);
 
             series.tooltip.pointerOrientation = "vertical";
 
@@ -225,8 +250,13 @@
                 return chart.colors.getIndex(target.dataItem.index);
             });
 
+            var label = categoryAxis.renderer.labels.template;
+            label.wrap = true;
+            label.maxWidth = 120;
+
             chart.cursor = new am4charts.XYCursor();
 
         });
+        
     });
 </script>
