@@ -1,4 +1,62 @@
 <input id="tokentxt" name="tokentxt" type="hidden" value="<?php echo $token; ?>"/>
+<div class="clearfix d-block d-xl-none my-2 border"></div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                    <span class="svg-icon svg-icon-3x d-block my-2">
+                        <i class="text-white fas fa-box" style="font-size: 48px;"></i>
+                        <b class="text-white font-weight-bold font-size-h6">238947</b>
+                    </span>
+                    <a href="#" class="text-white font-weight-bold font-size-h6">
+                        TOTAL BRAND
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                    <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
+                        <i class="text-white fas fa-box" style="font-size: 48px;"></i>
+                        <b class="text-white font-weight-bold font-size-h6">238947</b>
+                    </span>
+                    <a href="#" class="text-white font-weight-bold font-size-h6">
+                        TOTAL CATEGORY
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                    <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
+                        <i class="text-white fas fa-box" style="font-size: 48px;"></i>
+                        <b class="text-white font-weight-bold font-size-h6">238947</b>
+                    </span>
+                    <a href="#" class="text-white font-weight-bold font-size-h6">
+                        TOTAL SUB CATEGORY
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                    <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
+                        <i class="text-white fas fa-box" style="font-size: 48px;"></i>
+                        <b class="text-white font-weight-bold font-size-h6">238947</b>
+                    </span>
+                    <a href="#" class="text-white font-weight-bold font-size-h6">
+                        TOTAL PRODUCT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-6">
@@ -14,7 +72,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="chartdivs" id="chartdiv"></div>
+                <div class="chartdivs" id="chartdiv" style="height:450px !important;"></div>
             </div>
         </div>
     </div>
@@ -31,7 +89,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="chartdivs" id="chartdiv2"></div>
+                <div class="chartdivs" id="chartdiv2" style="height:450px !important;"></div>
             </div>
         </div>
     </div>
@@ -53,7 +111,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="chartdivs" id="chartdiv3"></div>
+                <div class="chartdivs" id="chartdiv3" style="height:450px !important;"></div>
             </div>
         </div>
     </div>
@@ -70,7 +128,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="chartdivs" id="chartdiv4"></div>
+                <div class="chartdivs" id="chartdiv4" style="height:450px !important;"></div>
             </div>
         </div>
     </div>
@@ -257,6 +315,6 @@
             chart.cursor = new am4charts.XYCursor();
 
         });
-        
+
     });
 </script>

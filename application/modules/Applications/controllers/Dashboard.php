@@ -69,7 +69,7 @@ class Dashboard extends CI_Controller {
         }
         return ToJson($data);
     }
-    
+
     public function chart_categorysub() {
         $token = Dekrip(Post_get('token'));
         if ($token != $this->user) {
@@ -79,7 +79,7 @@ class Dashboard extends CI_Controller {
         }
         return ToJson($data);
     }
-    
+
     public function chart_product() {
         $token = Dekrip(Post_get('token'));
         if ($token != $this->user) {
@@ -88,6 +88,13 @@ class Dashboard extends CI_Controller {
             $data = $this->model->chart_product();
         }
         return ToJson($data);
+    }
+
+    public function info_sum() {
+        $tot_brand = $this->model->tot_brand();
+        $tot_category = $this->model->tot_category();
+        $tot_categorysub = $this->model->tot_categorysub();
+        
     }
 
 }
