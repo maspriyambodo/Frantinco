@@ -9,7 +9,7 @@
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_brand" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
-                    <a href="#" class="text-white font-weight-bold font-size-h6">
+                    <a href="<?php echo base_url('Report/Brand/Dashboard/index/');?>" class="text-white font-weight-bold font-size-h6">
                         TOTAL BRAND
                     </a>
                 </div>
@@ -63,7 +63,7 @@
         <div class="card card-custom" data-card="true" id="kt_card_1">
             <div class="card-header">
                 <div class="card-title">
-                    Brand
+                    Brand Demand
                 </div>
                 <div class="card-toolbar">
                     <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Minimalkan">
@@ -80,7 +80,7 @@
         <div class="card card-custom" data-card="true" id="kt_card_1">
             <div class="card-header">
                 <div class="card-title">
-                    Category
+                    Category Demand
                 </div>
                 <div class="card-toolbar">
                     <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Minimalkan">
@@ -102,7 +102,7 @@
         <div class="card card-custom" data-card="true" id="kt_card_1">
             <div class="card-header">
                 <div class="card-title">
-                    Sub Category
+                    Sub Category Demand
                 </div>
                 <div class="card-toolbar">
                     <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Minimalkan">
@@ -119,7 +119,7 @@
         <div class="card card-custom" data-card="true" id="kt_card_1">
             <div class="card-header">
                 <div class="card-title">
-                    Product
+                    Product Demand
                 </div>
                 <div class="card-toolbar">
                     <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Minimalkan">
