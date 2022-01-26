@@ -7,7 +7,7 @@
                 <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
                     <span class="svg-icon svg-icon-3x d-block my-2">
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
-                        <b class="text-white font-weight-bold font-size-h6">238947</b>
+                        <b id="tot_brand" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
                     <a href="#" class="text-white font-weight-bold font-size-h6">
                         TOTAL BRAND
@@ -19,7 +19,7 @@
                 <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
                     <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
-                        <b class="text-white font-weight-bold font-size-h6">238947</b>
+                        <b id="tot_category" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
                     <a href="#" class="text-white font-weight-bold font-size-h6">
                         TOTAL CATEGORY
@@ -35,7 +35,7 @@
                 <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
                     <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
-                        <b class="text-white font-weight-bold font-size-h6">238947</b>
+                        <b id="tot_categorysub" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
                     <a href="#" class="text-white font-weight-bold font-size-h6">
                         TOTAL SUB CATEGORY
@@ -47,7 +47,7 @@
                 <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
                     <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
-                        <b class="text-white font-weight-bold font-size-h6">238947</b>
+                        <b id="tot_product" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
                     <a href="#" class="text-white font-weight-bold font-size-h6">
                         TOTAL PRODUCT
@@ -139,7 +139,11 @@
 <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 <script>
     $(document).ready(function () {
+
+        dashboard_info();
+
         var tokentxt = $('input[name="tokentxt"]').val();
+
         am4core.ready(function () {
 
             am4core.useTheme(am4themes_animated);
@@ -316,5 +320,35 @@
 
         });
 
+        function dashboard_info() {
+            $.ajax({
+                url: "Applications/Dashboard/info_sum/",
+                type: 'GET',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $('#tot_brand').attr('data-value', data.tot_brand);
+                    $('#tot_category').attr('data-value', data.tot_category);
+                    $('#tot_categorysub').attr('data-value', data.tot_categorysub);
+                    $('#tot_product').attr('data-value', data.tot_product);
+                    animate_counter();
+                }
+            });
+        }
+
+        function animate_counter() {
+            $('.count').each(function () {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).data('value')
+                }, {
+                    duration: 3000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(numeral(now).format('0,0'));
+                    }
+                });
+            });
+        }
     });
 </script>

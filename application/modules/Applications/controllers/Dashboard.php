@@ -94,7 +94,14 @@ class Dashboard extends CI_Controller {
         $tot_brand = $this->model->tot_brand();
         $tot_category = $this->model->tot_category();
         $tot_categorysub = $this->model->tot_categorysub();
-        
+        $tot_product = $this->model->tot_product();
+        $data = [
+            'tot_brand' => $tot_brand->tot_brand,
+            'tot_category' => $tot_category->tot_category,
+            'tot_categorysub' => $tot_categorysub->tot_categorysub,
+            'tot_product' => $tot_product->tot_product
+        ];
+        return ToJson($data);
     }
 
 }

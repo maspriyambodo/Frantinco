@@ -85,7 +85,7 @@ class M_dashboard extends CI_Model {
     }
 
     public function tot_brand() {
-        $exec = $this->db->select('Sum( mt_brand.id ) AS tot_brand')
+        $exec = $this->db->select('Count( mt_brand.id ) AS tot_brand')
                 ->from('mt_brand')
                 ->where('`mt_brand`.`stat`', 1, false)
                 ->get()
@@ -94,7 +94,7 @@ class M_dashboard extends CI_Model {
     }
 
     public function tot_category() {
-        $exec = $this->db->select('Sum( mt_category.id ) AS tot_category')
+        $exec = $this->db->select('Count( mt_category.id ) AS tot_category')
                 ->from('mt_category')
                 ->where('`mt_category`.`stat`', 1, false)
                 ->get()
@@ -103,7 +103,7 @@ class M_dashboard extends CI_Model {
     }
 
     public function tot_categorysub() {
-        $exec = $this->db->select('Sum(mt_category_sub.id) AS tot_categorysub')
+        $exec = $this->db->select('Count(mt_category_sub.id) AS tot_categorysub')
                 ->from('mt_category_sub')
                 ->where('`mt_category_sub`.`stat`', 1, false)
                 ->get()
@@ -112,7 +112,7 @@ class M_dashboard extends CI_Model {
     }
 
     public function tot_product() {
-        $exec = $this->db->select('Sum( mt_product.id ) AS tot_product')
+        $exec = $this->db->select('Count( mt_product.id ) AS tot_product')
                 ->from('mt_product')
                 ->where('`mt_product`.`stat`', 1, false)
                 ->get()
