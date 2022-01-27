@@ -26,15 +26,15 @@ class M_brand extends CI_Model {
 
     public function dt_table($tahun) {
         $exec = $this->db->select('mt_brand.id,mt_brand.nama,YEAR(tr_product.tr_date) AS tr_date,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 1 ) THEN `tr_product`.`qty` END ) ) AS `JANUARI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 2 ) THEN `tr_product`.`qty` END ) ) AS `FEBRUARI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 3 ) THEN `tr_product`.`qty` END ) ) AS `MARET`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 4 ) THEN `tr_product`.`qty` END ) ) AS `APRIL`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 5 ) THEN `tr_product`.`qty` END ) ) AS `MEI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 6 ) THEN `tr_product`.`qty` END ) ) AS `JUNI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 7 ) THEN `tr_product`.`qty` END ) ) AS `JULI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 8 ) THEN `tr_product`.`qty` END ) ) AS `AGUSTUS`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 9 ) THEN `tr_product`.`qty` END ) ) AS `SEPTEMBER`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 01 ) THEN `tr_product`.`qty` END ) ) AS `JANUARI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 02 ) THEN `tr_product`.`qty` END ) ) AS `FEBRUARI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 03 ) THEN `tr_product`.`qty` END ) ) AS `MARET`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 04 ) THEN `tr_product`.`qty` END ) ) AS `APRIL`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 05 ) THEN `tr_product`.`qty` END ) ) AS `MEI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 06 ) THEN `tr_product`.`qty` END ) ) AS `JUNI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 07 ) THEN `tr_product`.`qty` END ) ) AS `JULI`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 08 ) THEN `tr_product`.`qty` END ) ) AS `AGUSTUS`,
+	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 09 ) THEN `tr_product`.`qty` END ) ) AS `SEPTEMBER`,
 	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 10 ) THEN `tr_product`.`qty` END ) ) AS `OKTOBER`,
 	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 11 ) THEN `tr_product`.`qty` END ) ) AS `NOVEMBER`,
 	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 12 ) THEN `tr_product`.`qty` END ) ) AS `DESEMBER` ')
@@ -46,9 +46,9 @@ class M_brand extends CI_Model {
                 ->where('`mt_brand`.`stat`', 1, false)
                 ->where('YEAR(`tr_product`.`tr_date`)', $tahun, false)
                 ->group_by('mt_brand.id')
-                ->order_by('id_brand ASC')
                 ->get()
                 ->result();
+//        log_message('error', $this->db->last_query());
         return $exec;
     }
 
