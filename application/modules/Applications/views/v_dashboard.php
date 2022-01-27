@@ -21,7 +21,7 @@
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_category" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
-                    <a href="#" class="text-white font-weight-bold font-size-h6">
+                    <a href="<?php echo base_url('Report/Category/Dashboard/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                         TOTAL CATEGORY
                     </a>
                 </div>
