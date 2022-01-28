@@ -41,7 +41,7 @@ function Chart_2(year) {
         categoryAxis.renderer.minGridDistance = 12;
         categoryAxis.renderer.labels.template.horizontalCenter = "right";
         categoryAxis.renderer.labels.template.verticalCenter = "middle";
-        categoryAxis.renderer.labels.template.rotation = 270;
+        categoryAxis.renderer.labels.template.rotation = 300;
         categoryAxis.tooltip.disabled = true;
         categoryAxis.renderer.minHeight = 30;
         categoryAxis.title.text = 'Month of Sales';
@@ -58,26 +58,26 @@ function Chart_2(year) {
         series.sequencedInterpolation = true;
         series.dataFields.valueY = "brand_1";
         series.dataFields.categoryX = "bulan";
-        series.tooltipText = "Total Brand A month {categoryX}: [bold]{valueY}[/]";
+        series.tooltipText = "Total GW month {categoryX}: [bold]{valueY}[/]";
         series.columns.template.strokeWidth = 0;
         series.tooltip.pointerOrientation = "vertical";
         series.columns.template.column.cornerRadiusTopLeft = 10;
         series.columns.template.column.cornerRadiusTopRight = 10;
         series.columns.template.column.fillOpacity = 0.8;
-        series.name = 'Brand A';
+        series.name = 'GW';
         series.legendSettings.labelText = "{name}";
 
         var series2 = chart.series.push(new am4charts.ColumnSeries());
         series2.sequencedInterpolation = true;
         series2.dataFields.valueY = "brand_2";
         series2.dataFields.categoryX = "bulan";
-        series2.tooltipText = "Total Sales Brand B month {categoryX}: [bold]{valueY}[/]";
+        series2.tooltipText = "Total FRANTINCO month {categoryX}: [bold]{valueY}[/]";
         series2.columns.template.strokeWidth = 0;
         series2.tooltip.pointerOrientation = "vertical";
         series2.columns.template.column.cornerRadiusTopLeft = 10;
         series2.columns.template.column.cornerRadiusTopRight = 10;
         series2.columns.template.column.fillOpacity = 0.8;
-        series2.name = 'Brand B';
+        series2.name = 'FRANTINCO';
         series2.legendSettings.labelText = "{name}";
 
         var hoverState = series.columns.template.column.states.create("hover");
