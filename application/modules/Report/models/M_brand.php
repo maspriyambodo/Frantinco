@@ -25,26 +25,23 @@ class M_brand extends CI_Model {
     }
 
     public function dt_table($tahun) {
-        $exec = $this->db->select('mt_brand.id,mt_brand.nama,YEAR(tr_product.tr_date) AS tr_date,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 01 ) THEN `tr_product`.`qty` END ) ) AS `JANUARI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 02 ) THEN `tr_product`.`qty` END ) ) AS `FEBRUARI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 03 ) THEN `tr_product`.`qty` END ) ) AS `MARET`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 04 ) THEN `tr_product`.`qty` END ) ) AS `APRIL`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 05 ) THEN `tr_product`.`qty` END ) ) AS `MEI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 06 ) THEN `tr_product`.`qty` END ) ) AS `JUNI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 07 ) THEN `tr_product`.`qty` END ) ) AS `JULI`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 08 ) THEN `tr_product`.`qty` END ) ) AS `AGUSTUS`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 09 ) THEN `tr_product`.`qty` END ) ) AS `SEPTEMBER`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 10 ) THEN `tr_product`.`qty` END ) ) AS `OKTOBER`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 11 ) THEN `tr_product`.`qty` END ) ) AS `NOVEMBER`,
-	sum( ( CASE WHEN ( MONTH ( `tr_product`.`tr_date` ) = 12 ) THEN `tr_product`.`qty` END ) ) AS `DESEMBER` ')
+        $exec = $this->db->select('v_transaction.id_brand AS id,v_transaction.nama_brand AS nama,YEAR ( v_transaction.tr_date ) AS tr_date,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 01 ) THEN v_transaction.qty ELSE 0 END ) AS `JANUARI`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 02 ) THEN v_transaction.qty ELSE 0 END ) AS `FEBRUARI`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 03 ) THEN v_transaction.qty ELSE 0 END ) AS `MARET`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 04 ) THEN v_transaction.qty ELSE 0 END ) AS `APRIL`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 05 ) THEN v_transaction.qty ELSE 0 END ) AS `MEI`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 06 ) THEN v_transaction.qty ELSE 0 END ) AS `JUNI`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 07 ) THEN v_transaction.qty ELSE 0 END ) AS `JULI`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 08 ) THEN v_transaction.qty ELSE 0 END ) AS `AGUSTUS`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 09 ) THEN v_transaction.qty ELSE 0 END ) AS `SEPTEMBER`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 10 ) THEN v_transaction.qty ELSE 0 END ) AS `OKTOBER`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 11 ) THEN v_transaction.qty ELSE 0 END ) AS `NOVEMBER`,
+	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 12 ) THEN v_transaction.qty ELSE 0 END ) AS `DESEMBER`')
                 ->from('mt_brand')
-                ->join('mt_category', 'mt_category.id_brand = mt_brand.id', 'LEFT')
-                ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id', 'LEFT')
-                ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
-                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk', 'LEFT')
+                ->join('v_transaction', 'mt_brand.id = v_transaction.id_brand', 'LEFT')
                 ->where('`mt_brand`.`stat`', 1, false)
-                ->where('YEAR(`tr_product`.`tr_date`)', $tahun, false)
+                ->where('YEAR(`v_transaction`.`tr_date`)', $tahun, false)
                 ->group_by('mt_brand.id')
                 ->get()
                 ->result();

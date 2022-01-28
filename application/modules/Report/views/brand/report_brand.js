@@ -107,7 +107,7 @@ function dt_tabel(year) {
                 <'row'<'col-sm-12'tr>>
                 <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'p>>`,
         "ajax": {
-            "url": "<?php echo site_url('Report/Brand/Dashboard/dt_table/'); ?>" + year,
+            "url": "Report/Brand/Dashboard/dt_table/" + year,
             dataSrc: ''
         },
         columns: [
