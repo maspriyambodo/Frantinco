@@ -63,13 +63,11 @@ class Dashboard extends CI_Controller {
     public function Chart_1($param) {
         $tahun = Dekrip($param);
         if (!$tahun) {
-            $result = $this->_brand(null, null);
+            $result = [];
         } else {
-            $brand_1 = $this->model->Brand_1($tahun)->result();
-            $brand_2 = $this->model->Brand_2($tahun)->result();
-            $result = $this->_chart2($brand_1, $brand_2);
+            $result = $this->model->chart_1($tahun);
         }
-        return $result;
+        return ToJson($result);
     }
 
     public function Chart_2($param) {
@@ -82,29 +80,6 @@ class Dashboard extends CI_Controller {
             $result = $this->_brand($brand_1, $brand_2);
         }
         return $result;
-    }
-
-    private function _chart2($brand_1, $brand_2) {
-        $brand = array_merge($brand_1, $brand_2);
-        if (empty($brand)) {
-            $data = null;
-        } else {
-            $tot_1 = 0;
-            $tot_2 = 0;
-            $tot_1 += $brand[0]->JANUARI + $brand[0]->FEBRUARI + $brand[0]->MARET + $brand[0]->APRIL + $brand[0]->MEI + $brand[0]->JUNI + $brand[0]->JULI + $brand[0]->AGUSTUS + $brand[0]->SEPTEMBER + $brand[0]->OKTOBER + $brand[0]->NOVEMBER + $brand[0]->DESEMBER;
-            $tot_2 += $brand[1]->JANUARI + $brand[1]->FEBRUARI + $brand[1]->MARET + $brand[1]->APRIL + $brand[1]->MEI + $brand[1]->JUNI + $brand[1]->JULI + $brand[1]->AGUSTUS + $brand[1]->SEPTEMBER + $brand[1]->OKTOBER + $brand[1]->NOVEMBER + $brand[1]->DESEMBER;
-            $data = [
-                [
-                    'brand' => $brand_1[0]->nama,
-                    'total' => $tot_1
-                ],
-                [
-                    'brand' => $brand_2[0]->nama,
-                    'total' => $tot_2
-                ]
-            ];
-        }
-        return ToJson($data);
     }
 
     private function _brand($brand_1, $brand_2) {

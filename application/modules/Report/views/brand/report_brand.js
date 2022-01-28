@@ -34,7 +34,7 @@ function Chart_2(year) {
         chart.colors.step = 2;
         chart.scrollbarX = new am4core.Scrollbar();
         chart.exporting.menu = new am4core.ExportMenu();
-        chart.dataSource.url = '<?php echo base_url("Report/Brand/Dashboard/Chart_2/"); ?>' + year;
+        chart.dataSource.url = 'Report/Brand/Dashboard/Chart_2/' + year;
         var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
         categoryAxis.dataFields.category = "bulan";
         categoryAxis.renderer.grid.template.location = 0;
