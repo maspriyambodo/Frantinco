@@ -95,11 +95,15 @@ class Dashboard extends CI_Controller {
         $tot_category = $this->model->tot_category();
         $tot_categorysub = $this->model->tot_categorysub();
         $tot_product = $this->model->tot_product();
+        $tot_transact = $this->model->tot_transact();
+        $tot_qty = $this->model->tot_qty();
         $data = [
             'tot_brand' => $tot_brand->tot_brand,
             'tot_category' => $tot_category->tot_category,
             'tot_categorysub' => $tot_categorysub->tot_categorysub,
-            'tot_product' => $tot_product->tot_product
+            'tot_product' => $tot_product->tot_product,
+            'tot_transact' => $tot_transact->tot_transact,
+            'tot_qty' => $tot_qty->tot_qty
         ];
         return ToJson($data);
     }

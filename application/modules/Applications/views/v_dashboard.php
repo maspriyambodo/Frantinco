@@ -9,7 +9,7 @@
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_brand" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
-                    <a href="<?php echo base_url('Report/Brand/Dashboard/index/');?>" class="text-white font-weight-bold font-size-h6">
+                    <a href="<?php echo base_url('Report/Brand/Dashboard/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                         TOTAL BRAND
                     </a>
                 </div>
@@ -57,7 +57,32 @@
         </div>
     </div>
 </div>
-
+<div class="clearfix my-4"></div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+            <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
+                <i class="text-white fas fa-file-alt" style="font-size: 48px;"></i>
+                <b id="tot_transact" class="text-white font-weight-bold font-size-h1 count">0</b>
+            </span>
+            <a href="#" class="text-white font-weight-bold font-size-h6">
+                TOTAL TRANSACTION
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+            <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
+                <i class="text-white fas fa-boxes" style="font-size: 48px;"></i>
+                <b id="tot_qty" class="text-white font-weight-bold font-size-h1 count">0</b>
+            </span>
+            <a href="#" class="text-white font-weight-bold font-size-h6">
+                TOTAL QUANTITY
+            </a>
+        </div>
+    </div>
+</div>
+<div class="clearfix my-4"></div>
 <div class="row">
     <div class="col-md-6">
         <div class="card card-custom" data-card="true" id="kt_card_1">
@@ -332,6 +357,8 @@
                     $('#tot_category').attr('data-value', data.tot_category);
                     $('#tot_categorysub').attr('data-value', data.tot_categorysub);
                     $('#tot_product').attr('data-value', data.tot_product);
+                    $('#tot_transact').attr('data-value', data.tot_transact);
+                    $('#tot_qty').attr('data-value', data.tot_qty);
                     animate_counter();
                 }
             });

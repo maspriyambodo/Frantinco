@@ -120,4 +120,20 @@ class M_dashboard extends CI_Model {
         return $exec;
     }
 
+    public function tot_transact() {
+        $exec = $this->db->select('COUNT(v_transaction.id_brand) AS tot_transact')
+                ->from('v_transaction')
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function tot_qty() {
+        $exec = $this->db->select('Sum(v_transaction.qty) AS tot_qty')
+                ->from('v_transaction')
+                ->get()
+                ->row();
+        return $exec;
+    }
+
 }
