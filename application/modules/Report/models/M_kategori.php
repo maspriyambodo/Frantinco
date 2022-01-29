@@ -63,4 +63,15 @@ class M_kategori extends CI_Model {
         return $exec;
     }
 
+    public function dt_table2($bulan) {
+        $exec = $this->db->select('v_transaction.kode_product,v_transaction.nama_kategori,v_transaction.tr_date,v_transaction.qty')
+                ->from('mt_category')
+                ->join('v_transaction', 'mt_category.id = v_transaction.id_category', 'LEFT')
+                ->where('`mt_category`.`stat`', 1, false)
+                ->where('MONTH(v_transaction.tr_date) =', $bulan, false)
+                ->get()
+                ->result();
+        return $exec;
+    }
+
 }
