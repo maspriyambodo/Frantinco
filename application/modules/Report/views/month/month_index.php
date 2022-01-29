@@ -64,7 +64,7 @@
             ],
             "ajax": {
                 "url": "<?php echo base_url('Report/Brand/Bulan/lists/'); ?>",
-                "type": "POST",
+                "type": "GET",
                 "data": {"tpken": tokentxt}
             },
             columnDefs: [

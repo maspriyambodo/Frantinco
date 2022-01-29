@@ -37,10 +37,10 @@ class Bulan extends CI_Controller {
     }
 
     public function lists() {
-        $param = $this->bodo->Url(Post_input('tpken')); // output = Array ( [0] => 2021 AS tahun [1] => 09 AS bulan [2] => 1 AS id_brand [3] => 11869 AS jumlah laporan)
+        $param = $this->bodo->Url(Post_get('tpken')); // output = Array ( [0] => 2021 AS tahun [1] => 09 AS bulan [2] => 1 AS id_brand [3] => 11869 AS jumlah laporan)
         $list = $this->model->lists($param);
         $data = [];
-        $no = Post_input("start");
+        $no = Post_get("start");
         $privilege = $this->bodo->Check_previlege('Report/Brand/Dashboard/index/');
         foreach ($list as $users) {
             $no++;
@@ -60,14 +60,14 @@ class Bulan extends CI_Controller {
     private function _list($data, $privilege, $param) {
         if ($privilege['read']) {
             $output = [
-                "draw" => Post_input('draw'),
+                "draw" => Post_get('draw'),
                 "recordsTotal" => $this->model->count_all($param),
                 "recordsFiltered" => $this->model->count_filtered($param),
                 "data" => $data
             ];
         } else {
             $output = [
-                "draw" => Post_input('draw'),
+                "draw" => Post_get('draw'),
                 "recordsTotal" => 0,
                 "recordsFiltered" => 0,
                 "data" => []
