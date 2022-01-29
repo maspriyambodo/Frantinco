@@ -28,15 +28,13 @@ class M_dashboard extends CI_Model {
     }
 
     public function chart_brand() {
-        $exec = $this->db->select('mt_brand.nama,SUM(`tr_product`.`qty`) AS qty,tr_product.tr_date')
+        $exec = $this->db->select('mt_brand.nama,
+	Sum( v_transaction.qty ) AS qty,
+	MIN( v_transaction.tr_date ) AS tr_date')
                 ->from('mt_brand')
-                ->join('mt_category', 'mt_category.id_brand = mt_brand.id', 'LEFT')
-                ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id', 'LEFT')
-                ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
-                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk', 'LEFT')
+                ->join('v_transaction', 'mt_brand.id = v_transaction.id_brand')
+                ->where('YEAR ( v_transaction.tr_date ) =', 'YEAR ( NOW( ) )', false)
                 ->group_by('mt_brand.id')
-                ->having('YEAR ( tr_product.tr_date ) =', 'YEAR ( NOW( ) )', false)
-                ->order_by('tr_product.qty DESC')
                 ->get()
                 ->result();
         return $exec;
