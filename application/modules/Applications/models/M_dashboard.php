@@ -41,14 +41,13 @@ class M_dashboard extends CI_Model {
     }
 
     public function chart_category() {
-        $exec = $this->db->select('mt_category.nama,Sum( tr_product.qty ) AS qty,tr_product.tr_date,mt_product.kd_produk')
+        $exec = $this->db->select('mt_category.nama,SUM( v_transaction.qty ) AS qty,MIN( v_transaction.tr_date ) AS tr_date,v_transaction.kode_product AS kd_produk')
                 ->from('mt_category')
-                ->join('mt_category_sub', 'mt_category_sub.id_category = mt_category.id', 'LEFT')
-                ->join('mt_product', 'mt_product.id_category_sub = mt_category_sub.id', 'LEFT')
-                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk', 'LEFT')
+                ->join('v_transaction', 'mt_category.id = v_transaction.id_category', 'LEFT')
+                ->where('mt_category.stat', 1, false)
+                ->where('YEAR( v_transaction.tr_date ) =', 'YEAR ( NOW( ) )', false)
                 ->group_by('mt_category.id')
-                ->having('YEAR ( tr_product.tr_date ) =', 'YEAR ( NOW( ) )', false)
-                ->order_by('tr_product.qty DESC')
+                ->order_by('v_transaction.qty DESC')
                 ->limit(5)
                 ->get()
                 ->result();
