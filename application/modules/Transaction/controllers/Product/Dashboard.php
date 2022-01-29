@@ -107,9 +107,9 @@ class Dashboard extends CI_Controller {
                 $tr_date = $field2->format('Y-m-d');
                 $data[] = [
                     'kode' => str_replace(' ', '', $field),
-                    'qty' => $field1,
+                    'qty' => $field1 + false,
                     'tr_date' => $tr_date,
-                    'syscreateuser' => $this->user,
+                    'syscreateuser' => $this->user + false,
                     'syscreatedate' => date('Y-m-d H:i:s')
                 ];
             }
@@ -144,7 +144,7 @@ class Dashboard extends CI_Controller {
         }
         return $result;
     }
-    
+
     public function Download() {
         $token = Dekrip(Post_get('token'));
         if ($token == 'benar') {
