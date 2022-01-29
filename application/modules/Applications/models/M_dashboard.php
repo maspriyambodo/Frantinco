@@ -122,6 +122,7 @@ class M_dashboard extends CI_Model {
         $exec = $this->db->select('COUNT(v_transaction.id_brand) AS tot_transact')
                 ->from('v_transaction')
                 ->where('`v_transaction`.`qty` IS NOT NULL')
+                ->where('YEAR ( v_transaction.tr_date ) =', 'YEAR ( NOW( ) )', false)
                 ->get()
                 ->row();
         return $exec;
@@ -130,6 +131,7 @@ class M_dashboard extends CI_Model {
     public function tot_qty() {
         $exec = $this->db->select('Sum(v_transaction.qty) AS tot_qty')
                 ->from('v_transaction')
+                ->where('YEAR ( v_transaction.tr_date ) =', 'YEAR ( NOW( ) )', false)
                 ->get()
                 ->row();
         return $exec;
