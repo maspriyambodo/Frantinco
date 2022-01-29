@@ -69,12 +69,13 @@ class M_dashboard extends CI_Model {
     }
 
     public function chart_product() {
-        $exec = $this->db->select('mt_product.nama,SUM( tr_product.qty ) AS qty,tr_product.tr_date,mt_product.kd_produk')
+        $exec = $this->db->select('mt_product.nama,SUM( v_transaction.qty ) AS qty,MIN( v_transaction.tr_date ) AS tr_date,mt_product.kd_produk')
                 ->from('mt_product')
-                ->join('tr_product', 'tr_product.kode = mt_product.kd_produk', 'LEFT')
+                ->join('v_transaction', 'mt_product.id = v_transaction.id_product', 'LEFT')
+                ->where('mt_product.stat', 1, false)
+                ->where('YEAR ( v_transaction.tr_date ) =', 'YEAR ( NOW( ) )', false)
                 ->group_by('mt_product.id')
-                ->having('YEAR ( tr_product.tr_date ) =', 'YEAR(NOW())', false)
-                ->order_by('tr_product.qty DESC ')
+                ->order_by('v_transaction.qty DESC')
                 ->limit(5)
                 ->get()
                 ->result();
