@@ -53,7 +53,13 @@ class Dashboard extends CI_Controller {
         if (!$tahun) {
             $result = [];
         } else {
-            $result = $this->model->dt_table($tahun);
+            $dt_table = $this->model->dt_table($tahun);
+            $not_exists = $this->model->not_exists($tahun);
+            if (count($not_exists) > 0) {
+                $result = array_merge($dt_table, $not_exists);
+            } else {
+                $result = $dt_table;
+            }
         }
         return ToJson($result);
     }
