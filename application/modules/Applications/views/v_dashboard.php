@@ -9,7 +9,7 @@
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_brand" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
-                    <a href="<?php echo base_url('Report/Brand/Dashboard/index/'); ?>" class="text-white font-weight-bold font-size-h6">
+                    <a href="<?php echo base_url('Master/Product/Brand/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                         TOTAL BRAND
                     </a>
                 </div>
@@ -21,7 +21,7 @@
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_category" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
-                    <a href="<?php echo base_url('Report/Category/Dashboard/index/'); ?>" class="text-white font-weight-bold font-size-h6">
+                    <a href="<?php echo base_url('Master/Product/Kategori/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                         TOTAL CATEGORY
                     </a>
                 </div>
@@ -37,7 +37,7 @@
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_categorysub" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
-                    <a href="#" class="text-white font-weight-bold font-size-h6">
+                    <a href="<?php echo base_url('Master/Product/Sub/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                         TOTAL SUB CATEGORY
                     </a>
                 </div>
@@ -49,7 +49,7 @@
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_product" class="text-white font-weight-bold font-size-h1 count">0</b>
                     </span>
-                    <a href="#" class="text-white font-weight-bold font-size-h6">
+                    <a href="<?php echo base_url('Master/Product/Management/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                         TOTAL PRODUCT
                     </a>
                 </div>
@@ -65,7 +65,7 @@
                 <i class="text-white fas fa-file-alt" style="font-size: 48px;"></i>
                 <b id="tot_transact" class="text-white font-weight-bold font-size-h1 count">0</b>
             </span>
-            <a href="#" class="text-white font-weight-bold font-size-h6">
+            <a href="<?php echo base_url('Transaction/Product/Dashboard/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                 TOTAL TRANSACTION
             </a>
         </div>
@@ -76,7 +76,7 @@
                 <i class="text-white fas fa-boxes" style="font-size: 48px;"></i>
                 <b id="tot_qty" class="text-white font-weight-bold font-size-h1 count">0</b>
             </span>
-            <a href="#" class="text-white font-weight-bold font-size-h6">
+            <a href="javascript:void(0);" class="text-white font-weight-bold font-size-h6">
                 TOTAL QUANTITY
             </a>
         </div>
