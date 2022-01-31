@@ -55,7 +55,6 @@ class Dashboard extends CI_Controller {
             $result = [];
         } else {
             $exec = $this->model->dt_table($tahun);
-            $norut = 0;
             foreach ($exec as $value) {
                 $result[] = [
                     'nama_kategori' => $value->nama_kategori,
