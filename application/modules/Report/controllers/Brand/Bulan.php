@@ -51,7 +51,7 @@ class Bulan extends CI_Controller {
             $row[] = $users->nama_product;
             $row[] = $users->kode;
             $row[] = $users->tr_date;
-            $row[] = $users->qty;
+            $row[] = number_format($users->qty);
             $data[] = $row;
         }
         return $this->_list($data, $privilege, $param);
