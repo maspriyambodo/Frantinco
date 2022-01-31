@@ -86,14 +86,18 @@ class Dashboard extends CI_Controller {
         } else {
             $exec = $this->model->chartdiv($tahun);
             $totdata = count($exec) + 1;
-            for ($i = $totdata; $i < 13; $i++) {
-                $bulan = date_create('01' . '-' . $i . '-' . date('Y'));
-                $data[$i] = (object) [
-                            'bulan' => date_format($bulan, 'F'),
-                            'qty' => 0
-                ];
+            if ($totdata != 13) {
+                for ($i = $totdata; $i < 13; $i++) {
+                    $bulan = date_create('01' . '-' . $i . '-' . date('Y'));
+                    $data[$i] = (object) [
+                                'bulan' => date_format($bulan, 'F'),
+                                'qty' => 0
+                    ];
+                }
+                $result = array_merge($exec, $data);
+            } else {
+                $result = $exec;
             }
-            $result = array_merge($exec, $data);
         }
         return ToJson($result);
     }
