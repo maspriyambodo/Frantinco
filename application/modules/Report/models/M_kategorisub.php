@@ -37,6 +37,18 @@ class M_kategorisub extends CI_Model {
         return $exec;
     }
 
+    public function not_exists($tahun) {
+        $exec = $this->db->select('v_transaction.id_categorysub,v_transaction.nama_kategorisub,NOW() AS tr_date,0 AS JANUARI,0 AS FEBRUARI,0 AS MARET,0 AS APRIL,0 AS MEI,0 AS JUNI,0 AS JULI,0 AS AGUSTUS,0 AS SEPTEMBER,0 AS OKTOBER,0 AS NOVEMBER,0 AS DESEMBER')
+                ->from('mt_category_sub')
+                ->join('v_transaction', 'mt_category_sub.id = v_transaction.id_categorysub', 'LEFT')
+                ->where('`mt_category_sub`.`id` NOT IN', '( SELECT v_transaction.id_categorysub FROM v_transaction WHERE YEAR ( tr_date ) = ' . $tahun . ' )', false)
+                ->group_by('mt_category_sub.id')
+                ->order_by('mt_category_sub.nama ASC')
+                ->get()
+                ->result();
+        return $exec;
+    }
+
     public function chartdiv($tahun) {
         $exec = $this->db->select('mt_month.bulan,
 	SUM( CASE WHEN v_transaction.qty > 0 THEN v_transaction.qty ELSE 0 END ) AS qty')
