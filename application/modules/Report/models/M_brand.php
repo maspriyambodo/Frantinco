@@ -12,18 +12,6 @@ class M_brand extends CI_Model {
         return $exec;
     }
 
-    public function Brand_1($tahun) {
-        $exec = $this->db->query('CALL brand_per_month(' . $tahun . ',' . 1 . ');');
-        mysqli_next_result($this->db->conn_id);
-        return $exec;
-    }
-
-    public function Brand_2($tahun) {
-        $exec = $this->db->query('CALL brand_per_month(' . $tahun . ',' . 2 . ');');
-        mysqli_next_result($this->db->conn_id);
-        return $exec;
-    }
-
     public function dt_table($tahun) {
         $exec = $this->db->select('v_transaction.id_brand AS id,v_transaction.nama_brand AS nama,YEAR ( v_transaction.tr_date ) AS tr_date,
 	sum( CASE WHEN ( MONTH ( v_transaction.tr_date ) = 01 ) THEN v_transaction.qty ELSE 0 END ) AS `JANUARI`,
