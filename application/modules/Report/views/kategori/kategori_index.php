@@ -138,6 +138,9 @@
             series.columns.template.column.cornerRadiusTopLeft = 10;
             series.columns.template.column.cornerRadiusTopRight = 10;
             series.columns.template.column.fillOpacity = 0.8;
+            series.columns.template.adapter.add("fill", function (fill, target) {
+                return chart.colors.getIndex(target.dataItem.index);
+            });
 
             var hoverState = series.columns.template.column.states.create("hover");
             hoverState.properties.cornerRadiusTopLeft = 0;
@@ -189,6 +192,9 @@
             series.columns.template.column.cornerRadiusTopLeft = 10;
             series.columns.template.column.cornerRadiusTopRight = 10;
             series.columns.template.column.fillOpacity = 0.8;
+            series.columns.template.adapter.add("fill", function (fill, target) {
+                return chart.colors.getIndex(target.dataItem.index);
+            });
 
             var hoverState = series.columns.template.column.states.create("hover");
             hoverState.properties.cornerRadiusTopLeft = 0;
