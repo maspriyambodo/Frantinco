@@ -43,8 +43,7 @@ class M_kategori extends CI_Model {
 	SUM( CASE WHEN v_transaction.qty > 0 THEN v_transaction.qty ELSE 0 END ) AS qty')
                 ->from('mt_month')
                 ->join('v_transaction', 'mt_month.angka = MONTH ( v_transaction.tr_date )', 'LEFT')
-                ->where('EXISTS( SELECT MONTH ( v_transaction.tr_date) FROM v_transaction WHERE YEAR ( v_transaction.tr_date ) = ' . $tahun . ' AND mt_month.angka = MONTH ( v_transaction.tr_date ) )')
-                ->or_where('NOT EXISTS( SELECT MONTH ( v_transaction.tr_date) FROM v_transaction WHERE YEAR ( v_transaction.tr_date ) = ' . $tahun . ' AND mt_month.angka = MONTH ( v_transaction.tr_date ) )', null, false)
+                ->where('YEAR(tr_date) =', $tahun, false)
                 ->group_by('mt_month.angka')
                 ->get()
                 ->result();

@@ -35,7 +35,7 @@ class Dashboard extends CI_Controller {
             'item_active' => 'Report/Category/Dashboard/index/',
             'privilege' => $this->bodo->Check_previlege('Report/Category/Dashboard/index/'),
             'siteTitle' => 'Category Report | ' . $this->bodo->Sys('app_name'),
-            'pagetitle' => 'Category Report ' . $this->Dir_year()[0]->text,
+            'pagetitle' => 'Category Report ' . date('Y'),
             'breadcrumb' => [
                 0 => [
                     'nama' => 'index',
@@ -49,6 +49,7 @@ class Dashboard extends CI_Controller {
     }
 
     public function dt_table() {
+        $this->bodo->Check_login();
         $tahun = Dekrip(Post_get('token'));
         if (!$tahun) {
             $result = [];
@@ -78,16 +79,27 @@ class Dashboard extends CI_Controller {
     }
 
     public function chartdiv() {
+        $this->bodo->Check_login();
         $tahun = Dekrip(Post_get('token'));
         if (!$tahun) {
             $result = [];
         } else {
-            $result = $this->model->chartdiv($tahun);
+            $exec = $this->model->chartdiv($tahun);
+            $totdata = count($exec) + 1;
+            for ($i = $totdata; $i < 13; $i++) {
+                $bulan = date_create('01' . '-' . $i . '-' . date('Y'));
+                $data[$i] = (object) [
+                            'bulan' => date_format($bulan, 'F'),
+                            'qty' => 0
+                ];
+            }
+            $result = array_merge($exec, $data);
         }
         return ToJson($result);
     }
 
     public function chartdiv_a() {
+        $this->bodo->Check_login();
         $tahun = Dekrip(Post_get('token'));
         if (!$tahun) {
             $result = [];
