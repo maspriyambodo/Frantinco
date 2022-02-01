@@ -24,7 +24,7 @@
     });
     function dt_tabel(bulan) {
         $('table').dataTable({
-            "serverSide": true,
+            "serverSide": false,
             "order": [[0, "asc"]],
             "paging": true,
             "ordering": true,
