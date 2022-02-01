@@ -70,7 +70,28 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped" style="width:100%;"></table>
+            
+            <table id="table" class="table table-bordered table-hover table-striped" style="width:100%;">
+                <thead>
+                    <tr class="text-center text-uppercase">
+                        <th>no</th>
+                        <th>brand</th>
+                        <th>jan</th>
+                        <th>feb</th>
+                        <th>mar</th>
+                        <th>apr</th>
+                        <th>mei</th>
+                        <th>jun</th>
+                        <th>jul</th>
+                        <th>aug</th>
+                        <th>sep</th>
+                        <th>okt</th>
+                        <th>nov</th>
+                        <th>dec</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
 </div>

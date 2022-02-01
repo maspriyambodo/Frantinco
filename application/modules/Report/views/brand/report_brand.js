@@ -81,8 +81,8 @@ function chartdiv(year) {
     });
 }
 function dt_tabel(year) {
-    $('table').dataTable({
-        "serverSide": false,
+    $('#table').dataTable({
+        "serverSide": true,
         "order": [[0, "asc"]],
         "paging": true,
         "ordering": true,
@@ -92,95 +92,34 @@ function dt_tabel(year) {
         "scrollCollapse": true,
         "scrollX": true,
         "scrollY": "400px",
-        dom: `<'row'<'col-sm-6 text-left'l><'col-sm-6 text-right'f>>
+        dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
                 <'row'<'col-sm-12'tr>>
-                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'p>>`,
+                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+        buttons: [
+            {extend: 'print', footer: true},
+            {extend: 'copyHtml5', footer: true},
+            {extend: 'excelHtml5', footer: true},
+            {extend: 'csvHtml5', footer: true},
+            {extend: 'pdfHtml5', footer: true}
+        ],
+        lengthMenu: [
+            [10, 50, 100, 500, -1],
+            ['10', '50', '100', '500', 'all']
+        ],
         "ajax": {
-            "url": "Report/Brand/Dashboard/dt_table/" + year,
-            dataSrc: ''
+            "url": "Report/Brand/Dashboard/lists",
+            "type": "GET",
+            "data": {"token": year}
         },
-        columns: [
+        columnDefs: [
             {
-                data: 'id',
-                title: 'NO',
-                className: "text-center",
+                "targets": 0,
+                "className": 'text-center',
                 "searchable": false
             },
             {
-                data: 'nama',
-                title: 'BRAND'
-            },
-            {
-                data: 'JANUARI',
-                title: 'JAN',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'FEBRUARI',
-                title: 'FEB',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'MARET',
-                title: 'MAR',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'APRIL',
-                title: 'APR',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'MEI',
-                title: 'MEI',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'JUNI',
-                title: 'JUN',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'JULI',
-                title: 'JUL',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'AGUSTUS',
-                title: 'AUG',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'SEPTEMBER',
-                title: 'SEP',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'OKTOBER',
-                title: 'OCT',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'NOVEMBER',
-                title: 'NOV',
-                className: "text-center",
-                "searchable": false
-            },
-            {
-                data: 'DESEMBER',
-                title: 'DEC',
-                className: "text-center",
-                "searchable": false
+                "targets": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+                "className": 'text-center'
             }
         ]
     });
