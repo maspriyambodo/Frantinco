@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_product extends CI_Model {
 
     var $table = 'mt_product';
-    var $column_order = ['id', 'kd_produk', 'nama', 'subkategori', null]; //set column field database for datatable orderable
+    var $column_order = ['mt_product.id', 'mt_product.kd_produk', 'mt_product.nama', 'mt_category_sub.nama', 'mt_product.id']; //set column field database for datatable orderable
     var $column_search = ['mt_product.nama', 'mt_product.kd_produk', 'mt_category_sub.nama']; //set column field database for datatable searchable 
     var $order = ['id' => 'asc']; // default order
 
