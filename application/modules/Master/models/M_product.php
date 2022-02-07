@@ -7,7 +7,7 @@ class M_product extends CI_Model {
     var $table = 'mt_product';
     var $column_order = ['mt_product.id', 'mt_product.kd_produk', 'mt_product.nama', 'mt_category_sub.nama', 'mt_product.id']; //set column field database for datatable orderable
     var $column_search = ['mt_product.nama', 'mt_product.kd_produk', 'mt_category_sub.nama']; //set column field database for datatable searchable 
-    var $order = ['id' => 'asc']; // default order
+    var $order = ['mt_product.id' => 'asc']; // default order
 
     private function _get_datatables_query() {
         $this->db->select('mt_product.id,mt_product.kd_produk,mt_product.nama,mt_product.stat,mt_category_sub.nama AS subkategori')
