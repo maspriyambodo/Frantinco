@@ -39,8 +39,8 @@ $(document).ready(function () {
                 <'row'<'col-sm-12'tr>>
                 <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'p>>`,
         "ajax": {
-            "url": "<?php echo site_url('Master/Product/Management/lists') ?>",
-            "type": "POST"
+            "url": "Master/Product/Management/lists",
+            "type": "GET"
         },
         columnDefs: [
             {
