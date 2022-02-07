@@ -29,7 +29,7 @@ INSERT INTO `mt_category` (`id`, `id_brand`, `nama`, `description`, `stat`, `sys
 (2, 1, 'Compact Laminate Board', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
 (3, 1, 'Luxury Vinyl Flooring', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
 (4, 1, 'Compact Phenolic Board', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
-(5, 2, 'Compact Chemical Laboratory', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
-(6, 2, 'Kitchen Top Table', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
-(7, 2, 'Stone Plastic Composite flooring', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
-(8, 2, 'High Pressure Laminate 2', 'kategori untuk produk hpl', 1, 1, '2021-10-02 00:53:35', NULL, NULL, NULL, NULL);
+(5, 1, 'Compact Chemical Laboratory', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
+(6, 1, 'Kitchen Top Table', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
+(7, 1, 'Stone Plastic Composite flooring', 'kategori untuk produk hpl', 1, 1, '2021-09-20 15:33:26', NULL, NULL, NULL, NULL),
+(10, 2, 'High Pressure Laminate 2', 'kategori untuk produk hpl', 1, 1, '2021-10-02 00:53:35', NULL, NULL, NULL, NULL);

@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 02, 2022 at 11:52 AM
--- Server version: 8.0.27-0ubuntu0.20.04.1
+-- Generation Time: Feb 07, 2022 at 04:27 PM
+-- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
 SET FOREIGN_KEY_CHECKS=0;

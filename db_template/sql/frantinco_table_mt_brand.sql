@@ -24,5 +24,5 @@ CREATE TABLE `mt_brand` (
 --
 
 INSERT INTO `mt_brand` (`id`, `nama`, `description`, `stat`, `syscreateuser`, `syscreatedate`, `sysupdateuser`, `sysupdatedate`, `sysdeleteuser`, `sysdeletedate`) VALUES
-(1, 'BA', 'Brand product frantinco', 1, 1, '2022-01-30 04:55:48', 1, '2022-01-31 19:16:41', NULL, NULL),
-(2, 'GW', 'Brand product GW', 1, 1, '2022-01-30 04:56:02', NULL, NULL, NULL, NULL);
+(1, 'FRANTINCO', 'deskripsikan brand', 1, 1, '2021-09-20 15:33:26', 1, '2022-02-01 02:25:40', 1, '2021-09-22 16:35:09'),
+(2, 'GW', 'deskripsikan keterangan brand', 1, 1, '2021-09-21 18:48:23', 1, '2022-02-01 02:25:58', 1, '2021-09-22 15:44:55');
