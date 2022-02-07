@@ -77,6 +77,7 @@ class M_sub extends CI_Model {
         $exec = $this->db->select('mt_category_sub.id AS total')
                 ->from('mt_category_sub')
                 ->where('mt_category_sub.nama', $nama)
+                ->where('`mt_category_sub`.`stat`', 1, false)
                 ->get()
                 ->row();
         return $exec;
