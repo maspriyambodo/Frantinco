@@ -23,6 +23,7 @@ class M_brand extends CI_Model {
         $exec = $this->db->select('mt_brand.id AS total')
                 ->from('mt_brand')
                 ->where('mt_brand.nama', $nama)
+                ->where('`mt_brand`.`stat`', 1, false)
                 ->get()
                 ->row();
         return $exec;
