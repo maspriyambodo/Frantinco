@@ -50,6 +50,7 @@ class M_Kategori extends CI_Model {
         $exec = $this->db->select('mt_category.id AS total')
                 ->from('mt_category')
                 ->where('mt_category.nama', $nama)
+                ->where('`mt_category`.`stat`', 1, false)
                 ->get()
                 ->row();
         return $exec;
