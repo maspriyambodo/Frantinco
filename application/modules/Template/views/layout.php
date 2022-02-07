@@ -56,7 +56,7 @@ $group_menu = $this->M_default->Group_menu();
                 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
                     <div class="brand flex-column-auto" id="kt_brand" style="height:65px;">
                         <a href="javascript:void(0);" class="brand-logo">
-                            <img alt="company_logo" src="<?php echo base_url('assets/images/systems/' . $this->bodo->Sys('logo')); ?>" class="img-fluid" style="margin: 15px 0px;height:55px;"/>
+                            <img alt="company_logo" src="<?php echo base_url('assets/images/systems/' . $this->bodo->Sys('logo')); ?>" class="img-fluid" style="margin: 15px 0px;max-height:55px;"/>
                         </a>
                         <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle" aria-label="brand-toggle">
                             <span class="svg-icon svg-icon svg-icon-xl">
