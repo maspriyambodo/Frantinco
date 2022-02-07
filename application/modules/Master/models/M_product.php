@@ -77,6 +77,7 @@ class M_product extends CI_Model {
         $exec = $this->db->select('mt_product.id AS total')
                 ->from('mt_product')
                 ->where('mt_product.kd_produk', $nama)
+                ->where('`mt_product`.`stat`', 1, false)
                 ->get()
                 ->row();
         return $exec;
