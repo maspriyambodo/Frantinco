@@ -36,7 +36,7 @@ $group_menu = $this->M_default->Group_menu();
         <link href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.23/af-2.3.5/b-1.6.5/b-colvis-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/cr-1.5.3/fc-3.3.2/fh-3.1.8/kt-2.6.1/r-2.2.7/rg-1.1.2/rr-1.2.7/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
-        <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
+        <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed bg-white">
             <a href="javascript:void(0);">
                 <img alt="company_logo" src="<?php echo base_url('assets/images/systems/' . $this->bodo->Sys('logo')); ?>" class="img-fluid" style="margin: 15px 0px;width: 30%;"/>
             </a>
@@ -54,7 +54,7 @@ $group_menu = $this->M_default->Group_menu();
         <div class="d-flex flex-column flex-root">
             <div class="d-flex flex-row flex-column-fluid page">
                 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
-                    <div class="brand flex-column-auto" id="kt_brand" style="height:65px;">
+                    <div class="brand flex-column-auto bg-white" id="kt_brand" style="height:65px;">
                         <a href="javascript:void(0);" class="brand-logo">
                             <img alt="company_logo" src="<?php echo base_url('assets/images/systems/' . $this->bodo->Sys('logo')); ?>" class="img-fluid" style="margin: 15px 0px;max-height:55px;"/>
                         </a>

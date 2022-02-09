@@ -49,7 +49,7 @@ class Systems extends CI_Controller {
     }
 
     public function Favico() {
-        shell_exec('chmod 777 ./assets/images/systems/favicon.*');
+        //shell_exec('chmod 777 ./assets/images/systems/favicon.*');
         $param = [
             'upload_path' => 'assets/images/systems/',
             'file_name' => "favicon",
@@ -76,12 +76,12 @@ class Systems extends CI_Controller {
                 ];
             }
         }
-        shell_exec('chmod 777 ./assets/images/systems/favicon.*');
+        //shell_exec('chmod 777 ./assets/images/systems/favicon.*');
         return ToJson($result);
     }
 
     public function Logo() {
-        shell_exec('chmod 777 ./assets/images/systems/logo.*');
+        //shell_exec('chmod 777 ./assets/images/systems/logo.*');
         $param = [
             'upload_path' => 'assets/images/systems/',
             'file_name' => "logo",
@@ -108,7 +108,7 @@ class Systems extends CI_Controller {
                 ];
             }
         }
-        shell_exec('chmod 777 ./assets/images/systems/logo.*');
+        //shell_exec('chmod 777 ./assets/images/systems/logo.*');
         return ToJson($result);
     }
 
