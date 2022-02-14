@@ -11,8 +11,9 @@ class Dashboard extends CI_Controller {
     }
 
     public function index() {
+        $tahun = $this->Dir_year();
         $data = [
-            'year' => $this->Dir_year(),
+            'year' => $tahun,
             'csrf' => $this->bodo->Csrf(),
             'item_active' => 'Transaction/Product/Dashboard/index/',
             'privilege' => $this->bodo->Check_previlege('Transaction/Product/Dashboard/index/'),
@@ -26,7 +27,11 @@ class Dashboard extends CI_Controller {
                 ]
             ]
         ];
-        $data['content'] = $this->parser->parse('product/index', $data, true);
+        if (!empty($tahun[0]->id)) {
+            $data['content'] = $this->parser->parse('product/index', $data, true);
+        } else {
+            $data['content'] = $this->parser->parse('product/empty_', $data, true);
+        }
         return $this->parser->parse('Template/layout', $data);
     }
 
@@ -65,7 +70,7 @@ class Dashboard extends CI_Controller {
                 "data" => []
             ];
         }
-        ToJson($output);
+        return ToJson($output);
     }
 
     private function Dir_year() {
@@ -106,7 +111,7 @@ class Dashboard extends CI_Controller {
                 $field2 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($sheetData[$i][2]); //field tanggal
                 $tr_date = $field2->format('Y-m-d');
                 $data[] = [
-                    'kode' => str_replace([' ','-'], '', $field),
+                    'kode' => str_replace([' ', '-'], '', $field),
                     'qty' => $field1 + false,
                     'tr_date' => $tr_date,
                     'syscreateuser' => $this->user + false,
