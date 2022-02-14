@@ -23,3 +23,11 @@
         </div>
     </div>
 </div>
+<input type="hidden" name="err_msg" value="<?php echo $this->session->flashdata('err_msg'); ?>"/>
+<input type="hidden" name="succ_msg" value="<?php echo $this->session->flashdata('succ_msg'); ?>"/>
+<?php
+unset($_SESSION['err_msg']);
+unset($_SESSION['succ_msg']);
+echo '<script>';
+require_once 'transact.js';
+echo '</script>';

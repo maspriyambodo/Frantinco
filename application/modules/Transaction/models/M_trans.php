@@ -72,4 +72,14 @@ class M_trans extends CI_Model {
         return $exec;
     }
 
+    public function cek_kode($kode) {
+        $exec = $this->db->select('mt_product.id')
+                ->from('mt_product')
+                ->where('mt_product.kd_produk', $kode)
+                ->limit(1)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
 }

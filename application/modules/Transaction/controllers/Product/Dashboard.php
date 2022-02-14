@@ -138,6 +138,14 @@ class Dashboard extends CI_Controller {
      */
 
     private function _uploads($data) {
+//        print_r($data[0]['kode']);die;
+        $total = count($data);
+        for ($index = 0; $index < $total; $index++) {
+            $exists = $this->model->cek_kode($data[$index]['kode']);
+            if(empty($exists)){
+                unset($data[$index]);
+            }
+        }
         $exec = $this->model->Insert($data);
         if ($exec <> true) {
             $this->db->trans_rollback();
