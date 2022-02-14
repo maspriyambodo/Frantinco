@@ -106,7 +106,7 @@ class Dashboard extends CI_Controller {
                 $field2 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($sheetData[$i][2]); //field tanggal
                 $tr_date = $field2->format('Y-m-d');
                 $data[] = [
-                    'kode' => str_replace(' ', '', $field),
+                    'kode' => str_replace([' ','-'], '', $field),
                     'qty' => $field1 + false,
                     'tr_date' => $tr_date,
                     'syscreateuser' => $this->user + false,
