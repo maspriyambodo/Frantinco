@@ -2,5 +2,5 @@
 deployment:
       tasks:
         - export DEPLOYPATH=/home/maspriya/Frantinco      # Add /<app_folder> if required
-        - /bin/cp -R applications $DEPLOYPATH
+        - /bin/cp -R application $DEPLOYPATH
         - /bin/cp -R assets $DEPLOYPATH
