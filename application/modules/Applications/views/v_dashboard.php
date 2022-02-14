@@ -101,7 +101,9 @@
             </div>
         </div>
     </div>
+    
     <div class="col-md-6">
+        <div class="d-block d-xl-none my-4 clearfix"></div>
         <div class="card card-custom" data-card="true" id="kt_card_1">
             <div class="card-header">
                 <div class="card-title">
@@ -141,6 +143,7 @@
         </div>
     </div>
     <div class="col-md-6">
+        <div class="d-block d-xl-none my-4 clearfix"></div>
         <div class="card card-custom" data-card="true" id="kt_card_1">
             <div class="card-header">
                 <div class="card-title">
