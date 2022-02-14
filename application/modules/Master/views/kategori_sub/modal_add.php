@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label for="categorytxt">Category:</label>
                         <br>
-                        <select id="categorytxt" name="categorytxt" class="form-control custom-select" required="" style="width: 100%;">
+                        <select id="categorytxt" name="categorytxt" class="form-control custom-select select2" required="" style="width: 100%;">
                             <option value="">Search Category</option>
                         </select>
                     </div>

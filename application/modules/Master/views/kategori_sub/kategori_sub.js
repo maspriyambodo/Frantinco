@@ -35,9 +35,13 @@ $(document).ready(function () {
         "scrollCollapse": true,
         "scrollX": true,
         "scrollY": "400px",
-        dom: `<'row'<'col-sm-6 text-left'l><'col-sm-6 text-right'f>>
+        dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
                 <'row'<'col-sm-12'tr>>
-                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'p>>`,
+                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+        lengthMenu: [
+            [10, 50, 100, 500, -1],
+            ['10', '50', '100', '500', 'all']
+        ],
         buttons: [
             {extend: 'print', footer: true},
             {extend: 'copyHtml5', footer: true},
@@ -46,25 +50,23 @@ $(document).ready(function () {
             {extend: 'pdfHtml5', footer: true}
         ],
         "ajax": {
-            "url": "<?php echo site_url('Master/Product/Sub/lists') ?>",
-            "type": "POST"
+            "url": "Master/Product/Sub/lists",
+            "type": "GET"
         },
         columnDefs: [
             {
                 targets: 0,
-                className: 'text-center',
-                orderable: false
+                className: 'text-center'
             },
             {
                 targets: 3,
-                className: 'text-center',
-                orderable: false
+                className: 'text-center'
             }
         ]
     });
-    $('.custom-select').select2({
+    $('.select2').select2({
         ajax: {
-            url: "<?php echo site_url('Master/Product/Sub/Get_category') ?>",
+            url: "Master/Product/Sub/Get_category",
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
@@ -101,7 +103,7 @@ function Check_kategori_add(val) {
     $('#check_code').empty();
     $('#code_msg').empty();
     $.ajax({
-        url: "<?php echo base_url('Master/Product/Sub/Check_sub?nama='); ?>" + val,
+        url: "Master/Product/Sub/Check_sub?nama=" + val,
         type: 'GET',
         cache: false,
         contentType: false,
@@ -133,7 +135,7 @@ function Check_kategori_add(val) {
 function Edit(id) {
     $('input[name="e_id"]').val(id);
     $.ajax({
-        url: "<?php echo base_url('Master/Product/Sub/Get_detail?id='); ?>" + id,
+        url: "Master/Product/Sub/Get_detail?id=" + id,
         type: 'GET',
         cache: false,
         contentType: false,
@@ -169,7 +171,7 @@ function Check_kategori_edit(val) {
     $('#e_check_code').empty();
     $('#e_code_msg').empty();
     $.ajax({
-        url: "<?php echo base_url('Master/Product/Sub/Check_sub?nama='); ?>" + val,
+        url: "Master/Product/Sub/Check_sub?nama=" + val,
         type: 'GET',
         cache: false,
         contentType: false,
@@ -226,10 +228,10 @@ function Save_edit() {
     }
     return result;
 }
-function Delete(id){
+function Delete(id) {
     $('input[name="d_id"]').val(id);
     $.ajax({
-        url: "<?php echo base_url('Master/Product/Sub/Get_detail?id='); ?>" + id,
+        url: "Master/Product/Sub/Get_detail?id=" + id,
         type: 'GET',
         cache: false,
         contentType: false,

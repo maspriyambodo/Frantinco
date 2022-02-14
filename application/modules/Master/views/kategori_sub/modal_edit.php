@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label for="e_category">Category:</label>
                             <br>
-                            <select id="e_category" name="e_category" class="form-control custom-select" required="" style="width: 100%;">
+                            <select id="e_category" name="e_category" class="form-control custom-select select2" required="" style="width: 100%;">
                                 <option value="">Search Category</option>
                             </select>
                         </div>
