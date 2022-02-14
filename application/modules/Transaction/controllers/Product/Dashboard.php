@@ -34,7 +34,7 @@ class Dashboard extends CI_Controller {
         $tahun = Dekrip(Post_get('token'));
         $list = $this->model->lists($tahun);
         $data = [];
-        $no = Post_input("start");
+        $no = Post_get("start");
         $privilege = $this->bodo->Check_previlege('Transaction/Product/Dashboard/index/');
         $privilege['tahun'] = $tahun;
         foreach ($list as $value) {
@@ -52,14 +52,14 @@ class Dashboard extends CI_Controller {
     private function _list($data, $privilege) {
         if ($privilege['read']) {
             $output = [
-                "draw" => Post_input('draw'),
+                "draw" => Post_get('draw'),
                 "recordsTotal" => $this->model->count_all($privilege['tahun']),
                 "recordsFiltered" => $this->model->count_filtered($privilege['tahun']),
                 "data" => $data
             ];
         } else {
             $output = [
-                "draw" => Post_input('draw'),
+                "draw" => Post_get('draw'),
                 "recordsTotal" => 0,
                 "recordsFiltered" => 0,
                 "data" => []
