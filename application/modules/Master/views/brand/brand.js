@@ -35,9 +35,20 @@ window.onload = function () {
         "scrollCollapse": true,
         "scrollX": true,
         "scrollY": "400px",
-        dom: `<'row'<'col-sm-6 text-left'l><'col-sm-6 text-right'f>>
+        dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
                 <'row'<'col-sm-12'tr>>
-                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'p>>`,
+                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+        buttons: [
+            {extend: 'print', footer: true},
+            {extend: 'copyHtml5', footer: true},
+            {extend: 'excelHtml5', footer: true},
+            {extend: 'csvHtml5', footer: true},
+            {extend: 'pdfHtml5', footer: true}
+        ],
+        lengthMenu: [
+            [10, 50, 100, 500, -1],
+            ['10', '50', '100', '500', 'all']
+        ],
         columnDefs: [
             {
                 targets: 3,
