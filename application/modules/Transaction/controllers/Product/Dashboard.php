@@ -11,7 +11,7 @@ class Dashboard extends CI_Controller {
     }
 
     public function index() {
-        $tahun = $this->Dir_year();
+        $tahun = year_report();
         $data = [
             'year' => $tahun,
             'csrf' => $this->bodo->Csrf(),
@@ -71,24 +71,6 @@ class Dashboard extends CI_Controller {
             ];
         }
         return ToJson($output);
-    }
-
-    private function Dir_year() {
-        $exec = $this->model->Dir_year();
-        if ($exec) {
-            foreach ($exec as $key => $value) {
-                $response[$key] = (object) [
-                            'id' => Enkrip($value->tahun),
-                            'text' => $value->tahun
-                ];
-            }
-        } else {
-            $response[0] = (object) [
-                        'id' => null,
-                        'text' => 'not found'
-            ];
-        }
-        return $response;
     }
 
     public function Upload() {
