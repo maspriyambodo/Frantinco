@@ -18,6 +18,28 @@ function ToJson($response) {
     exit;
 }
 
+function year_report() {
+    $ci = & get_instance();
+    $exec = $ci->db->select()
+            ->from('report_get_year')
+            ->get()
+            ->result();
+    if ($exec) {
+        foreach ($exec as $key => $value) {
+            $response[$key] = (object) [
+                        'id' => Enkrip($value->tahun),
+                        'text' => $value->tahun
+            ];
+        }
+    } else {
+        $response[0] = (object) [
+                    'id' => null,
+                    'text' => 'not found'
+        ];
+    }
+    return $response;
+}
+
 function sys_parameter($param) {
     $ci = & get_instance();
     $exec = $ci->db->select('sys_param.id,sys_param.param_group,sys_param.param_value')
