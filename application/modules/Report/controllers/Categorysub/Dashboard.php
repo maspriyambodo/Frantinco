@@ -10,32 +10,14 @@ class Dashboard extends CI_Controller {
         $this->user = Dekrip($this->session->userdata('id_user'));
     }
 
-    private function Dir_year() {
-        $exec = $this->model->Dir_year();
-        if ($exec) {
-            foreach ($exec as $key => $value) {
-                $response[$key] = (object) [
-                            'id' => Enkrip($value->tahun),
-                            'text' => $value->tahun
-                ];
-            }
-        } else {
-            $response[0] = (object) [
-                        'id' => null,
-                        'text' => 'not found'
-            ];
-        }
-        return $response;
-    }
-
     public function index() {
         $data = [
-            'year' => $this->Dir_year(),
+            'year' => year_report(),
             'csrf' => $this->bodo->Csrf(),
             'item_active' => 'Report/Categorysub/Dashboard/index/',
             'privilege' => $this->bodo->Check_previlege('Report/Categorysub/Dashboard/index/'),
             'siteTitle' => 'Sub Category Report | ' . $this->bodo->Sys('app_name'),
-            'pagetitle' => 'Sub Category Report ' . $this->Dir_year()[0]->text,
+            'pagetitle' => 'Sub Category Report ' . year_report()[0]->text,
             'breadcrumb' => [
                 0 => [
                     'nama' => 'index',
