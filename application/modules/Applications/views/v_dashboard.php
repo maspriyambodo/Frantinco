@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-6">
         <div class="d-block d-xl-none my-4 clearfix"></div>
         <div class="card card-custom" data-card="true" id="kt_card_1">
@@ -168,12 +168,33 @@
 <script>
     $(document).ready(function () {
 
-        dashboard_info();
-
         var tokentxt = $('input[name="tokentxt"]').val();
+        dashboard_info(tokentxt);
 
+    });
+
+    function dashboard_info(token) {
+        $.ajax({
+            url: "Applications/Dashboard/info_sum/",
+            type: 'GET',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#tot_brand').attr('data-value', data.tot_brand);
+                $('#tot_category').attr('data-value', data.tot_category);
+                $('#tot_categorysub').attr('data-value', data.tot_categorysub);
+                $('#tot_product').attr('data-value', data.tot_product);
+                $('#tot_transact').attr('data-value', data.tot_transact);
+                $('#tot_qty').attr('data-value', data.tot_qty);
+                animate_counter();
+                chart1(token);
+            }
+        });
+    }
+
+    function chart1(tokentxt) {
         am4core.ready(function () {
-
             am4core.useTheme(am4themes_animated);
             am4core.addLicense("ch-custom-attribution");
             var chart = am4core.create("chartdiv", am4charts.PieChart3D);
@@ -185,7 +206,10 @@
             series.dataFields.value = "qty";
             series.dataFields.category = "nama";
         });
+        chart2(tokentxt);
+    }
 
+    function chart2(tokentxt) {
         am4core.ready(function () {
 
             am4core.useTheme(am4themes_animated);
@@ -239,7 +263,10 @@
             chart.cursor = new am4charts.XYCursor();
 
         });
+        chart3(tokentxt);
+    }
 
+    function chart3(tokentxt) {
         am4core.ready(function () {
 
             am4core.useTheme(am4themes_animated);
@@ -293,7 +320,10 @@
             chart.cursor = new am4charts.XYCursor();
 
         });
+        chart4(tokentxt);
+    }
 
+    function chart4(tokentxt) {
         am4core.ready(function () {
 
             am4core.useTheme(am4themes_animated);
@@ -347,38 +377,19 @@
             chart.cursor = new am4charts.XYCursor();
 
         });
+    }
 
-        function dashboard_info() {
-            $.ajax({
-                url: "Applications/Dashboard/info_sum/",
-                type: 'GET',
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    $('#tot_brand').attr('data-value', data.tot_brand);
-                    $('#tot_category').attr('data-value', data.tot_category);
-                    $('#tot_categorysub').attr('data-value', data.tot_categorysub);
-                    $('#tot_product').attr('data-value', data.tot_product);
-                    $('#tot_transact').attr('data-value', data.tot_transact);
-                    $('#tot_qty').attr('data-value', data.tot_qty);
-                    animate_counter();
+    function animate_counter() {
+        $('.count').each(function () {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).data('value')
+            }, {
+                duration: 3000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(numeral(now).format('0,0'));
                 }
             });
-        }
-
-        function animate_counter() {
-            $('.count').each(function () {
-                $(this).prop('Counter', 0).animate({
-                    Counter: $(this).data('value')
-                }, {
-                    duration: 3000,
-                    easing: 'swing',
-                    step: function (now) {
-                        $(this).text(numeral(now).format('0,0'));
-                    }
-                });
-            });
-        }
-    });
+        });
+    }
 </script>
