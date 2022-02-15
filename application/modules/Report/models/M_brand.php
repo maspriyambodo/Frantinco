@@ -73,14 +73,6 @@ class M_brand extends CI_Model {
         return $this->db->count_all_results();
     }
 
-    public function Dir_year() {
-        $exec = $this->db->select()
-                ->from('report_get_year')
-                ->get()
-                ->result();
-        return $exec;
-    }
-
     public function chart_1($tahun) {
         $exec = $this->db->select('v_transaction.nama_brand AS brand,Sum( v_transaction.qty ) AS total')
                 ->from('v_transaction')

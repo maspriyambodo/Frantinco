@@ -4,14 +4,6 @@ defined('BASEPATH') OR exit('trying to signin backdoor?');
 
 class M_kategorisub extends CI_Model {
 
-    public function Dir_year() {
-        $exec = $this->db->select()
-                ->from('report_get_year')
-                ->get()
-                ->result();
-        return $exec;
-    }
-
     public function dt_table($tahun) {
         $exec = $this->db->select('v_transaction.id_categorysub,v_transaction.nama_kategorisub,
 	MIN(v_transaction.tr_date) AS tr_date,

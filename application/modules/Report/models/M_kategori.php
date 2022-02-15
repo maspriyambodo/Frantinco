@@ -4,13 +4,6 @@ defined('BASEPATH') OR exit('trying to signin backdoor?');
 
 class M_kategori extends CI_Model {
 
-    public function Dir_year() {
-        $exec = $this->db->select()
-                ->from('report_get_year')
-                ->get()
-                ->result();
-        return $exec;
-    }
     public function not_exists($tahun) {
         $exec = $this->db->select('v_transaction.id_category,v_transaction.nama_kategori,NOW( ) AS tr_date,0 AS `JANUARI`,0 AS `FEBRUARI`,0 AS `MARET`,0 AS `APRIL`,0 AS `MEI`,0 AS `JUNI`,0 AS `JULI`,0 AS `AGUSTUS`,0 AS `SEPTEMBER`,0 AS `OKTOBER`,0 AS `NOVEMBER`,0 AS `DESEMBER` ')
                 ->from('mt_category')
@@ -22,6 +15,7 @@ class M_kategori extends CI_Model {
                 ->result();
         return $exec;
     }
+
     public function dt_table($tahun) {
         $exec = $this->db->select('v_transaction.id_category,
 	v_transaction.nama_kategori,
