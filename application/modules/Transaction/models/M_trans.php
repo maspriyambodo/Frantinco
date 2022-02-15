@@ -64,14 +64,6 @@ class M_trans extends CI_Model {
         return $this->db->trans_status();
     }
 
-    public function Dir_year() {
-        $exec = $this->db->select()
-                ->from('report_get_year')
-                ->get()
-                ->result();
-        return $exec;
-    }
-
     public function cek_kode($kode) {
         $exec = $this->db->select('mt_product.id')
                 ->from('mt_product')
