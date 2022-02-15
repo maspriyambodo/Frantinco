@@ -11,7 +11,17 @@ class M_kategori extends CI_Model {
                 ->result();
         return $exec;
     }
-
+    public function not_exists($tahun) {
+        $exec = $this->db->select('v_transaction.id_category,v_transaction.nama_kategori,NOW( ) AS tr_date,0 AS `JANUARI`,0 AS `FEBRUARI`,0 AS `MARET`,0 AS `APRIL`,0 AS `MEI`,0 AS `JUNI`,0 AS `JULI`,0 AS `AGUSTUS`,0 AS `SEPTEMBER`,0 AS `OKTOBER`,0 AS `NOVEMBER`,0 AS `DESEMBER` ')
+                ->from('mt_category')
+                ->join('v_transaction', 'mt_category.id = v_transaction.id_category', 'LEFT')
+                ->where('`mt_category`.`id` NOT IN', '( SELECT v_transaction.id_category FROM v_transaction WHERE YEAR ( tr_date ) = ' . $tahun . ' )', false)
+                ->group_by('mt_category.id')
+                ->order_by('mt_category.nama ASC')
+                ->get()
+                ->result();
+        return $exec;
+    }
     public function dt_table($tahun) {
         $exec = $this->db->select('v_transaction.id_category,
 	v_transaction.nama_kategori,
