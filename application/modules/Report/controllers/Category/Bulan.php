@@ -11,7 +11,7 @@ class Bulan extends CI_Controller {
     }
 
     public function index() {
-        $param = $this->bodo->Url(Post_get('token')); // output = Array ( [0] => 2021 AS tahun [1] => 09 AS bulan [2] => 1 AS id_brand [3] => 11869 AS jumlah laporan) 
+        $param = $this->bodo->Url(Post_get('token')); // output = Array ( [0] => 2021 AS tahun [1] => 09 AS bulan [2] => 1 AS id_category [3] => 11869 AS jumlah laporan) 
         $data = [
             'csrf' => $this->bodo->Csrf(),
             'param' => $param,
@@ -37,11 +37,11 @@ class Bulan extends CI_Controller {
     }
 
     public function dt_table() {
-        $tahun = Dekrip(Post_get('token'));
-        if (!$tahun) {
+        $token = $this->bodo->Url(Post_get('token'));// output = Array ([0] => 2021 AS tahun [1] => 09 AS bulan [2] => 1 AS id_category)
+        if (!$token) {
             $result = [];
         } else {
-            $exec = $this->model->dt_table2($tahun);
+            $exec = $this->model->dt_table2($token);
             foreach ($exec as $value) {
                 $date = date_create($value->tr_date);
                 $result[] = (object) [

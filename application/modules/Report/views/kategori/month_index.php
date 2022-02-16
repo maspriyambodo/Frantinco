@@ -1,5 +1,4 @@
-<input type="hidden" name="tahuntxt" value="<?php echo Enkrip($param[0]); ?>"/>
-<input type="hidden" name="bulantxt" value="<?php echo Enkrip($param[1]); ?>"/>
+<input type="hidden" name="tokentxt" value="<?php echo Enkrip('?a=' . $param[0] . '&b=' . $param[1] . '&c=' . $param[2]); ?>"/>
 <div class="card card-custom" data-card="true">
     <div class="card-header">
         <div class="card-title">
@@ -19,10 +18,10 @@
 </div>
 <script>
     $(document).ready(function () {
-        var bulan = $('input[name="bulantxt"]').val();
-        dt_tabel(bulan);
+        var tokentxt = $('input[name="tokentxt"]').val();
+        dt_tabel(tokentxt);
     });
-    function dt_tabel(bulan) {
+    function dt_tabel(tokentxt) {
         $('table').dataTable({
             "serverSide": false,
             "order": [[0, "asc"]],
@@ -47,7 +46,7 @@
                 ['10', '50', '100', '500', 'all']
             ],
             "ajax": {
-                "url": "Report/Category/Bulan/dt_table?token=" + bulan,
+                "url": "Report/Category/Bulan/dt_table?token=" + tokentxt,
                 dataSrc: ''
             },
             columns: [
