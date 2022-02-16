@@ -258,7 +258,7 @@
                 },
                 {
                     data: 'nama_produk',
-                    title: 'CATEGORY'
+                    title: 'PRODUCT'
                 },
                 {
                     data: 'JANUARI',
