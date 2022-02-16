@@ -67,4 +67,17 @@ class M_product extends CI_Model {
         return $exec;
     }
 
+    public function dt_table2($token) {
+        $exec = $this->db->select('v_transaction.kode_product,v_transaction.nama_kategori,v_transaction.tr_date,v_transaction.qty')
+                ->from('mt_product')
+                ->join('v_transaction', 'mt_product.id = v_transaction.id_product', 'LEFT')
+                ->where('`mt_product`.`stat`', 1, false)
+                ->where('MONTH(v_transaction.tr_date) =', $token[1], false)
+                ->where('YEAR(v_transaction.tr_date) =', $token[0], false)
+                ->where('v_transaction.id_product', $token[2], false)
+                ->get()
+                ->result();
+        return $exec;
+    }
+
 }
