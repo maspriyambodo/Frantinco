@@ -68,7 +68,7 @@ class M_product extends CI_Model {
     }
 
     public function dt_table2($token) {
-        $exec = $this->db->select('v_transaction.kode_product,v_transaction.nama_kategori,v_transaction.tr_date,v_transaction.qty')
+        $exec = $this->db->select('v_transaction.nama_brand,v_transaction.nama_kategori,v_transaction.nama_kategorisub,v_transaction.nama_produk,v_transaction.kode_product,v_transaction.tr_date,v_transaction.qty')
                 ->from('mt_product')
                 ->join('v_transaction', 'mt_product.id = v_transaction.id_product', 'LEFT')
                 ->where('`mt_product`.`stat`', 1, false)

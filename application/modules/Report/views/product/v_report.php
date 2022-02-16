@@ -37,9 +37,9 @@
                 <'row'<'col-sm-12'tr>>
                 <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
             buttons: [
-                {extend: 'print', footer: true},
+                {extend: 'print', footer: true, pageSize: 'LEGAL'},
                 {extend: 'excelHtml5', footer: true},
-                {extend: 'pdfHtml5', footer: true}
+                {extend: 'pdfHtml5', footer: true, pageSize: 'LEGAL'}
             ],
             lengthMenu: [
                 [10, 50, 100, 500, -1],
@@ -51,12 +51,24 @@
             },
             columns: [
                 {
-                    data: 'kode_product',
-                    title: 'CODE'
+                    data: 'nama_brand',
+                    title: 'BRAND'
                 },
                 {
                     data: 'nama_kategori',
-                    title: 'NAME'
+                    title: 'CATEGORY'
+                },
+                {
+                    data: 'nama_kategorisub',
+                    title: 'SUB CATEGORY'
+                },
+                {
+                    data: 'nama_produk',
+                    title: 'PRODUCT'
+                },
+                {
+                    data: 'kode_product',
+                    title: 'CODE'
                 },
                 {
                     data: 'tr_date',

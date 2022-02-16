@@ -46,8 +46,11 @@ class Product_report extends CI_Controller {
             foreach ($exec as $value) {
                 $date = date_create($value->tr_date);
                 $result[] = (object) [
-                            'kode_product' => $value->kode_product,
+                            'nama_brand' => $value->nama_brand,
                             'nama_kategori' => $value->nama_kategori,
+                            'nama_kategorisub' => $value->nama_kategorisub,
+                            'nama_produk' => $value->nama_produk,
+                            'kode_product' => $value->kode_product,
                             'tr_date' => date_format($date, 'd F Y'),
                             'qty' => number_format($value->qty)
                 ];
