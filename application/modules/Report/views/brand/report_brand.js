@@ -95,13 +95,11 @@ function dt_tabel(year) {
         dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
                 <'row'<'col-sm-12'tr>>
                 <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
-        buttons: [
-            {extend: 'print', footer: true},
-            {extend: 'copyHtml5', footer: true},
-            {extend: 'excelHtml5', footer: true},
-            {extend: 'csvHtml5', footer: true},
-            {extend: 'pdfHtml5', footer: true}
-        ],
+            buttons: [
+                {extend: 'print', footer: true, pageSize: 'LEGAL'},
+                {extend: 'excelHtml5', footer: true},
+                {extend: 'pdfHtml5', footer: true, pageSize: 'LEGAL'}
+            ],
         lengthMenu: [
             [10, 50, 100, 500, -1],
             ['10', '50', '100', '500', 'all']

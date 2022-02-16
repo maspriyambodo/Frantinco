@@ -52,11 +52,9 @@
                 <'row'<'col-sm-12'tr>>
                 <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
             buttons: [
-                {extend: 'print', footer: true},
-                {extend: 'copyHtml5', footer: true},
+                {extend: 'print', footer: true, pageSize: 'LEGAL'},
                 {extend: 'excelHtml5', footer: true},
-                {extend: 'csvHtml5', footer: true},
-                {extend: 'pdfHtml5', footer: true}
+                {extend: 'pdfHtml5', footer: true, pageSize: 'LEGAL'}
             ],
             lengthMenu: [
                 [10, 50, 100, 500, -1],
