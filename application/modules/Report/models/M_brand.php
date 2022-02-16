@@ -58,7 +58,6 @@ class M_brand extends CI_Model {
         if ($_GET['length'] != -1)
             $this->db->limit($_GET['length'], $_GET['start']);
         $query = $this->db->get();
-//        log_message('error', $this->db->last_query());
         return $query->result();
     }
 
