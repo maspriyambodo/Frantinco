@@ -1,3 +1,6 @@
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 <div class="card card-custom">
     <div class="card-body">
         <div class="form-group row">
@@ -6,7 +9,7 @@
                 <select id="tahuntxt" name="tahuntxt" class="form-control custom-select" onchange="Tahun(this.value)">
                     <?php
                     foreach ($year as $value) {
-                        if ($value->text == date('Y')) {
+                        if ($value->text === date('Y')) {
                             echo '<option value="' . $value->id . '" selected>' . $value->text . '</option>';
                         } else {
                             echo '<option value="' . $value->id . '">' . $value->text . '</option>';
@@ -18,11 +21,11 @@
         </div>
     </div>
 </div>
-<div class="clearfix" style="margin:50px 0px;"></div>
+<div class="clearfix my-4"></div>
 <div class="card card-custom" data-card="true">
     <div class="card-header">
         <div class="card-title">
-            Report by month
+            Annual Report
         </div>
         <div class="card-toolbar">
             <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="minimize">
@@ -37,11 +40,11 @@
         <div id="chartdiv" class="chartdivs"></div>
     </div>
 </div>
-<div class="clearfix" style="margin:50px 0px;"></div>
+<div class="clearfix my-4"></div>
 <div class="card card-custom" data-card="true">
     <div class="card-header">
         <div class="card-title">
-            Brand Comparison
+            Report by BRAND
         </div>
         <div class="card-toolbar">
             <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="minimize">
@@ -56,11 +59,11 @@
         <div id="chartdiv_a" class="chartdivs"></div>
     </div>
 </div>
-<div class="clearfix" style="margin:50px 0px;"></div>
+<div class="clearfix my-4"></div>
 <div class="card card-custom" data-card="true">
     <div class="card-header">
         <div class="card-title">
-            Brand Report details
+            Report details
         </div>
         <div class="card-toolbar">
             <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="minimize">
@@ -70,35 +73,239 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            
-            <table id="table" class="table table-bordered table-hover table-striped" style="width:100%;">
-                <thead>
-                    <tr class="text-center text-uppercase">
-                        <th>no</th>
-                        <th>brand</th>
-                        <th>jan</th>
-                        <th>feb</th>
-                        <th>mar</th>
-                        <th>apr</th>
-                        <th>mei</th>
-                        <th>jun</th>
-                        <th>jul</th>
-                        <th>aug</th>
-                        <th>sep</th>
-                        <th>okt</th>
-                        <th>nov</th>
-                        <th>dec</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <table class="table table-bordered table-hover table-striped" style="width:100%;"></table>
         </div>
     </div>
 </div>
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-<?php
-echo '<script>';
-require_once 'report_brand.js';
-echo '</script>';
+
+<script>
+    $(document).ready(function () {
+
+        var tahun = $('select[name="tahuntxt"]').val();
+        dt_tabel(tahun);
+        chartdiv(tahun);
+        chartdiv_a(tahun);
+
+    });
+    function Tahun(id) {
+        var tahuntxt = $("#tahuntxt option:selected").text();
+        document.getElementById('pagetitle').innerHTML = 'Category Report ' + tahuntxt;
+        chartdiv(id);
+        chartdiv_a(id);
+        $('table').DataTable().clear();
+        $('table').DataTable().destroy();
+        dt_tabel(id);
+    }
+    function chartdiv(year) {
+        am4core.ready(function () {
+            am4core.useTheme(am4themes_animated);
+            am4core.addLicense("ch-custom-attribution");
+
+            var chart = am4core.create("chartdiv", am4charts.XYChart);
+            chart.colors.step = 2;
+            chart.scrollbarX = new am4core.Scrollbar();
+            chart.exporting.menu = new am4core.ExportMenu();
+            chart.dataSource.url = 'Report/Brand/Dashboard/chartdiv?token=' + year;
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "bulan";
+            categoryAxis.renderer.grid.template.location = 0;
+            categoryAxis.renderer.minGridDistance = 12;
+            categoryAxis.renderer.labels.template.horizontalCenter = "right";
+            categoryAxis.renderer.labels.template.verticalCenter = "middle";
+            categoryAxis.renderer.labels.template.rotation = 300;
+            categoryAxis.tooltip.disabled = true;
+            categoryAxis.renderer.minHeight = 30;
+            categoryAxis.title.text = 'Month of Sales';
+            categoryAxis.title.fontWeight = 800;
+
+            let label = categoryAxis.renderer.labels.template;
+            label.wrap = true;
+            label.maxWidth = 120;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.minWidth = 50;
+            valueAxis.title.text = "Total Sales";
+            valueAxis.title.fontWeight = 800;
+
+            var series = chart.series.push(new am4charts.ColumnSeries());
+            series.sequencedInterpolation = true;
+            series.dataFields.valueY = "qty";
+            series.dataFields.categoryX = "bulan";
+            series.tooltipText = "Total Sales month {categoryX}: [bold]{valueY}[/]";
+            series.columns.template.strokeWidth = 0;
+            series.tooltip.pointerOrientation = "vertical";
+            series.columns.template.column.cornerRadiusTopLeft = 10;
+            series.columns.template.column.cornerRadiusTopRight = 10;
+            series.columns.template.column.fillOpacity = 0.8;
+            series.columns.template.adapter.add("fill", function (fill, target) {
+                return chart.colors.getIndex(target.dataItem.index);
+            });
+
+            var hoverState = series.columns.template.column.states.create("hover");
+            hoverState.properties.cornerRadiusTopLeft = 0;
+            hoverState.properties.cornerRadiusTopRight = 0;
+            hoverState.properties.fillOpacity = 1;
+
+            chart.cursor = new am4charts.XYCursor();
+        });
+    }
+    function chartdiv_a(year) {
+        am4core.ready(function () {
+            am4core.useTheme(am4themes_animated);
+            am4core.addLicense("ch-custom-attribution");
+
+            var chart = am4core.create("chartdiv_a", am4charts.XYChart);
+            chart.colors.step = 2;
+            chart.scrollbarX = new am4core.Scrollbar();
+            chart.exporting.menu = new am4core.ExportMenu();
+            chart.dataSource.url = 'Report/Brand/Dashboard/chartdiv_a?token=' + year;
+
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.dataFields.category = "nama_brand";
+            categoryAxis.renderer.grid.template.location = 0;
+            categoryAxis.renderer.minGridDistance = 12;
+            categoryAxis.renderer.labels.template.horizontalCenter = "right";
+            categoryAxis.renderer.labels.template.verticalCenter = "middle";
+            categoryAxis.renderer.labels.template.rotation = 300;
+            categoryAxis.tooltip.disabled = true;
+            categoryAxis.renderer.minHeight = 30;
+            categoryAxis.title.text = 'Product Line';
+            categoryAxis.title.fontWeight = 800;
+
+            let label = categoryAxis.renderer.labels.template;
+            label.wrap = true;
+            label.maxWidth = 120;
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.renderer.minWidth = 50;
+            valueAxis.title.text = "Total Sales";
+            valueAxis.title.fontWeight = 800;
+
+            var series = chart.series.push(new am4charts.ColumnSeries());
+            series.sequencedInterpolation = true;
+            series.dataFields.valueY = "qty";
+            series.dataFields.categoryX = "nama_brand";
+            series.tooltipText = "Total Sales {nama_brand}: [bold]{valueY}[/]";
+            series.columns.template.strokeWidth = 0;
+            series.tooltip.pointerOrientation = "vertical";
+            series.columns.template.column.cornerRadiusTopLeft = 10;
+            series.columns.template.column.cornerRadiusTopRight = 10;
+            series.columns.template.column.fillOpacity = 0.8;
+            series.columns.template.adapter.add("fill", function (fill, target) {
+                return chart.colors.getIndex(target.dataItem.index);
+            });
+
+            var hoverState = series.columns.template.column.states.create("hover");
+            hoverState.properties.cornerRadiusTopLeft = 0;
+            hoverState.properties.cornerRadiusTopRight = 0;
+            hoverState.properties.fillOpacity = 1;
+
+            chart.cursor = new am4charts.XYCursor();
+        });
+    }
+    function dt_tabel(year) {
+        $('table').dataTable({
+            "serverSide": false,
+            "order": [[0, "asc"]],
+            "paging": true,
+            "ordering": true,
+            "info": true,
+            "processing": true,
+            "deferRender": true,
+            "scrollCollapse": true,
+            "scrollX": true,
+            "scrollY": "400px",
+            dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+                <'row'<'col-sm-12'tr>>
+                <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+            buttons: [
+                {extend: 'print', footer: true, pageSize: 'LEGAL'},
+                {extend: 'excelHtml5', footer: true},
+                {extend: 'pdfHtml5', footer: true, pageSize: 'LEGAL'}
+            ],
+            "ajax": {
+                "url": "Report/Brand/Dashboard/dt_table?token=" + year,
+                dataSrc: ''
+            },
+            columns: [
+                {
+                    data: 'nama_kategori',
+                    title: 'Category'
+                },
+                {
+                    data: 'JANUARI',
+                    title: 'JAN',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'FEBRUARI',
+                    title: 'FEB',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'MARET',
+                    title: 'MAR',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'APRIL',
+                    title: 'APR',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'MEI',
+                    title: 'MEI',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'JUNI',
+                    title: 'JUN',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'JULI',
+                    title: 'JUL',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'AGUSTUS',
+                    title: 'AUG',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'SEPTEMBER',
+                    title: 'SEP',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'OKTOBER',
+                    title: 'OCT',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'NOVEMBER',
+                    title: 'NOV',
+                    className: "text-center",
+                    "searchable": false
+                },
+                {
+                    data: 'DESEMBER',
+                    title: 'DEC',
+                    className: "text-center",
+                    "searchable": false
+                }
+            ]
+        });
+    }
+</script>

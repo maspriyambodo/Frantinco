@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('trying to signin backdoor?');
 
 class Dashboard extends CI_Controller {
 
@@ -17,7 +17,7 @@ class Dashboard extends CI_Controller {
             'item_active' => 'Report/Brand/Dashboard/index/',
             'privilege' => $this->bodo->Check_previlege('Report/Brand/Dashboard/index/'),
             'siteTitle' => 'Brand Report | ' . $this->bodo->Sys('app_name'),
-            'pagetitle' => 'Brand Report ' . year_report()[0]->text,
+            'pagetitle' => 'Brand Report ' . date('Y'),
             'breadcrumb' => [
                 0 => [
                     'nama' => 'index',
@@ -30,59 +30,81 @@ class Dashboard extends CI_Controller {
         return $this->parser->parse('Template/layout', $data);
     }
 
-    public function lists() {
-        $param = Dekrip(Post_get('token'));
-        $list = $this->model->lists($param);
-        $data = [];
-        $no = Post_get("start");
-        $privilege = $this->bodo->Check_previlege('Report/Brand/Dashboard/index/');
-        foreach ($list as $value) {
-            $no++;
-            $row = [];
-            $row[] = $no;
-            $row[] = $value->nama;
-            $row[] = ($value->JANUARI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=01' . '&c=' . $value->id . '&d=' . $value->JANUARI)) . '">' . number_format($value->JANUARI) . '</a>';
-            $row[] = ($value->FEBRUARI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=02' . '&c=' . $value->id . '&d=' . $value->FEBRUARI)) . '">' . number_format($value->FEBRUARI) . '</a>';
-            $row[] = ($value->MARET == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=03' . '&c=' . $value->id . '&d=' . $value->MARET)) . '">' . number_format($value->MARET) . '</a>';
-            $row[] = ($value->APRIL == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=04' . '&c=' . $value->id . '&d=' . $value->APRIL)) . '">' . number_format($value->APRIL) . '</a>';
-            $row[] = ($value->MEI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=05' . '&c=' . $value->id . '&d=' . $value->MEI)) . '">' . number_format($value->MEI) . '</a>';
-            $row[] = ($value->JUNI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=06' . '&c=' . $value->id . '&d=' . $value->JUNI)) . '">' . number_format($value->JUNI) . '</a>';
-            $row[] = ($value->JULI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=07' . '&c=' . $value->id . '&d=' . $value->JULI)) . '">' . number_format($value->JULI) . '</a>';
-            $row[] = ($value->AGUSTUS == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=08' . '&c=' . $value->id . '&d=' . $value->AGUSTUS)) . '">' . number_format($value->AGUSTUS) . '</a>';
-            $row[] = ($value->SEPTEMBER == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=09' . '&c=' . $value->id . '&d=' . $value->SEPTEMBER)) . '">' . number_format($value->SEPTEMBER) . '</a>';
-            $row[] = ($value->OKTOBER == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=10' . '&c=' . $value->id . '&d=' . $value->OKTOBER)) . '">' . number_format($value->OKTOBER) . '</a>';
-            $row[] = ($value->NOVEMBER == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=11' . '&c=' . $value->id . '&d=' . $value->NOVEMBER)) . '">' . number_format($value->NOVEMBER) . '</a>';
-            $row[] = ($value->DESEMBER == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan1%23?token=' . Enkrip('?a=' . $param . '&b=12' . '&c=' . $value->id . '&d=' . $value->DESEMBER)) . '">' . number_format($value->DESEMBER) . '</a>';
-            $data[] = $row;
-        }
-        return $this->_list($data, $privilege, $param);
-    }
-
-    private function _list($data, $privilege, $param) {
-        if ($privilege['read']) {
-            $output = [
-                "draw" => Post_get('draw'),
-                "recordsTotal" => $this->model->count_all($param),
-                "recordsFiltered" => $this->model->count_filtered($param),
-                "data" => $data
-            ];
-        } else {
-            $output = [
-                "draw" => Post_get('draw'),
-                "recordsTotal" => 0,
-                "recordsFiltered" => 0,
-                "data" => []
-            ];
-        }
-        ToJson($output);
-    }
-
-    public function Chart_1($param) {
-        $tahun = Dekrip($param);
+    public function dt_table() {
+        $this->bodo->Check_login();
+        $tahun = Dekrip(Post_get('token'));
         if (!$tahun) {
             $result = [];
         } else {
-            $result = $this->model->chart_1($tahun);
+            $data_exists = $this->model->dt_table($tahun);
+            $not_exists = $this->model->not_exists($tahun);
+            if (count($not_exists) > 0) {
+                $result = array_merge($data_exists, $not_exists);
+            } else {
+                $result = $data_exists;
+            }
+        }
+        return $this->_data($result);
+    }
+
+    private function _data($param) {
+        if (!empty($param)) {
+            foreach ($param as $value) {
+                $tgl = date_create($value->tr_date);
+                $result[] = [
+                    'nama_kategori' => $value->nama_brand,
+                    'tr_date' => $value->tr_date,
+                    'JANUARI' => ($value->JANUARI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=01' . '&c=' . $value->id_brand . '&d=' . $value->JANUARI)) . '">' . number_format($value->JANUARI) . '</a>',
+                    'FEBRUARI' => ($value->FEBRUARI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=02' . '&c=' . $value->id_brand . '&d=' . $value->FEBRUARI)) . '">' . number_format($value->FEBRUARI) . '</a>',
+                    'MARET' => ($value->MARET == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=03' . '&c=' . $value->id_brand . '&d=' . $value->MARET)) . '">' . number_format($value->MARET) . '</a>',
+                    'APRIL' => ($value->APRIL == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=04' . '&c=' . $value->id_brand . '&d=' . $value->APRIL)) . '">' . number_format($value->APRIL) . '</a>',
+                    'MEI' => ($value->MEI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=05' . '&c=' . $value->id_brand . '&d=' . $value->MEI)) . '">' . number_format($value->MEI) . '</a>',
+                    'JUNI' => ($value->JUNI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=06' . '&c=' . $value->id_brand . '&d=' . $value->JUNI)) . '">' . number_format($value->JUNI) . '</a>',
+                    'JULI' => ($value->JULI == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=07' . '&c=' . $value->id_brand . '&d=' . $value->JULI)) . '">' . number_format($value->JULI) . '</a>',
+                    'AGUSTUS' => ($value->AGUSTUS == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=08' . '&c=' . $value->id_brand . '&d=' . $value->AGUSTUS)) . '">' . number_format($value->AGUSTUS) . '</a>',
+                    'SEPTEMBER' => ($value->SEPTEMBER == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=09' . '&c=' . $value->id_brand . '&d=' . $value->SEPTEMBER)) . '">' . number_format($value->SEPTEMBER) . '</a>',
+                    'OKTOBER' => ($value->OKTOBER == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=10' . '&c=' . $value->id_brand . '&d=' . $value->OKTOBER)) . '">' . number_format($value->OKTOBER) . '</a>',
+                    'NOVEMBER' => ($value->NOVEMBER == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=11' . '&c=' . $value->id_brand . '&d=' . $value->NOVEMBER)) . '">' . number_format($value->NOVEMBER) . '</a>',
+                    'DESEMBER' => ($value->DESEMBER == 0) ? '<span class="text-danger">0</span>' : '<a href="' . base_url('Laporan2%23?token=' . Enkrip('?a=' . date_format($tgl, 'Y') . '&b=12' . '&c=' . $value->id_brand . '&d=' . $value->DESEMBER)) . '">' . number_format($value->DESEMBER) . '</a>'
+                ];
+            }
+        } else {
+            $result = [];
+        }
+        return ToJson($result);
+    }
+
+    public function chartdiv() {
+        $this->bodo->Check_login();
+        $tahun = Dekrip(Post_get('token'));
+        if (!$tahun) {
+            $result = [];
+        } else {
+            $exec = $this->model->chartdiv($tahun);
+            $totdata = count($exec) + 1;
+            if ($totdata != 13) {
+                for ($i = $totdata; $i < 13; $i++) {
+                    $bulan = date_create('01' . '-' . $i . '-' . date('Y'));
+                    $data[$i] = (object) [
+                                'bulan' => date_format($bulan, 'F'),
+                                'qty' => 0
+                    ];
+                }
+                $result = array_merge($exec, $data);
+            } else {
+                $result = $exec;
+            }
+        }
+        return ToJson($result);
+    }
+
+    public function chartdiv_a() {
+        $this->bodo->Check_login();
+        $tahun = Dekrip(Post_get('token'));
+        if (!$tahun) {
+            $result = [];
+        } else {
+            $result = $this->model->chartdiv_a($tahun);
         }
         return ToJson($result);
     }
