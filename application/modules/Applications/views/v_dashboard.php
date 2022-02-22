@@ -4,7 +4,7 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-6">
-                <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                <div class="col px-6 py-8 rounded-xl mr-7 mb-7 bg-warning">
                     <span class="svg-icon svg-icon-3x d-block my-2">
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_brand" class="text-white font-weight-bold font-size-h1 count">0</b>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-md-6">
-                <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                <div class="col bg-warning px-6 py-8 rounded-xl mr-7 mb-7">
                     <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_category" class="text-white font-weight-bold font-size-h1 count">0</b>
@@ -32,7 +32,7 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-6">
-                <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                <div class="col bg-warning px-6 py-8 rounded-xl mr-7 mb-7">
                     <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_categorysub" class="text-white font-weight-bold font-size-h1 count">0</b>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="col-md-6">
-                <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+                <div class="col bg-warning px-6 py-8 rounded-xl mr-7 mb-7">
                     <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                         <i class="text-white fas fa-box" style="font-size: 48px;"></i>
                         <b id="tot_product" class="text-white font-weight-bold font-size-h1 count">0</b>
@@ -60,7 +60,7 @@
 <div class="clearfix my-4"></div>
 <div class="row">
     <div class="col-md-6">
-        <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+        <div class="col bg-warning px-6 py-8 rounded-xl mr-7 mb-7">
             <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                 <i class="text-white fas fa-file-alt" style="font-size: 48px;"></i>
                 <b id="tot_transact" class="text-white font-weight-bold font-size-h1 count">0</b>
@@ -68,16 +68,19 @@
             <a href="<?php echo base_url('Transaction/Product/Dashboard/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                 TOTAL TRANSACTION
             </a>
+<!--            <div class="clearfix">
+                <span class="symbol-label font-weight-bold" style="color: #119d00;">+57</span><small> from last month</small>
+            </div>-->
         </div>
     </div>
     <div class="col-md-6">
-        <div class="col bg-primary px-6 py-8 rounded-xl mr-7 mb-7">
+        <div class="col bg-warning px-6 py-8 rounded-xl mr-7 mb-7">
             <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                 <i class="text-white fas fa-boxes" style="font-size: 48px;"></i>
                 <b id="tot_qty" class="text-white font-weight-bold font-size-h1 count">0</b>
             </span>
             <a href="javascript:void(0);" class="text-white font-weight-bold font-size-h6">
-                TOTAL QUANTITY
+                TOTAL SALES QUANTITY
             </a>
         </div>
     </div>

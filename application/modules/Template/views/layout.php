@@ -53,7 +53,7 @@ $group_menu = $this->M_default->Group_menu();
         </div>
         <div class="d-flex flex-column flex-root">
             <div class="d-flex flex-row flex-column-fluid page">
-                <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
+                <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside" style="background-color:white;">
                     <div class="brand flex-column-auto bg-white" id="kt_brand" style="height:65px;">
                         <a href="javascript:void(0);" class="brand-logo">
                             <img alt="company_logo" src="<?php echo base_url('assets/images/systems/' . $this->bodo->Sys('logo')); ?>" class="img-fluid" style="margin: 15px 0px;max-height:55px;"/>
@@ -65,7 +65,7 @@ $group_menu = $this->M_default->Group_menu();
                         </button>
                     </div>
                     <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
-                        <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+                        <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500" style="background-color:white;">
                             <?php
                             $this->multi_menu->set_items($menu_dir);
                             echo $this->multi_menu->render($item_active, $group_menu);
@@ -74,7 +74,7 @@ $group_menu = $this->M_default->Group_menu();
                     </div>
                 </div>
                 <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-                    <div id="kt_header" class="header header-fixed">
+                    <div id="kt_header" class="header header-fixed" style="background-color:white;">
                         <div class="container-fluid d-flex align-items-stretch justify-content-between">
                             <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
                                 <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default"><ul class="menu-nav"></ul></div>

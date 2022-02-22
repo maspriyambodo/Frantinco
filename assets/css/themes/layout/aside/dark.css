@@ -118,7 +118,7 @@
     transition: background-color 0.3s; }
     .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-heading,
     .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link {
-      background-color: #1b1b28 ; }
+      background-color: #FFA800 ; }
       .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-text,
       .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-text {
         color: #ffffff ; }
@@ -148,7 +148,7 @@
     transition: background-color 0.3s; }
     .aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading,
     .aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link {
-      background-color: #1b1b28 ; }
+      background-color: #FFA800 ; }
       .aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading .menu-text,
       .aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-text {
         color: #ffffff ; }
