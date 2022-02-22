@@ -115,7 +115,7 @@ class Dashboard extends CI_Controller {
         $last_month = $this->model->sum_transact2();
         if ($now < $last_month) {
             $result = '<div class="clearfix">'
-                    . '<span class="symbol-label font-weight-bold text-danger">-' . number_format($now->tot - $last_month->tot) . '</span><small> from last month</small>'
+                    . '<span class="symbol-label font-weight-bold text-danger">' . number_format($now->tot - $last_month->tot) . '</span><small> from last month</small>'
                     . '</div>';
         } elseif ($now > $last_month) {
             $result = '<div class="clearfix">'
@@ -132,7 +132,7 @@ class Dashboard extends CI_Controller {
         $last_month = $this->model->sum_qty2(); //summary quantity transaction last month
         if ($now < $last_month) {
             $result = '<div class="clearfix">'
-                    . '<span class="symbol-label font-weight-bold text-danger">-' . number_format($now->tot - $last_month->tot) . '</span><small> from last month</small>'
+                    . '<span class="symbol-label font-weight-bold text-danger">' . number_format($now->tot - $last_month->tot) . '</span><small> from last month</small>'
                     . '</div>';
         } elseif ($now > $last_month) {
             $result = '<div class="clearfix">'
