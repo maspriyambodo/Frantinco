@@ -6,7 +6,43 @@ class M_dashboard extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->role = $this->bodo->Dec($this->session->userdata('role_id'));
+        $this->role = Dekrip($this->session->userdata('role_id'));
+    }
+
+    public function sum_qty1() {
+        $exec = $this->db->select('SUM( v_transaction.qty ) AS tot')
+                ->from('v_transaction')
+                ->where('MONTH ( v_transaction.tr_date ) =', 'MONTH ( NOW( ) )', false)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function sum_qty2() {
+        $exec = $this->db->select('SUM( v_transaction.qty ) AS tot')
+                ->from('v_transaction')
+                ->where('MONTH ( v_transaction.tr_date ) =', 'MONTH ( NOW( ) )-1', false)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function sum_transact1() {
+        $exec = $this->db->select('COUNT( v_transaction.qty ) AS tot')
+                ->from('v_transaction')
+                ->where('MONTH ( v_transaction.tr_date ) =', 'MONTH ( NOW( ) )', false)
+                ->get()
+                ->row();
+        return $exec;
+    }
+
+    public function sum_transact2() {
+        $exec = $this->db->select('COUNT( v_transaction.qty ) AS tot')
+                ->from('v_transaction')
+                ->where('MONTH ( v_transaction.tr_date ) =', 'MONTH ( NOW( ) )-1', false)
+                ->get()
+                ->row();
+        return $exec;
     }
 
     public function Search($searchtxt) {

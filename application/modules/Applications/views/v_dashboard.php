@@ -68,9 +68,7 @@
             <a href="<?php echo base_url('Transaction/Product/Dashboard/index/'); ?>" class="text-white font-weight-bold font-size-h6">
                 TOTAL TRANSACTION
             </a>
-<!--            <div class="clearfix">
-                <span class="symbol-label font-weight-bold" style="color: #119d00;">+57</span><small> from last month</small>
-            </div>-->
+            <?php echo $sum_transact; ?>
         </div>
     </div>
     <div class="col-md-6">
@@ -82,6 +80,7 @@
             <a href="javascript:void(0);" class="text-white font-weight-bold font-size-h6">
                 TOTAL SALES QUANTITY
             </a>
+            <?php echo $sum_qty; ?>
         </div>
     </div>
 </div>

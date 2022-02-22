@@ -12,6 +12,8 @@ class Dashboard extends CI_Controller {
 
     public function index() {
         $data = [
+            'sum_qty' => $this->sum_qty(),
+            'sum_transact' => $this->sum_transact(),
             'csrf' => $this->bodo->Csrf(),
             'token' => str_replace(['+', '/', '='], ['-', '_', '~'], $this->session->userdata('id_user')),
             'item_active' => 'Applications/Dashboard/index/',
@@ -106,6 +108,40 @@ class Dashboard extends CI_Controller {
             'tot_qty' => $tot_qty->tot_qty
         ];
         return ToJson($data);
+    }
+
+    private function sum_transact() {
+        $now = $this->model->sum_transact1();
+        $last_month = $this->model->sum_transact2();
+        if ($now < $last_month) {
+            $result = '<div class="clearfix">'
+                    . '<span class="symbol-label font-weight-bold text-danger">-' . number_format($now->tot - $last_month->tot) . '</span><small> from last month</small>'
+                    . '</div>';
+        } elseif ($now > $last_month) {
+            $result = '<div class="clearfix">'
+                    . '<span class="symbol-label font-weight-bold" style="color: #119d00;">+' . number_format($now->tot - $last_month->tot) . '</span><small> from last month</small>'
+                    . '</div>';
+        } else {
+            $result = null;
+        }
+        return $result;
+    }
+
+    private function sum_qty() {
+        $now = $this->model->sum_qty1(); //summary quantity transaction this month
+        $last_month = $this->model->sum_qty2(); //summary quantity transaction last month
+        if ($now < $last_month) {
+            $result = '<div class="clearfix">'
+                    . '<span class="symbol-label font-weight-bold text-danger">-' . number_format($now->tot - $last_month->tot) . '</span><small> from last month</small>'
+                    . '</div>';
+        } elseif ($now > $last_month) {
+            $result = '<div class="clearfix">'
+                    . '<span class="symbol-label font-weight-bold" style="color: #119d00;">+' . number_format($now->tot - $last_month->tot) . '</span><small> from last month</small>'
+                    . '</div>';
+        } else {
+            $result = null;
+        }
+        return $result;
     }
 
 }
