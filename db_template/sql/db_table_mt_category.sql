@@ -44,4 +44,5 @@ INSERT INTO `mt_category` (`id`, `id_brand`, `nama`, `description`, `stat`, `sys
 (19, 1, 'PHENOLIC', 'PHENOLIC\r\nkode PB', 1, 1, '2022-02-23 18:35:09', NULL, NULL, NULL, NULL),
 (20, 1, 'PVC', 'PVC', 1, 1, '2022-02-23 18:35:32', NULL, NULL, NULL, NULL),
 (21, 2, 'PVC GW', 'PVC brand GW', 1, 1, '2022-02-23 18:36:07', NULL, NULL, NULL, NULL),
-(22, 2, 'GREATWALL', '2022-02-23 18:41:54', 1, 1, '2022-02-23 19:44:00', NULL, NULL, NULL, NULL);
+(22, 2, 'GREATWALL', '2022-02-23 18:41:54', 1, 1, '2022-02-23 19:44:00', NULL, NULL, NULL, NULL),
+(23, 1, 'TOOLING', 'TOOLING Category brand frantinco', 1, 1, '2022-02-25 21:00:04', NULL, NULL, NULL, NULL);

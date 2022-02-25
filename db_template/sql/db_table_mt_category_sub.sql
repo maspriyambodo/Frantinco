@@ -88,4 +88,6 @@ INSERT INTO `mt_category_sub` (`id`, `id_category`, `nama`, `description`, `stat
 (112, 22, 'GREATWALL', '', 1, 1, '2022-02-23 19:44:18', NULL, NULL, NULL, NULL),
 (113, 18, 'KITCHEN TOP', '', 1, 1, '2022-02-23 19:47:31', NULL, NULL, NULL, NULL),
 (114, 19, 'PHENOLIC', '', 1, 1, '2022-02-23 19:52:31', NULL, NULL, NULL, NULL),
-(115, 20, 'FRANTINCO PVC', '', 1, 1, '2022-02-23 19:56:01', NULL, NULL, NULL, NULL);
+(115, 20, 'FRANTINCO PVC', '', 1, 1, '2022-02-23 19:56:01', NULL, NULL, NULL, NULL),
+(116, 21, 'PVC GW', '', 1, 1, '2022-02-25 20:49:03', NULL, NULL, NULL, NULL),
+(117, 23, 'TOOLING', '', 1, 1, '2022-02-25 21:00:19', NULL, NULL, NULL, NULL);

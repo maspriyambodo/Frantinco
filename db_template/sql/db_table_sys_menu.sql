@@ -30,12 +30,12 @@ CREATE TABLE `sys_menu` (
 
 INSERT INTO `sys_menu` (`id`, `menu_parent`, `nama`, `link`, `order_no`, `group_menu`, `icon`, `description`, `stat`, `syscreateuser`, `syscreatedate`, `sysupdateuser`, `sysupdatedate`, `sysdeleteuser`, `sysdeletedate`) VALUES
 (1, NULL, 'Dashboard', 'Applications/Dashboard/index/', 100, 1, 'fas fa-tachometer-alt', 'menu default systems', 1, 1, '2021-03-11 04:07:27', 1, '2021-09-12 05:22:21', 0, '2021-07-07 23:54:26'),
-(2, NULL, 'Master Wilayah', '#', 300, 3, 'fas fa-globe-asia', 'menu untuk master data wilayah indonesia', 1, 1, '2021-03-13 12:29:43', 1, '2021-09-21 13:05:29', 0, '0000-00-00 00:00:00'),
-(3, NULL, 'Master Country', 'Master/Country/index/', 305, 3, 'fas fa-globe', 'menu untuk master data negara', 1, 1, '2021-03-13 19:35:02', 1, '2021-09-21 13:04:41', 0, '0000-00-00 00:00:00'),
-(4, 2, 'Provinsi', 'Master/Wilayah/Provinsi/index/', 301, 3, '', NULL, 1, 1, '2021-03-13 12:31:34', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
-(5, 2, 'Kabupaten', 'Master/Wilayah/Kabupaten/index/', 302, 3, '', NULL, 1, 1, '2021-03-13 19:21:17', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
-(6, 2, 'Kecamatan', 'Master/Wilayah/Kecamatan/index/', 303, 3, '', NULL, 1, 1, '2021-03-13 19:22:00', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
-(7, 2, 'Kelurahan', 'Master/Wilayah/Kelurahan/index/', 304, 3, '', NULL, 1, 1, '2021-03-13 19:22:30', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+(2, NULL, 'Master Wilayah', '#', 300, 3, 'fas fa-globe-asia', 'menu untuk master data wilayah indonesia', 0, 1, '2021-03-13 12:29:43', 1, '2021-09-21 13:05:29', 1, '2022-02-23 21:36:33'),
+(3, NULL, 'Master Country', 'Master/Country/index/', 305, 3, 'fas fa-globe', 'menu untuk master data negara', 0, 1, '2021-03-13 19:35:02', 1, '2021-09-21 13:04:41', 1, '2022-02-23 21:36:43'),
+(4, 2, 'Provinsi', 'Master/Wilayah/Provinsi/index/', 301, 3, '', NULL, 0, 1, '2021-03-13 12:31:34', 0, '0000-00-00 00:00:00', 1, '2022-02-23 21:36:33'),
+(5, 2, 'Kabupaten', 'Master/Wilayah/Kabupaten/index/', 302, 3, '', NULL, 0, 1, '2021-03-13 19:21:17', 0, '0000-00-00 00:00:00', 1, '2022-02-23 21:36:33'),
+(6, 2, 'Kecamatan', 'Master/Wilayah/Kecamatan/index/', 303, 3, '', NULL, 0, 1, '2021-03-13 19:22:00', 0, '0000-00-00 00:00:00', 1, '2022-02-23 21:36:33'),
+(7, 2, 'Kelurahan', 'Master/Wilayah/Kelurahan/index/', 304, 3, '', NULL, 0, 1, '2021-03-13 19:22:30', 0, '0000-00-00 00:00:00', 1, '2022-02-23 21:36:33'),
 (8, NULL, 'Menu Management', 'Systems/Menu/index/', 900, 999, 'fas fa-bars', NULL, 1, 1, '2021-03-11 04:10:12', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
 (9, NULL, 'Menu Group', 'Systems/Menu_group/index/', 901, 999, 'fas fa-th-list', NULL, 1, 1, '2021-03-13 20:23:14', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
 (10, NULL, 'Systems', 'Systems/index/', 902, 999, 'fas fa-cogs', NULL, 1, 1, '2021-03-11 16:05:08', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),

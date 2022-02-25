@@ -193,13 +193,13 @@ ALTER TABLE `mt_brand`
 -- AUTO_INCREMENT for table `mt_category`
 --
 ALTER TABLE `mt_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `mt_category_sub`
 --
 ALTER TABLE `mt_category_sub`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `mt_country`
@@ -211,7 +211,7 @@ ALTER TABLE `mt_country`
 -- AUTO_INCREMENT for table `mt_product`
 --
 ALTER TABLE `mt_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=755;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=784;
 
 --
 -- AUTO_INCREMENT for table `sys_menu`
